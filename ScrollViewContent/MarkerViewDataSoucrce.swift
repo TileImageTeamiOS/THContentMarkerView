@@ -13,12 +13,18 @@ public struct MarkerViewDataSource {
     private var _imageView: UIImageView
     private var _ratioByImage: Double
     private var _size: CGSize
+    private var _titleLabel: UILabel
     
-    init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double) {
+    init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double, titleLabel: UILabel) {
         self._scrollView = scrollView
         self._imageView = imageView
         self._ratioByImage = ratioByImage
         self._size = imageView.frame.size.divide(double: ratioByImage)
+        self._titleLabel = titleLabel
+    }
+    
+    var titleLabel: UILabel {
+        get{return _titleLabel}
     }
     
     var scrollView: UIScrollView {

@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var minimapView: MinimapView!
     var minimapDataSource: MinimapDataSource!
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
@@ -20,17 +21,20 @@ class ViewController: UIViewController {
     
     var isEditor = false
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
     var centerPoint = UIView()
+    let markerView = MarkerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
+        titleLabel.isHidden = true
+        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, titleLabel: titleLabel)
         
-        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400)
         
-        let markerView = MarkerView()
         markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
@@ -46,6 +50,7 @@ class ViewController: UIViewController {
         self.view.addSubview(centerPoint)
         centerPoint.isHidden = true
         doneButton.isHidden = true
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -70,6 +75,22 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func backButtonAction(_ sender: UIButton) {
+        titleLabel.isHidden = true
+        markerView.setOpacity()
+        var destinationRect: CGRect = .zero
+        destinationRect.size.width = (imageView.image?.size.width)!
+        destinationRect.size.height = (imageView.image?.size.height)!
+        UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+            self.scrollView.zoom(to: destinationRect, animated: false)
+        }, completion: {
+            completed in
+            if let delegate = self.scrollView.delegate, delegate.responds(to: #selector(UIScrollViewDelegate.scrollViewDidEndZooming(_:with:atScale:))), let view = delegate.viewForZooming?(in: self.scrollView) {
+                delegate.scrollViewDidEndZooming!(self.scrollView, with: view, atScale: 1.0)
+            }
+        })
+        
+    }
     @IBAction func doneButtonAction(_ sender: Any) {
         print(scrollView.zoomScale)
     }

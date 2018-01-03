@@ -26,6 +26,7 @@ class MarkerView: UIView {
                                                name: NSNotification.Name(rawValue: "scollViewAction"),
                                                object: nil)
         self.dataSource = dataSource
+        self.dataSource.titleLabel.text = "test"
         self.x = x
         self.y = y
         dataSource.scrollView.addSubview(self)
@@ -33,6 +34,7 @@ class MarkerView: UIView {
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
         markerTapGestureRecognizer.delegate = self
         self.addGestureRecognizer(markerTapGestureRecognizer)
+         self.backgroundColor = UIColor.red
     }
     
     @objc private func frameSet() {
@@ -47,24 +49,26 @@ class MarkerView: UIView {
         } else {
             self.frame = CGRect(x: positionX, y: positionY, width: ratioLength, height: ratioLength)
         }
-        
-        self.backgroundColor = UIColor.red
+    }
+    
+    public func setOpacity(){
+        self.backgroundColor = UIColor.red.withAlphaComponent(1)
     }
     
     func zoom(scale: CGFloat) {
         print(dataSource.ratioWidth)
-        
         var destinationRect: CGRect = .zero
         destinationRect.size.width = dataSource.scrollView.frame.width/scale
         destinationRect.size.height = dataSource.scrollView.frame.height/scale
         destinationRect.origin.x = CGFloat(x - Double((self.dataSource.scrollView.frame.width/scale))/2)
         destinationRect.origin.y = CGFloat(y - Double((self.dataSource.scrollView.frame.height/scale))/2)
-        
+
         
         UIView.animate(withDuration: 5.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
             self.dataSource.scrollView.zoom(to: destinationRect, animated: false)
         }, completion: {
             completed in
+            
             if let delegate = self.dataSource.scrollView.delegate, delegate.responds(to: #selector(UIScrollViewDelegate.scrollViewDidEndZooming(_:with:atScale:))), let view = delegate.viewForZooming?(in: self.dataSource.scrollView) {
                 delegate.scrollViewDidEndZooming!(self.dataSource.scrollView, with: view, atScale: 1.0)
             }
@@ -75,7 +79,10 @@ class MarkerView: UIView {
 extension MarkerView: UIGestureRecognizerDelegate {
     @objc func markerViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
         print("tap")
+        self.backgroundColor = UIColor.red.withAlphaComponent(0)
+        self.dataSource.titleLabel.isHidden = false
         zoom(scale: 1)
+        
     }
 }
 
