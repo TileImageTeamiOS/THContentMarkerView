@@ -13,6 +13,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var minimapView: MinimapView!
+    var minimapDataSource: MinimapDataSource!
+    @IBOutlet weak var minimapHeight: NSLayoutConstraint!
+    @IBOutlet weak var minimapWidth: NSLayoutConstraint!
+    
     var isEditor = false
     
     var centerPoint = UIView()
@@ -27,6 +32,9 @@ class ViewController: UIViewController {
         
         let markerView = MarkerView()
         markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000)
+        
+        minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
+        minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
         
         setZoomParametersForSize(scrollView.bounds.size)
         recenterImage()

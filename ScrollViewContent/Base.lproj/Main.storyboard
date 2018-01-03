@@ -55,10 +55,20 @@
                                     <action selector="doneButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rE7-Xp-Kf5"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-cq-SEN" customClass="MinimapView" customModule="ScrollViewContent" customModuleProvider="target">
+                                <rect key="frame" x="320" y="612" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="OYH-0t-sRn"/>
+                                    <constraint firstAttribute="width" constant="30" id="c3I-rt-SDa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1vg-Ez-TkF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qBH-cq-SEN" secondAttribute="bottom" constant="25" id="94c-mg-6aM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qBH-cq-SEN" secondAttribute="trailing" constant="25" id="GH4-aD-89t"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T1j-6E-Qch"/>
                             <constraint firstItem="MZM-uR-LgA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ck4-dq-w7B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MZM-uR-LgA" secondAttribute="trailing" constant="10" id="ezj-Sl-mcg"/>
@@ -77,12 +87,15 @@
                     <connections>
                         <outlet property="doneButton" destination="MZM-uR-LgA" id="dIa-Ib-GK9"/>
                         <outlet property="imageView" destination="KEG-6e-aqR" id="6W4-5j-TyI"/>
+                        <outlet property="minimapHeight" destination="OYH-0t-sRn" id="uip-hj-Xwm"/>
+                        <outlet property="minimapView" destination="qBH-cq-SEN" id="J37-c9-dIU"/>
+                        <outlet property="minimapWidth" destination="c3I-rt-SDa" id="E2Z-DO-hUQ"/>
                         <outlet property="scrollView" destination="cpV-Yq-Yiz" id="hke-de-uff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="166" y="176"/>
+            <point key="canvasLocation" x="165.59999999999999" y="175.86206896551727"/>
         </scene>
     </scenes>
     <resources>
