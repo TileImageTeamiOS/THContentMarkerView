@@ -15,11 +15,6 @@ class ViewController: UIViewController {
     
     var isEditor = false
     
-    var x: Double = 0
-    var y: Double = 0
-    var width: Double = 0
-    var height: Double = 0
-    
     var centerPoint = UIView()
     
     override func viewDidLoad() {
@@ -27,6 +22,11 @@ class ViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
+        
+        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400)
+        
+        let markerView = MarkerView()
+        markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000)
         
         setZoomParametersForSize(scrollView.bounds.size)
         recenterImage()
@@ -98,16 +98,7 @@ extension ViewController: UIScrollViewDelegate {
         return imageView
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        x = Double(scrollView.contentOffset.x)
-        y = Double(scrollView.contentOffset.y)
-        height = Double(scrollView.bounds.height)
-        width = Double(scrollView.bounds.width)
-    }
-}
-
-extension UIImage {
-    func cropCGRect(rect: CGRect) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(<#T##size: CGSize##CGSize#>, <#T##opaque: Bool##Bool#>, <#T##scale: CGFloat##CGFloat#>)
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scollViewAction"), object: nil, userInfo: nil)
     }
 }

@@ -15,6 +15,10 @@
 		4E2F83FA1FF8E10E00511B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F81FF8E10E00511B4C /* LaunchScreen.storyboard */; };
 		4E2F84021FF91D8900511B4C /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F84011FF91D8900511B4C /* Editor.storyboard */; };
 		4E2F84041FF91D9E00511B4C /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F84031FF91D9E00511B4C /* EditorController.swift */; };
+		4E91076F1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */; };
+		4E9107711FFC97F0009DB1C6 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107701FFC97F0009DB1C6 /* MarkerView.swift */; };
+		4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */; };
+		4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107751FFC996F009DB1C6 /* MinimapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E2F84011FF91D8900511B4C /* Editor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Editor.storyboard; sourceTree = "<group>"; };
 		4E2F84031FF91D9E00511B4C /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
+		4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
+		4E9107701FFC97F0009DB1C6 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
+		4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapDataSource.swift; sourceTree = "<group>"; };
+		4E9107751FFC996F009DB1C6 /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +77,28 @@
 				4E2F83F31FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld */,
 				4E2F84011FF91D8900511B4C /* Editor.storyboard */,
 				4E2F84031FF91D9E00511B4C /* EditorController.swift */,
+				4E9107721FFC97F5009DB1C6 /* MarkerView */,
+				4E9107771FFC9973009DB1C6 /* MinimapView */,
 			);
 			path = ScrollViewContent;
+			sourceTree = "<group>";
+		};
+		4E9107721FFC97F5009DB1C6 /* MarkerView */ = {
+			isa = PBXGroup;
+			children = (
+				4E9107701FFC97F0009DB1C6 /* MarkerView.swift */,
+				4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */,
+			);
+			name = MarkerView;
+			sourceTree = "<group>";
+		};
+		4E9107771FFC9973009DB1C6 /* MinimapView */ = {
+			isa = PBXGroup;
+			children = (
+				4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */,
+				4E9107751FFC996F009DB1C6 /* MinimapView.swift */,
+			);
+			name = MinimapView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E91076F1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift in Sources */,
 				4E2F84041FF91D9E00511B4C /* EditorController.swift in Sources */,
+				4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */,
 				4E2F83F51FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld in Sources */,
+				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
+				4E9107711FFC97F0009DB1C6 /* MarkerView.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
