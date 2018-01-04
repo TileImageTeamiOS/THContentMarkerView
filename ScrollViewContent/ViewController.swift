@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var editorBtn: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
@@ -60,24 +61,32 @@ class ViewController: UIViewController {
     
     @IBAction func editionButton(_ sender: Any) {
         if isEditor == false {
+            editorBtn.title = "done"
             scrollView.layer.borderWidth = 4
             scrollView.layer.borderColor = UIColor.red.cgColor
             centerPoint.isHidden = isEditor
-            doneButton.isHidden = isEditor
-            
+            markerView.setOpacity(alpha: 0)
             isEditor = true
+            
         } else {
+            editorBtn.title = "editor"
             scrollView.layer.borderWidth = 0
             centerPoint.isHidden = isEditor
-            doneButton.isHidden = isEditor
-            
+            markerView.setOpacity(alpha: 1)
             isEditor = false
+            performSegue(withIdentifier: "editor", sender: editorBtn)
         }
     }
+
     
     @IBAction func backButtonAction(_ sender: UIButton) {
+        editorBtn.title = "editor"
         titleLabel.isHidden = true
-        markerView.setOpacity()
+        scrollView.layer.borderWidth = 0
+        centerPoint.isHidden = true
+        markerView.setOpacity(alpha: 1)
+        isEditor = false
+        
         var destinationRect: CGRect = .zero
         destinationRect.size.width = (imageView.image?.size.width)!
         destinationRect.size.height = (imageView.image?.size.height)!

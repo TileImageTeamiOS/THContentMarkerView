@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049385181FFE036900077765 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049385171FFE036900077765 /* EditorViewController.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F51FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83F31FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
 		4E2F83FA1FF8E10E00511B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F81FF8E10E00511B4C /* LaunchScreen.storyboard */; };
-		4E2F84021FF91D8900511B4C /* Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F84011FF91D8900511B4C /* Editor.storyboard */; };
-		4E2F84041FF91D9E00511B4C /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F84031FF91D9E00511B4C /* EditorController.swift */; };
 		4E91076F1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */; };
 		4E9107711FFC97F0009DB1C6 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107701FFC97F0009DB1C6 /* MarkerView.swift */; };
 		4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */; };
 		4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107751FFC996F009DB1C6 /* MinimapView.swift */; };
+		E236CA92992B49426AE04C39 /* Pods_ScrollViewContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6ED990F85DF7B5CDCD070E1 /* Pods_ScrollViewContent.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049385171FFE036900077765 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		494AB9210F6C0993A1BE7C4A /* Pods-ScrollViewContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.release.xcconfig"; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,12 +32,12 @@
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83F91FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E2F84011FF91D8900511B4C /* Editor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Editor.storyboard; sourceTree = "<group>"; };
-		4E2F84031FF91D9E00511B4C /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
 		4E9107701FFC97F0009DB1C6 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapDataSource.swift; sourceTree = "<group>"; };
 		4E9107751FFC996F009DB1C6 /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
+		98773A95670A00468AC7D1A5 /* Pods-ScrollViewContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.debug.xcconfig"; sourceTree = "<group>"; };
+		D6ED990F85DF7B5CDCD070E1 /* Pods_ScrollViewContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScrollViewContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E236CA92992B49426AE04C39 /* Pods_ScrollViewContent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +57,8 @@
 			children = (
 				4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
+				8BAFFBF303B3B09132F31B4F /* Pods */,
+				DDFD62527B1D839F508202FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,11 +77,10 @@
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
 				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
+				049385171FFE036900077765 /* EditorViewController.swift */,
 				4E2F83F81FF8E10E00511B4C /* LaunchScreen.storyboard */,
 				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
 				4E2F83F31FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld */,
-				4E2F84011FF91D8900511B4C /* Editor.storyboard */,
-				4E2F84031FF91D9E00511B4C /* EditorController.swift */,
 				4E9107721FFC97F5009DB1C6 /* MarkerView */,
 				4E9107771FFC9973009DB1C6 /* MinimapView */,
 			);
@@ -101,6 +105,23 @@
 			name = MinimapView;
 			sourceTree = "<group>";
 		};
+		8BAFFBF303B3B09132F31B4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				98773A95670A00468AC7D1A5 /* Pods-ScrollViewContent.debug.xcconfig */,
+				494AB9210F6C0993A1BE7C4A /* Pods-ScrollViewContent.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DDFD62527B1D839F508202FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6ED990F85DF7B5CDCD070E1 /* Pods_ScrollViewContent.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -108,9 +129,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E2F83FE1FF8E10E00511B4C /* Build configuration list for PBXNativeTarget "ScrollViewContent" */;
 			buildPhases = (
+				5415518F355CE0DB05276038 /* [CP] Check Pods Manifest.lock */,
 				4E2F83E51FF8E10E00511B4C /* Sources */,
 				4E2F83E61FF8E10E00511B4C /* Frameworks */,
 				4E2F83E71FF8E10E00511B4C /* Resources */,
+				D37EF79E2949EDC622FF28A7 /* [CP] Embed Pods Frameworks */,
+				9BF01F66BF396DB9D178165B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,11 +187,64 @@
 				4E2F83FA1FF8E10E00511B4C /* LaunchScreen.storyboard in Resources */,
 				4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */,
 				4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */,
-				4E2F84021FF91D8900511B4C /* Editor.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5415518F355CE0DB05276038 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ScrollViewContent-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BF01F66BF396DB9D178165B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D37EF79E2949EDC622FF28A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FileExplorer/FileExplorer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FileExplorer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E2F83E51FF8E10E00511B4C /* Sources */ = {
@@ -175,9 +252,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E91076F1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift in Sources */,
-				4E2F84041FF91D9E00511B4C /* EditorController.swift in Sources */,
 				4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */,
 				4E2F83F51FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld in Sources */,
+				049385181FFE036900077765 /* EditorViewController.swift in Sources */,
 				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E9107711FFC97F0009DB1C6 /* MarkerView.swift in Sources */,
@@ -316,6 +393,7 @@
 		};
 		4E2F83FF1FF8E10E00511B4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98773A95670A00468AC7D1A5 /* Pods-ScrollViewContent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -332,6 +410,7 @@
 		};
 		4E2F84001FF8E10E00511B4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 494AB9210F6C0993A1BE7C4A /* Pods-ScrollViewContent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

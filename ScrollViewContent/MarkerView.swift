@@ -51,8 +51,8 @@ class MarkerView: UIView {
         }
     }
     
-    public func setOpacity(){
-        self.backgroundColor = UIColor.red.withAlphaComponent(1)
+    public func setOpacity(alpha: CGFloat){
+        self.backgroundColor = UIColor.red.withAlphaComponent(alpha)
     }
     
     func zoom(scale: CGFloat) {
