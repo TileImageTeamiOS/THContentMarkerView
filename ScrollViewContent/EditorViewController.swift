@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class EditorViewController: UIViewController {
     
     var imagePicker: UIImagePickerController!
+    var audioPicker: MPMediaPickerController!
     
     @IBOutlet weak var audioTitle: UILabel!
     
@@ -28,7 +30,12 @@ class EditorViewController: UIViewController {
         super.viewDidLoad()
     }
     @IBAction func chooseAudio(_ sender: Any) {
+        audioPicker = MPMediaPickerController(mediaTypes: MPMediaType.music)
+        audioPicker.delegate = self
+        audioPicker.allowsPickingMultipleItems = false
+        present(audioPicker, animated: true, completion: nil)
     }
+    
     @IBAction func chooseVideo(_ sender: Any) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -40,6 +47,20 @@ class EditorViewController: UIViewController {
         
     }
    
+}
+extension EditorViewController: MPMediaPickerControllerDelegate {
+    
+    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        print("did pick")
+        audioPicker.dismiss(animated:true)
+        audioPicker = nil
+    }
+
+    func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
+        audioPicker.dismiss(animated:true)
+        audioPicker = nil
+    }
+    
 }
 
 extension EditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
