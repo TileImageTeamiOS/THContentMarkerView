@@ -51,12 +51,13 @@ class EditorViewController: UIViewController {
 extension EditorViewController: MPMediaPickerControllerDelegate {
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        print("did pick")
+        audioTitle.text = mediaItemCollection.items.first?.title
         audioPicker.dismiss(animated:true)
         audioPicker = nil
     }
 
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
+        audioTitle.text = "파일을 선택해 주세요"
         audioPicker.dismiss(animated:true)
         audioPicker = nil
     }
@@ -76,7 +77,14 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        videoTitle.text = "파일을 선택해 주세요"
         imagePicker.dismiss(animated: true, completion: nil)
         imagePicker = nil
+    }
+}
+extension EditorViewController:  UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
