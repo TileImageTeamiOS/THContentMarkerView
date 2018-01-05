@@ -13,6 +13,7 @@ class EditorViewController: UIViewController {
     
     var imagePicker: UIImagePickerController!
     var audioPicker: MPMediaPickerController!
+    var markerDataSource: MarkerViewDataSource?
     
     @IBOutlet weak var audioTitle: UILabel!
     
@@ -65,14 +66,16 @@ extension EditorViewController: MPMediaPickerControllerDelegate {
 }
 
 extension EditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let videoPath: NSURL = info["UIImagePickerControllerReferenceURL"] as! NSURL
-        
+        let videoPath = info["UIImagePickerControllerMediaURL"] as! NSURL
+        print(info)
         videoTitle.text = videoPath.lastPathComponent
-        
         imagePicker.dismiss(animated: true, completion: nil)
         imagePicker = nil
+        
+        let markerView3 = MarkerView()
+        markerView3.set(dataSource: markerDataSource!, x: 4000, y: 5000, zoomScale: 0.8, isAudioContent: false, isVideoContent: true)
     }
     
     
@@ -82,6 +85,8 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
         imagePicker = nil
     }
 }
+
+
 extension EditorViewController:  UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
