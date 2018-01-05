@@ -75,9 +75,15 @@ class MarkerView: UIView {
         audioContentView?.setAudio(name: name, format: format)
     }
     
+    // video 정보 세팅
     func setVideoContent(name: String, format: String) {
         videoContentView?.setVideoPlayer()
         videoContentView?.setVideo(name: name, format: format)
+    }
+    
+    func setVideoContent(url: URL) {
+        videoContentView?.setVideoPlayer()
+        videoContentView?.setVideoUrl(url: url)
     }
     
     // 마커 클릭시 카운데 정렬과, 줌 세팅

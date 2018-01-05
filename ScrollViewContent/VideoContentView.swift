@@ -39,6 +39,16 @@ class VideoContentView: UIView {
         }
     }
     
+    func setVideoUrl(url: URL) {
+        player =  AVPlayer(url: url)
+        player.allowsExternalPlayback = false
+            
+        let layer: AVPlayerLayer = AVPlayerLayer(player: player)
+        layer.frame = self.bounds
+        layer.videoGravity = AVLayerVideoGravity.resizeAspect
+        self.layer.addSublayer(layer)
+    }
+    
     private func playVideo() {
         videoStatus = .play
         player.play()

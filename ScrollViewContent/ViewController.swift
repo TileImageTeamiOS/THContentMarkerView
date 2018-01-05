@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, titleLabel: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView)
+        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
         
         
         markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000, zoomScale: 1, isAudioContent: false, isVideoContent: false)
