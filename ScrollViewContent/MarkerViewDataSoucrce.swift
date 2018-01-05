@@ -13,14 +13,18 @@ public struct MarkerViewDataSource {
     private var _imageView: UIImageView
     private var _ratioByImage: Double
     private var _size: CGSize
+    private var _audioContentView: AudioContentView?
+    private var _videoContentView: VideoContentView?
     private var _titleLabel: UILabel
     
-    init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double, titleLabel: UILabel) {
+    init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double,titleLabel: UILabel ,audioContentView: AudioContentView?, videoContentView: VideoContentView?) {
         self._scrollView = scrollView
         self._imageView = imageView
         self._ratioByImage = ratioByImage
         self._size = imageView.frame.size.divide(double: ratioByImage)
         self._titleLabel = titleLabel
+        self._audioContentView = audioContentView
+        self._videoContentView = videoContentView
     }
     
     var titleLabel: UILabel {
@@ -49,6 +53,14 @@ public struct MarkerViewDataSource {
     
     var zoomScaleHeight: Double {
         get {return (Double(self._size.height)/zoomScale)}
+    }
+    
+    var audioContentView: AudioContentView? {
+        get {return _audioContentView}
+    }
+    
+    var videoContentView: VideoContentView? {
+        get {return _videoContentView}
     }
 }
 

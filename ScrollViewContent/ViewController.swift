@@ -23,9 +23,13 @@ class ViewController: UIViewController {
     var isEditor = false
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var audioContentView: AudioContentView!
+    @IBOutlet weak var videoContentView: VideoContentView!
     
     var centerPoint = UIView()
     let markerView = MarkerView()
+    
+    var markerArray = [MarkerView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +39,10 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, titleLabel: titleLabel)
+        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, titleLabel: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView)
         
         
-        markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000)
+        markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000, zoomScale: 1, isAudioContent: false, isVideoContent: false)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
