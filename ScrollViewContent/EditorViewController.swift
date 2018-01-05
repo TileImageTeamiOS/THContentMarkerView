@@ -51,7 +51,7 @@ class EditorViewController: UIViewController {
 extension EditorViewController: MPMediaPickerControllerDelegate {
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        print("did pick")
+        audioTitle.text = mediaItemCollection.items.first?.title
         audioPicker.dismiss(animated:true)
         audioPicker = nil
     }
