@@ -21,6 +21,9 @@ public struct MarkerViewDataSource {
         self._imageView = imageView
         self._ratioByImage = ratioByImage
         self._size = imageView.frame.size.divide(double: ratioByImage)
+        print("=====================================")
+        print(self._imageView.frame.size)
+        print(self._size)
         self._audioContentView = audioContentView
         self._videoContentView = videoContentView
         self._audioContentView?.isHidden = true

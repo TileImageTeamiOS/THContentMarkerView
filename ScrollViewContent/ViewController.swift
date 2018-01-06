@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var videoContentView: VideoContentView!
     
     var minimapDataSource: MinimapDataSource!
+    var markerDataSoucrce: MarkerViewDataSource!
     var isEditor = false
     var centerPoint = UIView()
     var markerArray = [MarkerView]()
@@ -35,7 +36,7 @@ class ViewController: UIViewController {
     }
     
     func drawMarkers() {
-         let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
+//         let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
         for i in 0..<markerArray.count {
             markerArray[i].draw(dataSource: markerDataSoucrce)
         }
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        
+        markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
         drawMarkers()
        
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
@@ -97,6 +98,7 @@ class ViewController: UIViewController {
             vc.zoom = Double(scrollView.zoomScale)
             vc.x = Double(scrollView.contentOffset.x + scrollView.contentSize.width/2)
             vc.y = Double(scrollView.contentOffset.y + scrollView.contentSize.height/2)
+            print(vc.zoom)
             print(vc.x)
             print(vc.y)
         }

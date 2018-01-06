@@ -68,7 +68,6 @@ class MarkerView: UIView {
         ratioLength = dataSource.rationHeight > dataSource.ratioWidth ? dataSource.rationHeight : dataSource.ratioWidth
         scaleLength = dataSource.zoomScaleHeight > dataSource.zoomScaleWidth ? dataSource.zoomScaleHeight : dataSource.zoomScaleWidth
 
-        
         if dataSource.zoomScale > 1.0 {
             self.frame = CGRect(x: positionX, y: positionY, width: scaleLength, height: scaleLength)
         } else {
