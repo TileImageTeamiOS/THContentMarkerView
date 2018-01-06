@@ -21,8 +21,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var audioContentView: AudioContentView!
     @IBOutlet weak var videoContentView: VideoContentView!
     
+    
     var minimapDataSource: MinimapDataSource!
-    var markerDataSoucrce: MarkerViewDataSource!
+    var markerDataSource: MarkerViewDataSource!
     var isEditor = false
     var centerPoint = UIView()
     var markerArray = [MarkerView]()
@@ -33,12 +34,14 @@ class ViewController: UIViewController {
             print(markerArray.count)
         }
         drawMarkers()
+        back()
+        
     }
     
     func drawMarkers() {
 //         let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
         for i in 0..<markerArray.count {
-            markerArray[i].draw(dataSource: markerDataSoucrce)
+            markerArray[i].draw(dataSource: markerDataSource)
         }
     }
     
@@ -49,7 +52,7 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
         drawMarkers()
        
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
@@ -96,22 +99,19 @@ class ViewController: UIViewController {
         if (segue.identifier == "editor") {
             let vc = segue.destination as! EditorViewController
             vc.zoom = Double(scrollView.zoomScale)
-            vc.x = Double(scrollView.contentOffset.x + scrollView.contentSize.width/2)
-            vc.y = Double(scrollView.contentOffset.y + scrollView.contentSize.height/2)
-            print(vc.zoom)
-            print(vc.x)
-            print(vc.y)
+            vc.x = Double(scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
+            vc.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
         }
     }
-    
-    @IBAction func backButtonAction(_ sender: UIButton) {
+    func back() {
         editorBtn.title = "editor"
         titleLabel.isHidden = true
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
         //markerView.setOpacity(alpha: 1)
         isEditor = false
-        
+        markerDataSource.videoContentView?.isHidden = true
+        markerDataSource.audioContentView?.isHidden = true
         var destinationRect: CGRect = .zero
         destinationRect.size.width = (imageView.image?.size.width)!
         destinationRect.size.height = (imageView.image?.size.height)!
@@ -123,6 +123,10 @@ class ViewController: UIViewController {
                 delegate.scrollViewDidEndZooming!(self.scrollView, with: view, atScale: 1.0)
             }
         })
+    }
+    
+    @IBAction func backButtonAction(_ sender: UIButton) {
+       back()
         
     }
     

@@ -22,16 +22,16 @@ class MarkerView: UIView {
     private var markerTapGestureRecognizer = UITapGestureRecognizer()
     
     private var isAudioContent = false
-    private var audioContentView: AudioContentView?
     
     private var isVideoContent = false
-    private var videoContentView: VideoContentView?
+    
+    var videoURL = NSURL()
+    var audioURl = NSURL()
+    
     
     public func initial(){
-        audioContentView = dataSource.audioContentView
-        audioContentView?.isHidden = true
-        videoContentView = dataSource.videoContentView
-        videoContentView?.isHidden = true
+        dataSource.audioContentView?.isHidden = true
+        dataSource.videoContentView?.isHidden = true
 
     }
     public func set( x: Double, y: Double, zoomScale: Double, isAudioContent: Bool, isVideoContent: Bool){
@@ -41,11 +41,9 @@ class MarkerView: UIView {
         self.zoomScale = zoomScale
         // audio 세팅
         self.isAudioContent = isAudioContent
-        audioContentView?.isHidden = true
         
         // video 세팅
         self.isVideoContent = isVideoContent
-        videoContentView?.isHidden = true
     }
     
     public func draw(dataSource: MarkerViewDataSource) {
@@ -59,6 +57,12 @@ class MarkerView: UIView {
         markerTapGestureRecognizer.delegate = self
         self.addGestureRecognizer(markerTapGestureRecognizer)
         
+        if isVideoContent{
+            setVideoContent()
+        }
+        
+        if isAudioContent{
+        }
     }
     
     // 줌에 따른 마커 크기, 위치 세팅 변화
@@ -79,19 +83,19 @@ class MarkerView: UIView {
     
     // audio 정보 세팅
     func setAudioContent(name: String, format: String) {
-        audioContentView?.setAudioPlayer()
-        audioContentView?.setAudio(name: name, format: format)
+        dataSource.audioContentView?.setAudioPlayer()
+        dataSource.audioContentView?.setAudio(name: name, format: format)
     }
     
     // video 정보 세팅
     func setVideoContent(name: String, format: String) {
-        videoContentView?.setVideoPlayer()
-        videoContentView?.setVideo(name: name, format: format)
+        dataSource.videoContentView?.setVideoPlayer()
+        dataSource.videoContentView?.setVideo(name: name, format: format)
     }
     
-    func setVideoContent(url: URL) {
-        videoContentView?.setVideoPlayer()
-        videoContentView?.setVideoUrl(url: url)
+    func setVideoContent() {
+        dataSource.videoContentView?.setVideoPlayer()
+        dataSource.videoContentView?.setVideoUrl(url: videoURL as URL)
     }
     
     // 마커 클릭시 카운데 정렬과, 줌 세팅
@@ -121,13 +125,13 @@ class MarkerView: UIView {
 extension MarkerView: UIGestureRecognizerDelegate {
     @objc func markerViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
         zoom(scale: CGFloat(zoomScale))
-        
+        print(isVideoContent)
         if isAudioContent {
-            audioContentView?.isHidden = false
+            dataSource.audioContentView?.isHidden = false
         }
         
         if isVideoContent {
-            videoContentView?.isHidden = false
+            dataSource.videoContentView?.isHidden = false
         }
     }
 }
