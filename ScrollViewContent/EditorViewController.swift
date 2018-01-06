@@ -13,7 +13,12 @@ class EditorViewController: UIViewController {
     
     var imagePicker: UIImagePickerController!
     var audioPicker: MPMediaPickerController!
-    var markerDataSource: MarkerViewDataSource?
+    var videoPath = NSURL()
+    var x: Double = 0
+    var y: Double = 0
+    var zoom: Double = 1
+    var isAudio = false
+    var isVideo = false
     
     @IBOutlet weak var audioTitle: UILabel!
     
@@ -25,6 +30,10 @@ class EditorViewController: UIViewController {
     
     @IBAction func doneButtonAction(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
+        let marker = MarkerView()
+        marker.set(x: x, y: y, zoomScale: zoom, isAudioContent: isAudio, isVideoContent: isVideo)
+        let markerDict:[String: MarkerView] = ["marker": marker]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
 
     }
     override func viewDidLoad() {
@@ -55,10 +64,12 @@ extension EditorViewController: MPMediaPickerControllerDelegate {
         audioTitle.text = mediaItemCollection.items.first?.title
         audioPicker.dismiss(animated:true)
         audioPicker = nil
+        isAudio = true
     }
 
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
         audioTitle.text = "파일을 선택해 주세요"
+        isAudio = false
         audioPicker.dismiss(animated:true)
         audioPicker = nil
     }
@@ -68,14 +79,12 @@ extension EditorViewController: MPMediaPickerControllerDelegate {
 extension EditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let videoPath = info["UIImagePickerControllerMediaURL"] as! NSURL
-        print(info)
+        videoPath = info["UIImagePickerControllerMediaURL"] as! NSURL
+        
         videoTitle.text = videoPath.lastPathComponent
         imagePicker.dismiss(animated: true, completion: nil)
         imagePicker = nil
-        
-        let markerView3 = MarkerView()
-        markerView3.set(dataSource: markerDataSource!, x: 4000, y: 5000, zoomScale: 0.8, isAudioContent: false, isVideoContent: true)
+        isVideo = true
     }
     
     
@@ -83,9 +92,9 @@ extension EditorViewController: UIImagePickerControllerDelegate, UINavigationCon
         videoTitle.text = "파일을 선택해 주세요"
         imagePicker.dismiss(animated: true, completion: nil)
         imagePicker = nil
+        isVideo = false
     }
 }
-
 
 extension EditorViewController:  UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

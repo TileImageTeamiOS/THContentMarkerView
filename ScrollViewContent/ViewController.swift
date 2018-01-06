@@ -13,37 +13,44 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
-    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var minimapView: MinimapView!
-    var minimapDataSource: MinimapDataSource!
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
-    
-    var isEditor = false
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var audioContentView: AudioContentView!
     @IBOutlet weak var videoContentView: VideoContentView!
     
+    var minimapDataSource: MinimapDataSource!
+    var isEditor = false
     var centerPoint = UIView()
-    let markerView = MarkerView()
-    
     var markerArray = [MarkerView]()
+    
+    @objc func addMarker(_ notification: NSNotification){
+        if let marker = notification.userInfo?["marker"] as? MarkerView {
+            markerArray.append(marker)
+            print(markerArray.count)
+        }
+        drawMarkers()
+    }
+    
+    func drawMarkers() {
+         let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
+        for i in 0..<markerArray.count {
+            markerArray[i].draw(dataSource: markerDataSoucrce)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
         
-        
-        markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000, zoomScale: 1, isAudioContent: false, isVideoContent: false)
-        
+        drawMarkers()
+       
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
         
@@ -71,26 +78,36 @@ class ViewController: UIViewController {
             scrollView.layer.borderWidth = 4
             scrollView.layer.borderColor = UIColor.red.cgColor
             centerPoint.isHidden = isEditor
-            markerView.setOpacity(alpha: 0)
+            //markerView.setOpacity(alpha: 0)
             isEditor = true
             
         } else {
             editorBtn.title = "editor"
             scrollView.layer.borderWidth = 0
             centerPoint.isHidden = isEditor
-            markerView.setOpacity(alpha: 1)
+            //markerView.setOpacity(alpha: 1)
             isEditor = false
             performSegue(withIdentifier: "editor", sender: editorBtn)
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "editor") {
+            let vc = segue.destination as! EditorViewController
+            vc.zoom = Double(scrollView.zoomScale)
+            vc.x = Double(scrollView.contentOffset.x + scrollView.contentSize.width/2)
+            vc.y = Double(scrollView.contentOffset.y + scrollView.contentSize.height/2)
+            print(vc.x)
+            print(vc.y)
+        }
+    }
     
     @IBAction func backButtonAction(_ sender: UIButton) {
         editorBtn.title = "editor"
         titleLabel.isHidden = true
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
-        markerView.setOpacity(alpha: 1)
+        //markerView.setOpacity(alpha: 1)
         isEditor = false
         
         var destinationRect: CGRect = .zero
@@ -105,9 +122,6 @@ class ViewController: UIViewController {
             }
         })
         
-    }
-    @IBAction func doneButtonAction(_ sender: Any) {
-        print(scrollView.zoomScale)
     }
     
     func recenterImage() {

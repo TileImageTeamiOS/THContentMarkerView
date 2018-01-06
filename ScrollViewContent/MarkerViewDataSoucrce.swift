@@ -23,6 +23,9 @@ public struct MarkerViewDataSource {
         self._size = imageView.frame.size.divide(double: ratioByImage)
         self._audioContentView = audioContentView
         self._videoContentView = videoContentView
+        self._audioContentView?.isHidden = true
+        self._videoContentView?.isHidden = true
+        
     }
     
     var scrollView: UIScrollView {
