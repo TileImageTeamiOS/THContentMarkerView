@@ -101,6 +101,6 @@ extension TextContentView: UIGestureRecognizerDelegate {
     }
     
     @objc func linkLabelTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        
+        let parentVC = self.parentViewController
     }
 }
