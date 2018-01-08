@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ScrollViewContent.xcodeproj">
+      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/AudioContentView.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/Constant.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/TextContentView.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/VideoContentView.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

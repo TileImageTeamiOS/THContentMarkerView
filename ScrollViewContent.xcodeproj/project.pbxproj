@@ -7,20 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04727BB220032A1600E23872 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BAE20032A1500E23872 /* Constant.swift */; };
+		04727BB320032A1600E23872 /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BAF20032A1500E23872 /* VideoContentView.swift */; };
+		04727BB420032A1600E23872 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BB020032A1500E23872 /* AudioContentView.swift */; };
+		04727BB520032A1600E23872 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BB120032A1600E23872 /* TextContentView.swift */; };
 		049385181FFE036900077765 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049385171FFE036900077765 /* EditorViewController.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
 		4E43B3131FFF77D600717B95 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E43B30F1FFF77D600717B95 /* MarkerViewDataSoucrce.swift */; };
-		4E43B3141FFF77D600717B95 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E43B3101FFF77D600717B95 /* AudioContentView.swift */; };
-		4E43B3151FFF77D600717B95 /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E43B3111FFF77D600717B95 /* VideoContentView.swift */; };
 		4E43B3161FFF77D600717B95 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E43B3121FFF77D600717B95 /* MarkerView.swift */; };
 		4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */; };
 		4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107751FFC996F009DB1C6 /* MinimapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04727BAE20032A1500E23872 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = /Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/Constant.swift; sourceTree = "<absolute>"; };
+		04727BAF20032A1500E23872 /* VideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoContentView.swift; path = /Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/VideoContentView.swift; sourceTree = "<absolute>"; };
+		04727BB020032A1500E23872 /* AudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioContentView.swift; path = /Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/AudioContentView.swift; sourceTree = "<absolute>"; };
+		04727BB120032A1600E23872 /* TextContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextContentView.swift; path = /Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/TextContentView.swift; sourceTree = "<absolute>"; };
 		049385171FFE036900077765 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,8 +35,6 @@
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E43B30F1FFF77D600717B95 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
-		4E43B3101FFF77D600717B95 /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
-		4E43B3111FFF77D600717B95 /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
 		4E43B3121FFF77D600717B95 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapDataSource.swift; sourceTree = "<group>"; };
 		4E9107751FFC996F009DB1C6 /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
@@ -83,8 +87,10 @@
 			children = (
 				4E43B30F1FFF77D600717B95 /* MarkerViewDataSoucrce.swift */,
 				4E43B3121FFF77D600717B95 /* MarkerView.swift */,
-				4E43B3101FFF77D600717B95 /* AudioContentView.swift */,
-				4E43B3111FFF77D600717B95 /* VideoContentView.swift */,
+				04727BB020032A1500E23872 /* AudioContentView.swift */,
+				04727BAE20032A1500E23872 /* Constant.swift */,
+				04727BB120032A1600E23872 /* TextContentView.swift */,
+				04727BAF20032A1500E23872 /* VideoContentView.swift */,
 			);
 			name = MarkerView;
 			sourceTree = "<group>";
@@ -170,13 +176,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */,
-				4E43B3151FFF77D600717B95 /* VideoContentView.swift in Sources */,
-				4E43B3141FFF77D600717B95 /* AudioContentView.swift in Sources */,
+				04727BB320032A1600E23872 /* VideoContentView.swift in Sources */,
 				049385181FFE036900077765 /* EditorViewController.swift in Sources */,
 				4E43B3131FFF77D600717B95 /* MarkerViewDataSoucrce.swift in Sources */,
+				04727BB220032A1600E23872 /* Constant.swift in Sources */,
+				04727BB420032A1600E23872 /* AudioContentView.swift in Sources */,
 				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E43B3161FFF77D600717B95 /* MarkerView.swift in Sources */,
+				04727BB520032A1600E23872 /* TextContentView.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

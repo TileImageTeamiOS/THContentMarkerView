@@ -30,10 +30,7 @@ class EditorViewController: UIViewController {
     
     @IBAction func doneButtonAction(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
-        let marker = MarkerView()
-        marker.set(x: x, y: y, zoomScale: zoom, isAudioContent: isAudio, isVideoContent: isVideo)
-        marker.videoURL = videoPath
-        let markerDict:[String: MarkerView] = ["marker": marker]
+        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
 
     }

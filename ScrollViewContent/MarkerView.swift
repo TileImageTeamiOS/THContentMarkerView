@@ -22,47 +22,32 @@ class MarkerView: UIView {
     private var markerTapGestureRecognizer = UITapGestureRecognizer()
     
     private var isAudioContent = false
-    
     private var isVideoContent = false
-    
-    var videoURL = NSURL()
-    var audioURl = NSURL()
-    
     
     public func initial(){
         dataSource.audioContentView?.isHidden = true
         dataSource.videoContentView?.isHidden = true
 
     }
-    public func set( x: Double, y: Double, zoomScale: Double, isAudioContent: Bool, isVideoContent: Bool){
-       
-        self.x = x
-        self.y = y
-        self.zoomScale = zoomScale
-        // audio 세팅
-        self.isAudioContent = isAudioContent
-        
-        // video 세팅
-        self.isVideoContent = isVideoContent
-    }
-    
-    public func draw(dataSource: MarkerViewDataSource) {
+    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isAudioContent: Bool, isVideoContent: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(frameSet),
                                                name: NSNotification.Name(rawValue: "scollViewAction"),
                                                object: nil)
         self.dataSource = dataSource
+        self.x = x
+        self.y = y
+        self.zoomScale = zoomScale
         dataSource.scrollView.addSubview(self)
         
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
         markerTapGestureRecognizer.delegate = self
         self.addGestureRecognizer(markerTapGestureRecognizer)
         
-        if isVideoContent{
-            setVideoContent()
-        }
+        // audio 세팅
+        self.isAudioContent = isAudioContent
         
-        if isAudioContent{
-        }
+        // video 세팅
+        self.isVideoContent = isVideoContent
     }
     
     // 줌에 따른 마커 크기, 위치 세팅 변화
@@ -93,9 +78,9 @@ class MarkerView: UIView {
         dataSource.videoContentView?.setVideo(name: name, format: format)
     }
     
-    func setVideoContent() {
+    func setVideoContent(url: URL) {
         dataSource.videoContentView?.setVideoPlayer()
-        dataSource.videoContentView?.setVideoUrl(url: videoURL as URL)
+        dataSource.videoContentView?.setVideoUrl(url: url)
     }
     
     // 마커 클릭시 카운데 정렬과, 줌 세팅

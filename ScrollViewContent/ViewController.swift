@@ -29,20 +29,17 @@ class ViewController: UIViewController {
     var markerArray = [MarkerView]()
     
     @objc func addMarker(_ notification: NSNotification){
-        if let marker = notification.userInfo?["marker"] as? MarkerView {
-            markerArray.append(marker)
-            print(markerArray.count)
-        }
-        drawMarkers()
-        back()
+        let marker = MarkerView()
         
-    }
-    
-    func drawMarkers() {
-//         let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
-        for i in 0..<markerArray.count {
-            markerArray[i].draw(dataSource: markerDataSource)
-        }
+        let x = notification.userInfo?["x"]
+        let y = notification.userInfo?["y"]
+        let zoom =  notification.userInfo?["zoomScale"]
+        let isAudioContent = notification.userInfo?["isAudioContent"]
+        let isVideoContent = notification.userInfo?["isVideoContent"]
+        let videoURL = notification.userInfo?["videoURL"]
+        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool)
+        marker.setVideoContent(url: videoURL as! URL)
+        back()
     }
     
     override func viewDidLoad() {
@@ -53,8 +50,7 @@ class ViewController: UIViewController {
         scrollView.delegate = self
         titleLabel.isHidden = true
         markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, audioContentView: audioContentView, videoContentView: videoContentView)
-        drawMarkers()
-       
+        
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
         
