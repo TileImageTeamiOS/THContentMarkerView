@@ -40,8 +40,10 @@ class ViewController: UIViewController {
         let markerTitle = notification.userInfo?["title"]
         
         marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
+        
         marker.setVideoContent(url: videoURL as! URL)
         marker.setMarkerTitle(title: markerTitle as! String)
+        
         back()
         markerArray.append(marker)
     }
