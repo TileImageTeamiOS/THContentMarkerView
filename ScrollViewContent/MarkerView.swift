@@ -28,6 +28,8 @@ class MarkerView: UIView {
     private var imageView : UIImageView!
     private var markerTitle: String = ""
     
+    var titleLabel = UILabel()
+    
     public func initial(){
         dataSource.audioContentView?.isHidden = true
         dataSource.videoContentView?.isHidden = true
