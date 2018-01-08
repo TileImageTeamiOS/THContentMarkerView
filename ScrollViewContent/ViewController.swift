@@ -37,27 +37,37 @@ class ViewController: UIViewController {
         let isAudioContent = notification.userInfo?["isAudioContent"]
         let isVideoContent = notification.userInfo?["isVideoContent"]
         let videoURL = notification.userInfo?["videoURL"]
-        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool)
+        let markerTitle = notification.userInfo?["title"]
+        
+        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
         marker.setVideoContent(url: videoURL as! URL)
+        marker.setMarkerTitle(title: markerTitle as! String)
         back()
+        markerArray.append(marker)
+    }
+    
+    @objc func click(){
+        for marker in markerArray{
+            marker.click()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(click), name: NSNotification.Name(rawValue: "click"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 300, audioContentView: audioContentView, videoContentView: videoContentView)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, audioContentView: audioContentView, videoContentView: videoContentView, titleLabel: titleLabel)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
         
         setZoomParametersForSize(scrollView.bounds.size)
         recenterImage()
-        
-        centerPoint.frame = CGRect(x: scrollView.center.x, y: scrollView.center.y, width: CGFloat(10), height: CGFloat(10))
+        centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2, width: CGFloat(10), height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
         centerPoint.layer.cornerRadius = 5
         
@@ -95,10 +105,11 @@ class ViewController: UIViewController {
             let vc = segue.destination as! EditorViewController
             vc.zoom = Double(scrollView.zoomScale)
             vc.x = Double(scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
-            vc.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
+            vc.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.height/scrollView.zoomScale/2)
         }
     }
     func back() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "back"), object: nil)
         editorBtn.title = "editor"
         titleLabel.isHidden = true
         scrollView.layer.borderWidth = 0
@@ -122,7 +133,6 @@ class ViewController: UIViewController {
     
     @IBAction func backButtonAction(_ sender: UIButton) {
        back()
-        
     }
     
     func recenterImage() {
