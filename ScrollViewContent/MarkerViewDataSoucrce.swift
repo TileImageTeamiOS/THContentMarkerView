@@ -69,6 +69,9 @@ public struct MarkerViewDataSource {
     var titleLabel: UILabel? {
         get {return _titleLabel}
     }
+    func modifyTitle(title: String){
+        _titleLabel?.text = title
+    }
 }
 
 extension CGSize {

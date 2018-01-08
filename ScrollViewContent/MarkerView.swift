@@ -101,7 +101,7 @@ class MarkerView: UIView {
     }
     
     func setMarkerTitle(title: String) {
-        dataSource.titleLabel?.text = title
+        dataSource.modifyTitle(title: title)
     }
     
     // 마커 클릭시 카운데 정렬과, 줌 세팅
@@ -128,8 +128,10 @@ class MarkerView: UIView {
 extension MarkerView: UIGestureRecognizerDelegate {
     @objc func markerViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
         if touchEnable {
+            setMarkerTitle(title: markerTitle)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "click"), object: nil)
             zoom(scale: CGFloat(zoomScale))
+            
             dataSource.titleLabel?.isHidden = false
             if isAudioContent {
                 dataSource.audioContentView?.isHidden = false
