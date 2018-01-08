@@ -102,5 +102,12 @@ extension TextContentView: UIGestureRecognizerDelegate {
     
     @objc func linkLabelTap(_ gestureRecognizer: UITapGestureRecognizer) {
         let parentVC = self.parentViewController
+        let webViewController = UIViewController()
+
+        let webView = UIWebView(frame: webViewController.view.frame)
+        webViewController.view.addSubview(webView)
+        webView.loadRequest(URLRequest(url: URL(string: "https://grohong.github.io/")!))
+        
+        parentVC?.show(webViewController, sender: nil)
     }
 }
