@@ -40,16 +40,24 @@ class ViewController: UIViewController {
         marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool)
         marker.setVideoContent(url: videoURL as! URL)
         back()
+        markerArray.append(marker)
+    }
+    
+    @objc func click(){
+        for marker in markerArray{
+            marker.click()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(click), name: NSNotification.Name(rawValue: "click"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 300, audioContentView: audioContentView, videoContentView: videoContentView)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 250, audioContentView: audioContentView, videoContentView: videoContentView)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
@@ -96,10 +104,11 @@ class ViewController: UIViewController {
             let vc = segue.destination as! EditorViewController
             vc.zoom = Double(scrollView.zoomScale)
             vc.x = Double(scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
-            vc.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
+            vc.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.height/scrollView.zoomScale/2)
         }
     }
     func back() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "back"), object: nil)
         editorBtn.title = "editor"
         titleLabel.isHidden = true
         scrollView.layer.borderWidth = 0
@@ -123,7 +132,6 @@ class ViewController: UIViewController {
     
     @IBAction func backButtonAction(_ sender: UIButton) {
        back()
-        
     }
     
     func recenterImage() {

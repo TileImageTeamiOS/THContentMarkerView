@@ -16,6 +16,7 @@ public struct MarkerViewDataSource {
     private var _audioContentView: AudioContentView?
     private var _videoContentView: VideoContentView?
     
+    
     init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double, audioContentView: AudioContentView?, videoContentView: VideoContentView?) {
         self._scrollView = scrollView
         self._imageView = imageView

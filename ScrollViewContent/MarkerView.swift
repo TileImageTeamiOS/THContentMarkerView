@@ -24,6 +24,9 @@ class MarkerView: UIView {
     private var isAudioContent = false
     private var isVideoContent = false
     
+    private var touchEnable = true
+    private var imageView : UIImageView!
+    
     public func initial(){
         dataSource.audioContentView?.isHidden = true
         dataSource.videoContentView?.isHidden = true
@@ -48,6 +51,17 @@ class MarkerView: UIView {
         
         // video 세팅
         self.isVideoContent = isVideoContent
+        imageView = UIImageView(frame: self.bounds)
+        NotificationCenter.default.addObserver(self, selector: #selector(back), name: NSNotification.Name(rawValue: "back"), object: nil)
+    }
+    @objc func back(){
+        touchEnable = true
+        self.isHidden = false
+    }
+    
+    func click(){
+        self.isHidden = true
+        touchEnable = false
     }
     
     // 줌에 따른 마커 크기, 위치 세팅 변화
@@ -62,8 +76,10 @@ class MarkerView: UIView {
         } else {
             self.frame = CGRect(x: positionX, y: positionY, width: ratioLength, height: ratioLength)
         }
-        let background = UIImage(named: "search2")
-        var imageView : UIImageView!
+        
+        removeImage()
+        
+        let background = UIImage(named: "page-1")
         imageView = UIImageView(frame: self.bounds)
         imageView.contentMode =  UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
@@ -71,6 +87,11 @@ class MarkerView: UIView {
         self.addSubview(imageView)
     }
     
+    func removeImage(){
+        for view in self.subviews{
+            view.removeFromSuperview()
+        }
+    }
     // audio 정보 세팅
     func setAudioContent(name: String, format: String) {
         dataSource.audioContentView?.setAudioPlayer()
@@ -107,21 +128,20 @@ class MarkerView: UIView {
         })
     }
     
-    public func setOpacity(alpha: CGFloat){
-        self.backgroundColor = UIColor.red.withAlphaComponent(alpha)
-    }
 }
 
 extension MarkerView: UIGestureRecognizerDelegate {
     @objc func markerViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        zoom(scale: CGFloat(zoomScale))
-        print(isVideoContent)
-        if isAudioContent {
-            dataSource.audioContentView?.isHidden = false
-        }
-        
-        if isVideoContent {
-            dataSource.videoContentView?.isHidden = false
+        if touchEnable {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "click"), object: nil)
+            zoom(scale: CGFloat(zoomScale))
+            if isAudioContent {
+                dataSource.audioContentView?.isHidden = false
+            }
+            
+            if isVideoContent {
+                dataSource.videoContentView?.isHidden = false
+            }
         }
     }
 }
