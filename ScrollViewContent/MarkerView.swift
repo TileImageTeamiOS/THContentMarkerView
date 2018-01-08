@@ -62,8 +62,13 @@ class MarkerView: UIView {
         } else {
             self.frame = CGRect(x: positionX, y: positionY, width: ratioLength, height: ratioLength)
         }
-        
-        self.backgroundColor = UIColor.red
+        let background = UIImage(named: "search2")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: self.bounds)
+        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        self.addSubview(imageView)
     }
     
     // audio 정보 세팅

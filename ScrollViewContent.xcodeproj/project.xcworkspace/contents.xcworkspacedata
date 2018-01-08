@@ -2,16 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/AudioContentView.swift">
+      location = "group:AudioContentView.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/Constant.swift">
+      location = "group:Constant.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/TextContentView.swift">
+      location = "group:TextContentView.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/mac/Desktop/image/UIScrollView_content/ScrollViewContent/VideoContentView.swift">
+      location = "group:VideoContentView.swift">
    </FileRef>
    <FileRef
       location = "self:">
