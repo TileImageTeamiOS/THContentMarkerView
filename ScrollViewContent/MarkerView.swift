@@ -26,13 +26,14 @@ class MarkerView: UIView {
     
     private var touchEnable = true
     private var imageView : UIImageView!
+    private var markerTitle: String = ""
     
     public func initial(){
         dataSource.audioContentView?.isHidden = true
         dataSource.videoContentView?.isHidden = true
 
     }
-    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isAudioContent: Bool, isVideoContent: Bool) {
+    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isAudioContent: Bool, isVideoContent: Bool, markerTitle: String) {
         NotificationCenter.default.addObserver(self, selector: #selector(frameSet),
                                                name: NSNotification.Name(rawValue: "scollViewAction"),
                                                object: nil)
@@ -40,6 +41,7 @@ class MarkerView: UIView {
         self.x = x
         self.y = y
         self.zoomScale = zoomScale
+        self.markerTitle = markerTitle
         dataSource.scrollView.addSubview(self)
         
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
@@ -92,21 +94,14 @@ class MarkerView: UIView {
             view.removeFromSuperview()
         }
     }
-    // audio 정보 세팅
-    func setAudioContent(name: String, format: String) {
-        dataSource.audioContentView?.setAudioPlayer()
-        dataSource.audioContentView?.setAudio(name: name, format: format)
-    }
-    
-    // video 정보 세팅
-    func setVideoContent(name: String, format: String) {
-        dataSource.videoContentView?.setVideoPlayer()
-        dataSource.videoContentView?.setVideo(name: name, format: format)
-    }
     
     func setVideoContent(url: URL) {
         dataSource.videoContentView?.setVideoPlayer()
         dataSource.videoContentView?.setVideoUrl(url: url)
+    }
+    
+    func setMarkerTitle(title: String) {
+        dataSource.titleLabel?.text = title
     }
     
     // 마커 클릭시 카운데 정렬과, 줌 세팅
@@ -135,6 +130,7 @@ extension MarkerView: UIGestureRecognizerDelegate {
         if touchEnable {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "click"), object: nil)
             zoom(scale: CGFloat(zoomScale))
+            dataSource.titleLabel?.isHidden = false
             if isAudioContent {
                 dataSource.audioContentView?.isHidden = false
             }

@@ -37,8 +37,11 @@ class ViewController: UIViewController {
         let isAudioContent = notification.userInfo?["isAudioContent"]
         let isVideoContent = notification.userInfo?["isVideoContent"]
         let videoURL = notification.userInfo?["videoURL"]
-        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool)
+        let markerTitle = notification.userInfo?["title"]
+        
+        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
         marker.setVideoContent(url: videoURL as! URL)
+        marker.setMarkerTitle(title: markerTitle as! String)
         back()
         markerArray.append(marker)
     }
@@ -57,7 +60,7 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         titleLabel.isHidden = true
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 250, audioContentView: audioContentView, videoContentView: videoContentView)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, audioContentView: audioContentView, videoContentView: videoContentView, titleLabel: titleLabel)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
