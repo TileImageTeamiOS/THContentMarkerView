@@ -72,14 +72,14 @@ class MarkerView: UIView {
         scaleLength = dataSource.zoomScaleHeight > dataSource.zoomScaleWidth ? dataSource.zoomScaleHeight : dataSource.zoomScaleWidth
 
         if dataSource.zoomScale > 1.0 {
-            self.frame = CGRect(x: positionX, y: positionY, width: scaleLength, height: scaleLength)
+            self.frame = CGRect(x: positionX-scaleLength/4, y: positionY-scaleLength/4, width: scaleLength, height: scaleLength)
         } else {
-            self.frame = CGRect(x: positionX, y: positionY, width: ratioLength, height: ratioLength)
+            self.frame = CGRect(x: positionX-ratioLength/4, y: positionY-ratioLength/4, width: ratioLength, height: ratioLength)
         }
         
         removeImage()
         
-        let background = UIImage(named: "page-1")
+        let background = UIImage(named: "page")
         imageView = UIImageView(frame: self.bounds)
         imageView.contentMode =  UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true

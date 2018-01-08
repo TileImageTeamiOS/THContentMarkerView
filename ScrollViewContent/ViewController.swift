@@ -64,8 +64,7 @@ class ViewController: UIViewController {
         
         setZoomParametersForSize(scrollView.bounds.size)
         recenterImage()
-        
-        centerPoint.frame = CGRect(x: scrollView.center.x, y: scrollView.center.y, width: CGFloat(10), height: CGFloat(10))
+        centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2, width: CGFloat(10), height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
         centerPoint.layer.cornerRadius = 5
         
