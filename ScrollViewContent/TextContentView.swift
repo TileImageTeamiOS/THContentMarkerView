@@ -8,36 +8,49 @@
 
 import UIKit
 
+enum ContentStatus: Int {
+    case show = 1
+    case hide
+}
+
 class TextContentView: UIView {
     var textContentResizeView = UIView()
     private var resizeTapGestureRecognizer = UITapGestureRecognizer()
+    private var linkLabelTapGestureRecognizer = UITapGestureRecognizer()
     
     var contentScrollView = UIScrollView()
     var titleLable = UILabel()
     var linkLable = UILabel()
     var textLabel = UILabel()
     
-    func set() {
+    var contentStatus: ContentStatus = .hide
+    
+    func setTextContent() {
         scrollSet()
-        labelSet()
-        textContentResizeView = UIView(frame: CGRect(x: self.frame.width - 50, y: 10, width: 25, height: 25))
+        labelSet(title: titleExam, link: linkExam, text: textExam)
+        textContentResizeView = UIView(frame: CGRect(x: self.frame.width - 30, y: 10, width: 25, height: 25))
         textContentResizeView.backgroundColor = UIColor.white
-        self.addSubview(textContentResizeView)
+        contentScrollView.addSubview(textContentResizeView)
         
         resizeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(resizeViewTap(_:)))
         resizeTapGestureRecognizer.delegate = self
         textContentResizeView.addGestureRecognizer(resizeTapGestureRecognizer)
+        
+        linkLabelTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(linkLabelTap(_:)))
+        linkLabelTapGestureRecognizer.delegate = self
+        linkLable.addGestureRecognizer(linkLabelTapGestureRecognizer)
     }
     
     private func scrollSet() {
         contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        contentScrollView.canCancelContentTouches = true
         self.addSubview(contentScrollView)
     }
     
-    private func labelSet() {
+    private func labelSet(title: String?, link: String?, text: String?) {
         titleLable.frame.size = CGSize(width: self.frame.width, height: 10)
         titleLable.frame.origin = CGPoint(x: 10, y: 10)
-        titleLable.text = titleExam
+        titleLable.text = title
         titleLable.numberOfLines = 2
         titleLable.textAlignment = .left
         titleLable.font = UIFont.boldSystemFont(ofSize: 15)
@@ -45,14 +58,16 @@ class TextContentView: UIView {
         
         linkLable.frame.size = CGSize(width: self.frame.width, height: 10)
         linkLable.frame.origin = CGPoint(x: 10, y: titleLable.frame.origin.y + titleLable.frame.height + 10)
-        linkLable.text = linkExam
+        linkLable.text = link
         linkLable.numberOfLines = 2
         linkLable.textAlignment = .left
+        linkLable.textColor = UIColor.blue
         linkLable.sizeToFit()
+        linkLable.isUserInteractionEnabled = true
         
         textLabel.frame.size = CGSize(width: self.frame.width, height: 10)
         textLabel.frame.origin = CGPoint(x: 10, y: linkLable.frame.origin.y + linkLable.frame.height + 10)
-        textLabel.text = textExam
+        textLabel.text = text
         textLabel.numberOfLines = 100
         textLabel.textAlignment = .left
         textLabel.sizeToFit()
@@ -68,7 +83,24 @@ class TextContentView: UIView {
 
 extension TextContentView: UIGestureRecognizerDelegate {
     @objc func resizeViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        print("tap")
-
+        if contentStatus == .hide {
+            contentStatus = .show
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - 400, width: (self.superview?.frame.width)!, height: 400)
+                self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                })
+        } else {
+            contentStatus = .hide
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - 100, width: (self.superview?.frame.width)!, height: 100)
+                self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+            })
+        }
+    }
+    
+    @objc func linkLabelTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        
     }
 }

@@ -64,12 +64,6 @@ class ViewController: UIViewController {
         self.view.addSubview(centerPoint)
         centerPoint.isHidden = true
         doneButton.isHidden = true
-        
-        // textContent
-        var textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 100, width: self.view.frame.width, height: 100) )
-        textContentView.set()
-        textContentView.backgroundColor = UIColor.brown
-        self.view.addSubview(textContentView)
     }
     
     override func viewWillLayoutSubviews() {
