@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
     @IBOutlet weak var audioContentView: AudioContentView!
     @IBOutlet weak var videoContentView: VideoContentView!
-    
+    var titleLabel = UILabel()
     
     var minimapDataSource: MinimapDataSource!
     var markerDataSource: MarkerViewDataSource!
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
         
         marker.setVideoContent(url: videoURL as! URL)
-        marker.setMarkerTitle(title: markerTitle as! String)
+        marker.setTitle(title: markerTitle as! String)
         
         back()
         markerArray.append(marker)
@@ -60,7 +60,12 @@ class ViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, audioContentView: audioContentView, videoContentView: videoContentView)
+        
+        titleLabel.center = self.view.center
+        titleLabel.textColor = UIColor.white
+        titleLabel.font.withSize(20)
+        self.view.addSubview(titleLabel)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
@@ -122,6 +127,8 @@ class ViewController: UIViewController {
         isEditor = false
         markerDataSource.videoContentView?.isHidden = true
         markerDataSource.audioContentView?.isHidden = true
+        markerDataSource.titleLabelView?.isHidden = true
+        
         var destinationRect: CGRect = .zero
         destinationRect.size.width = (imageView.image?.size.width)!
         destinationRect.size.height = (imageView.image?.size.height)!

@@ -23,13 +23,14 @@ class MarkerView: UIView {
     
     private var isAudioContent = false
     private var isVideoContent = false
+    private var isTitleContent = false
     
     private var touchEnable = true
     private var imageView : UIImageView!
     private var markerTitle: String = ""
     
     var videoURL: URL?
-    var titleLabel = UILabel()
+    var title: String?
     
     public func initial(){
         dataSource.audioContentView?.isHidden = true
@@ -59,10 +60,6 @@ class MarkerView: UIView {
         imageView = UIImageView(frame: self.bounds)
         NotificationCenter.default.addObserver(self, selector: #selector(back), name: NSNotification.Name(rawValue: "back"), object: nil)
         
-        titleLabel.text = markerTitle
-        titleLabel.font.withSize(30)
-        titleLabel.bounds = self.bounds
-        self.superview?.addSubview(titleLabel)
     }
     @objc func back(){
         touchEnable = true
@@ -109,8 +106,8 @@ class MarkerView: UIView {
         videoURL = url
     }
     
-    func setMarkerTitle(title: String) {
-        
+    func setTitle(title: String) {
+        self.title = title
     }
     
     // 마커 클릭시 카운데 정렬과, 줌 세팅
@@ -148,6 +145,10 @@ extension MarkerView: UIGestureRecognizerDelegate {
             if isVideoContent {
                 dataSource.videoContentView?.isHidden = false
             }
+            
+            dataSource.titleLabelView?.isHidden = false
+            dataSource.titleLabelView?.text = title
+            dataSource.titleLabelView?.sizeToFit()
         }
     }
 }
