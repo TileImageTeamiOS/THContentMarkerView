@@ -26,6 +26,7 @@ class EditorViewController: UIViewController {
     
     @IBOutlet weak var audioTitle: UILabel!
     
+    @IBOutlet weak var linkText: UITextField!
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var markerTitle: UITextField!
@@ -38,7 +39,7 @@ class EditorViewController: UIViewController {
     @IBAction func doneButtonAction(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
         print(audioPath)
-        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":markerTitle.text ?? ""]
+        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":markerTitle.text ?? "", "link":linkText.text ?? "", "text":textView.text ?? ""]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
 
     }

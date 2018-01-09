@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         let videoURL = notification.userInfo?["videoURL"]
         let audioURL = notification.userInfo?["audioURL"]
         let markerTitle = notification.userInfo?["title"]
+        let link = notification.userInfo?["link"]
+        let text = notification.userInfo?["text"]
         
         marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
         
