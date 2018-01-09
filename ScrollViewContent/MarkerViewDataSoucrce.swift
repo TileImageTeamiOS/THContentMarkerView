@@ -15,10 +15,11 @@ public struct MarkerViewDataSource {
     private var _size: CGSize
     private var _audioContentView: AudioContentView?
     private var _videoContentView: VideoContentView?
+    private var _textContentView: TextContentView?
     private var _titleLabelView: UILabel?
     
     
-    init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double, titleLabelView: UILabel?, audioContentView: AudioContentView?, videoContentView: VideoContentView?) {
+    init(scrollView: UIScrollView, imageView: UIImageView, ratioByImage: Double, titleLabelView: UILabel?, audioContentView: AudioContentView?, videoContentView: VideoContentView?, textContentView: TextContentView?) {
         self._scrollView = scrollView
         self._imageView = imageView
         self._ratioByImage = ratioByImage
@@ -26,9 +27,11 @@ public struct MarkerViewDataSource {
         self._titleLabelView = titleLabelView
         self._audioContentView = audioContentView
         self._videoContentView = videoContentView
+        self._textContentView = textContentView
         self._titleLabelView?.isHidden = true
         self._audioContentView?.isHidden = true
         self._videoContentView?.isHidden = true
+        self._textContentView?.isHidden = true
     }
     
     var scrollView: UIScrollView {
@@ -65,6 +68,10 @@ public struct MarkerViewDataSource {
     
     var videoContentView: VideoContentView? {
         get {return _videoContentView}
+    }
+    
+    var textContentView: TextContentView? {
+        get {return _textContentView}
     }
 }
 

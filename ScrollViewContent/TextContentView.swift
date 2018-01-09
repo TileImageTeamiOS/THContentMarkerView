@@ -47,7 +47,7 @@ class TextContentView: UIView {
         self.addSubview(contentScrollView)
     }
     
-    private func labelSet(title: String?, link: String?, text: String?) {
+    public func labelSet(title: String?, link: String?, text: String?) {
         titleLable.frame.size = CGSize(width: self.frame.width, height: 10)
         titleLable.frame.origin = CGPoint(x: 10, y: 10)
         titleLable.text = title
