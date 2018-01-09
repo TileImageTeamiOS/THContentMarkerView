@@ -41,13 +41,14 @@ class ViewController: UIViewController {
         let markerTitle = notification.userInfo?["title"]
         let link = notification.userInfo?["link"]
         let text = notification.userInfo?["text"]
+        let isText = notification.userInfo?["isText"]
         
-        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, isTextContent: false)
+        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, isTextContent: isText as! Bool)
         
         marker.setAudioContent(url: audioURL as! URL)
         marker.setVideoContent(url: videoURL as! URL)
         marker.setTitle(title: markerTitle as! String)
-        
+        marker.setText(title: "", link: link as! String, content: text as! String)
         back()
         markerArray.append(marker)
     }
@@ -81,7 +82,9 @@ class ViewController: UIViewController {
         videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 30, width: 150, height: 100)
         self.view.addSubview(videoContentView)
         
+        // text contentView 설정
         textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+        self.view.addSubview(textContentView)
         
         // markerData Source 설정
         markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)

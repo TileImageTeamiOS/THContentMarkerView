@@ -23,6 +23,7 @@ class EditorViewController: UIViewController {
     var isVideo = false
     var focusOnText = false
     var keyboardHeight:CGFloat = 0
+    var isText = true
     
     @IBOutlet weak var audioTitle: UILabel!
     
@@ -38,8 +39,13 @@ class EditorViewController: UIViewController {
     
     @IBAction func doneButtonAction(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
+        
+        if (linkText.text?.isEmpty)! && textView.text.isEmpty {
+            isText = false
+        }
+        
         print(audioPath)
-        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":markerTitle.text ?? "", "link":linkText.text ?? "", "text":textView.text ?? ""]
+        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":markerTitle.text ?? "", "link":linkText.text ?? "", "text":textView.text ?? "", "isText" : isText]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
 
     }
