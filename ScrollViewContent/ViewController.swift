@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-        
+        titleLabel.textAlignment = .center
         titleLabel.center = self.view.center
         titleLabel.textColor = UIColor.white
         titleLabel.font.withSize(20)
