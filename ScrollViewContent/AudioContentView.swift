@@ -53,6 +53,16 @@ class AudioContentView: UIView {
         }
     }
     
+    func setAudio(url: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            guard let sound = audioPlayer else { return }
+            sound.prepareToPlay()
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func playAudio() {
         audioStatus = .play
         audioButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
