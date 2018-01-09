@@ -25,22 +25,24 @@ class MarkerView: UIView {
     private var isTitleContent = false
     private var isAudioContent = false
     private var isVideoContent = false
+    private var isTextContent = false
     
     private var touchEnable = true
     private var imageView : UIImageView!
-    private var markerTitle: String = ""
     
     var videoURL: URL?
     var audioURL: URL?
-
     var title: String?
+    var textTitle: String?
+    var textLink: String?
+    var textContent: String?
     
     public func initial(){
         dataSource.audioContentView?.isHidden = true
         dataSource.videoContentView?.isHidden = true
 
     }
-    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, markerTitle: String) {
+    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(frameSet),
                                                name: NSNotification.Name(rawValue: "scollViewAction"),
                                                object: nil)
@@ -49,7 +51,6 @@ class MarkerView: UIView {
         self.x = x
         self.y = y
         self.zoomScale = zoomScale
-        self.markerTitle = markerTitle
         dataSource.scrollView.addSubview(self)
         
         // marker tap 설정
@@ -61,6 +62,7 @@ class MarkerView: UIView {
         self.isTitleContent = isTitleContent
         self.isAudioContent = isAudioContent
         self.isVideoContent = isVideoContent
+        self.isTextContent = isTextContent
     
         // 이미지 설정
         imageView = UIImageView(frame: self.bounds)
@@ -125,6 +127,13 @@ class MarkerView: UIView {
         self.title = title
     }
     
+    func setText(title: String, link: String, content: String) {
+        dataSource.textContentView?.setTextContent()
+        self.textTitle = title
+        self.textLink = link
+        self.textContent = content
+    }
+    
     // 마커 클릭시 카운데 정렬과, 줌 세팅
     private func zoom(scale: CGFloat) {
         var destinationRect: CGRect = .zero
@@ -162,6 +171,11 @@ class MarkerView: UIView {
             dataSource.videoContentView?.setVideo(url: videoURL!)
             dataSource.videoContentView?.isHidden = false
         }
+        
+        if isTextContent {
+            dataSource.textContentView?.labelSet(title: textTitle, link: textLink, text: textContent)
+            dataSource.textContentView?.isHidden = false
+        }
     }
 }
 
@@ -170,19 +184,6 @@ extension MarkerView: UIGestureRecognizerDelegate {
         if touchEnable {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "click"), object: nil)
             zoom(scale: CGFloat(zoomScale))
-            
-//            dataSource.videoContentView?.setVideoUrl(url: videoURL!)
-//            if isAudioContent {
-//                dataSource.audioContentView?.isHidden = false
-//            }
-//
-//            if isVideoContent {
-//                dataSource.videoContentView?.isHidden = false
-//            }
-//
-//            dataSource.titleLabelView?.isHidden = false
-//            dataSource.titleLabelView?.text = title
-//            dataSource.titleLabelView?.sizeToFit()
             markerContentSet()
         }
     }

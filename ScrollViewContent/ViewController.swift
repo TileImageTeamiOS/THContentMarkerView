@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
     var audioContentView = AudioContentView()
     var videoContentView = VideoContentView()
+    var textContentView = TextContentView()
     var titleLabel = UILabel()
     
     var minimapDataSource: MinimapDataSource!
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
         let audioURL = notification.userInfo?["audioURL"]
         let markerTitle = notification.userInfo?["title"]
         
-        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
+        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, isTextContent: false)
         
         marker.setAudioContent(url: audioURL as! URL)
         marker.setVideoContent(url: videoURL as! URL)
@@ -78,8 +79,10 @@ class ViewController: UIViewController {
         videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 30, width: 150, height: 100)
         self.view.addSubview(videoContentView)
         
+        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+        
         // markerData Source 설정
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
         
         // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
@@ -145,6 +148,7 @@ class ViewController: UIViewController {
         markerDataSource.videoContentView?.isHidden = true
         markerDataSource.audioContentView?.isHidden = true
         markerDataSource.titleLabelView?.isHidden = true
+        markerDataSource.textContentView?.isHidden = true
         
         var destinationRect: CGRect = .zero
         destinationRect.size.width = (imageView.image?.size.width)!

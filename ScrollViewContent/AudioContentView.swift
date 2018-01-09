@@ -32,8 +32,8 @@ class AudioContentView: UIView {
         audioButton.addTarget(self, action: #selector(pressAudioButton(_:)), for: .touchUpInside)
         
         //시간 라벨 세팅
-        audioCurrentTime.frame = CGRect(x: 0, y: self.frame.width - 20, width: self.frame.width, height: 20)
-        audioCurrentTime.backgroundColor = UIColor.yellow
+//        audioCurrentTime.frame = CGRect(x: 0, y: self.frame.width - 20, width: self.frame.width, height: 20)
+//        audioCurrentTime.backgroundColor = UIColor.yellow
         
         self.addSubview(audioButton)
         self.addSubview(audioCurrentTime)
