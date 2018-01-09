@@ -71,7 +71,7 @@ class VideoContentView: UIView {
         }
     }
     
-    func setVideoUrl(url: URL) {
+    func setVideo(url: URL) {
         player =  AVPlayer(url: url)
         player.allowsExternalPlayback = false
         

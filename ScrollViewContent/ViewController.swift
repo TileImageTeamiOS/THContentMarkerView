@@ -36,10 +36,12 @@ class ViewController: UIViewController {
         let isAudioContent = notification.userInfo?["isAudioContent"]
         let isVideoContent = notification.userInfo?["isVideoContent"]
         let videoURL = notification.userInfo?["videoURL"]
+        let audioURL = notification.userInfo?["audioURL"]
         let markerTitle = notification.userInfo?["title"]
         
         marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
         
+        marker.setAudioContent(url: audioURL as! URL)
         marker.setVideoContent(url: videoURL as! URL)
         marker.setTitle(title: markerTitle as! String)
         
@@ -60,8 +62,8 @@ class ViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-        
-        // title contentview 설정
+
+        // title contentView 설정
         titleLabel.center = self.view.center
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
@@ -69,7 +71,7 @@ class ViewController: UIViewController {
         self.view.addSubview(titleLabel)
         
         // audio contentView 설정
-        audioContentView.frame = CGRect(x: 0, y: 200, width: 130, height: 130)
+        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
         self.view.addSubview(audioContentView)
         
         // video contentview 설정
@@ -95,10 +97,10 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-        let textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100) )
-        textContentView.setTextContent()
-        textContentView.backgroundColor = UIColor.brown
-        self.view.addSubview(textContentView)
+//        let textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100) )
+//        textContentView.setTextContent()
+//        textContentView.backgroundColor = UIColor.brown
+//        self.view.addSubview(textContentView)
     }
     
     override func viewWillLayoutSubviews() {

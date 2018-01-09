@@ -31,6 +31,8 @@ class MarkerView: UIView {
     private var markerTitle: String = ""
     
     var videoURL: URL?
+    var audioURL: URL?
+
     var title: String?
     
     public func initial(){
@@ -111,6 +113,13 @@ class MarkerView: UIView {
         videoURL = url
     }
     
+    // 오디오 url 설정
+    func setAudioContent(url: URL) {
+        dataSource.audioContentView?.setAudioPlayer()
+//        dataSource.videoContentView?.setVideoUrl(url: url)
+        audioURL = url
+    }
+    
     // title string 설정
     func setTitle(title: String) {
         self.title = title
@@ -145,11 +154,12 @@ class MarkerView: UIView {
         }
         
         if isAudioContent {
+            dataSource.audioContentView?.setAudio(url: audioURL!)
             dataSource.audioContentView?.isHidden = false
         }
         
         if isVideoContent {
-            dataSource.videoContentView?.setVideoUrl(url: videoURL!)
+            dataSource.videoContentView?.setVideo(url: videoURL!)
             dataSource.videoContentView?.isHidden = false
         }
     }
