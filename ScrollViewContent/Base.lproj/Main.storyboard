@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9zY-bp-nRE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9zY-bp-nRE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,12 +51,6 @@
                                 <rect key="frame" x="330" y="74" width="35" height="30"/>
                                 <state key="normal" title="done"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snL-rB-jE9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-cq-SEN" customClass="MinimapView" customModule="ScrollViewContent" customModuleProvider="target">
                                 <rect key="frame" x="320" y="612" width="30" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,24 +79,18 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1dd-1W-Gex"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1vg-Ez-TkF"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="83g-J0-oIg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qBH-cq-SEN" secondAttribute="bottom" constant="25" id="94c-mg-6aM"/>
                             <constraint firstItem="laC-sB-J6n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="CqU-cr-m1W"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qBH-cq-SEN" secondAttribute="trailing" constant="25" id="GH4-aD-89t"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JWb-ND-THM"/>
                             <constraint firstItem="laC-sB-J6n" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="RUQ-4f-4vG"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T1j-6E-Qch"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4pn-op-B0h" secondAttribute="bottom" constant="130" id="XQC-Yq-Vko"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="XRm-vD-yVU"/>
                             <constraint firstItem="MZM-uR-LgA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ck4-dq-w7B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4pn-op-B0h" secondAttribute="trailing" constant="68" id="emA-6Y-UyR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MZM-uR-LgA" secondAttribute="trailing" constant="10" id="ezj-Sl-mcg"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k3x-Xj-Aqj"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="l4T-X6-v0h"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="snL-rB-jE9" secondAttribute="trailing" id="vKs-EA-VWE"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wGM-ub-N6y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -133,7 +121,6 @@
                         <outlet property="minimapView" destination="qBH-cq-SEN" id="J37-c9-dIU"/>
                         <outlet property="minimapWidth" destination="c3I-rt-SDa" id="E2Z-DO-hUQ"/>
                         <outlet property="scrollView" destination="cpV-Yq-Yiz" id="hke-de-uff"/>
-                        <outlet property="titleLabel" destination="snL-rB-jE9" id="Uf0-tg-MEK"/>
                         <outlet property="videoContentView" destination="4pn-op-B0h" id="e0C-sv-Ftw"/>
                         <segue destination="Ymz-33-GZK" kind="show" identifier="editor" id="og7-Sz-beU"/>
                     </connections>

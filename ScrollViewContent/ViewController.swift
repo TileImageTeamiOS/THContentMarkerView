@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapView: MinimapView!
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var audioContentView: AudioContentView!
     @IBOutlet weak var videoContentView: VideoContentView!
     
@@ -61,8 +60,7 @@ class ViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-        titleLabel.isHidden = true
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, audioContentView: audioContentView, videoContentView: videoContentView, titleLabel: titleLabel)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, audioContentView: audioContentView, videoContentView: videoContentView)
         
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
@@ -77,10 +75,10 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-        var textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100) )
-        textContentView.setTextContent()
-        textContentView.backgroundColor = UIColor.brown
-        self.view.addSubview(textContentView)
+//        let textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100) )
+//        textContentView.setTextContent()
+//        textContentView.backgroundColor = UIColor.brown
+//        self.view.addSubview(textContentView)
     }
     
     override func viewWillLayoutSubviews() {
@@ -118,7 +116,6 @@ class ViewController: UIViewController {
     func back() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "back"), object: nil)
         editorBtn.title = "editor"
-        titleLabel.isHidden = true
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
         //markerView.setOpacity(alpha: 1)
