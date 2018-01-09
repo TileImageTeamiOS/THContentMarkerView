@@ -21,9 +21,10 @@ class MarkerView: UIView {
     
     private var markerTapGestureRecognizer = UITapGestureRecognizer()
     
+    //marker content 존재 여부
+    private var isTitleContent = false
     private var isAudioContent = false
     private var isVideoContent = false
-    private var isTitleContent = false
     
     private var touchEnable = true
     private var imageView : UIImageView!
@@ -37,10 +38,11 @@ class MarkerView: UIView {
         dataSource.videoContentView?.isHidden = true
 
     }
-    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isAudioContent: Bool, isVideoContent: Bool, markerTitle: String) {
+    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, markerTitle: String) {
         NotificationCenter.default.addObserver(self, selector: #selector(frameSet),
                                                name: NSNotification.Name(rawValue: "scollViewAction"),
                                                object: nil)
+        // marker 위치 설정후 scrollview에 추가
         self.dataSource = dataSource
         self.x = x
         self.y = y
@@ -48,15 +50,17 @@ class MarkerView: UIView {
         self.markerTitle = markerTitle
         dataSource.scrollView.addSubview(self)
         
+        // marker tap 설정
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
         markerTapGestureRecognizer.delegate = self
         self.addGestureRecognizer(markerTapGestureRecognizer)
         
-        // audio 세팅
+        // content 존재 여부 설정
+        self.isTitleContent = isTitleContent
         self.isAudioContent = isAudioContent
-        
-        // video 세팅
         self.isVideoContent = isVideoContent
+    
+        // 이미지 설정
         imageView = UIImageView(frame: self.bounds)
         NotificationCenter.default.addObserver(self, selector: #selector(back), name: NSNotification.Name(rawValue: "back"), object: nil)
         
@@ -100,12 +104,14 @@ class MarkerView: UIView {
         }
     }
     
+    // 비디오 url 설정
     func setVideoContent(url: URL) {
         dataSource.videoContentView?.setVideoPlayer()
 //        dataSource.videoContentView?.setVideoUrl(url: url)
         videoURL = url
     }
     
+    // title string 설정
     func setTitle(title: String) {
         self.title = title
     }
@@ -129,6 +135,24 @@ class MarkerView: UIView {
         })
     }
     
+    // 마커 클릭식, contentView set
+    private func markerContentSet() {
+        // content 존재 여부에 따라 view Hidden 결정
+        if isTitleContent {
+            dataSource.titleLabelView?.text = title
+            dataSource.titleLabelView?.sizeToFit()
+            dataSource.titleLabelView?.isHidden = false
+        }
+        
+        if isAudioContent {
+            dataSource.audioContentView?.isHidden = false
+        }
+        
+        if isVideoContent {
+            dataSource.videoContentView?.setVideoUrl(url: videoURL!)
+            dataSource.videoContentView?.isHidden = false
+        }
+    }
 }
 
 extension MarkerView: UIGestureRecognizerDelegate {
@@ -137,18 +161,19 @@ extension MarkerView: UIGestureRecognizerDelegate {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "click"), object: nil)
             zoom(scale: CGFloat(zoomScale))
             
-            dataSource.videoContentView?.setVideoUrl(url: videoURL!)
-            if isAudioContent {
-                dataSource.audioContentView?.isHidden = false
-            }
-            
-            if isVideoContent {
-                dataSource.videoContentView?.isHidden = false
-            }
-            
-            dataSource.titleLabelView?.isHidden = false
-            dataSource.titleLabelView?.text = title
-            dataSource.titleLabelView?.sizeToFit()
+//            dataSource.videoContentView?.setVideoUrl(url: videoURL!)
+//            if isAudioContent {
+//                dataSource.audioContentView?.isHidden = false
+//            }
+//
+//            if isVideoContent {
+//                dataSource.videoContentView?.isHidden = false
+//            }
+//
+//            dataSource.titleLabelView?.isHidden = false
+//            dataSource.titleLabelView?.text = title
+//            dataSource.titleLabelView?.sizeToFit()
+            markerContentSet()
         }
     }
 }

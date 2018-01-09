@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapView: MinimapView!
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
-    @IBOutlet weak var audioContentView: AudioContentView!
-    @IBOutlet weak var videoContentView: VideoContentView!
+    var audioContentView = AudioContentView()
+    var videoContentView = VideoContentView()
     var titleLabel = UILabel()
     
     var minimapDataSource: MinimapDataSource!
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         let videoURL = notification.userInfo?["videoURL"]
         let markerTitle = notification.userInfo?["title"]
         
-        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
+        marker.set(dataSource: markerDataSource, x: x as! Double, y: y as! Double, zoomScale: zoom as! Double, isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, markerTitle: markerTitle! as! String)
         
         marker.setVideoContent(url: videoURL as! URL)
         marker.setTitle(title: markerTitle as! String)
@@ -61,17 +61,32 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
         
+        // title contentview 설정
         titleLabel.center = self.view.center
+        titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
         titleLabel.font.withSize(20)
         self.view.addSubview(titleLabel)
+        
+        // audio contentView 설정
+        audioContentView.frame = CGRect(x: 0, y: 200, width: 130, height: 130)
+        self.view.addSubview(audioContentView)
+        
+        // video contentview 설정
+        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 30, width: 150, height: 100)
+        self.view.addSubview(videoContentView)
+        
+        // markerData Source 설정
         markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 275, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView)
         
+        // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
         
         setZoomParametersForSize(scrollView.bounds.size)
         recenterImage()
+        
+        // edit center point 설정
         centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2, width: CGFloat(10), height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
         centerPoint.layer.cornerRadius = 5
@@ -80,10 +95,10 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-//        let textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100) )
-//        textContentView.setTextContent()
-//        textContentView.backgroundColor = UIColor.brown
-//        self.view.addSubview(textContentView)
+        let textContentView = TextContentView(frame: CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100) )
+        textContentView.setTextContent()
+        textContentView.backgroundColor = UIColor.brown
+        self.view.addSubview(textContentView)
     }
     
     override func viewWillLayoutSubviews() {
