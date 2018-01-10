@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     var videoContentView = VideoContentView()
     var textContentView = TextContentView()
     var titleLabel = UILabel()
-    var editorScrollView = EditorScrollView()
     
     var minimapDataSource: MinimapDataSource!
     var markerDataSource: MarkerViewDataSource!
@@ -134,32 +133,15 @@ class ViewController: UIViewController {
             isEditor = false
             
             
-            let editorViewController = UIViewController()
+            let editorViewController = EditorContentViewController()
             
-            self.editorScrollView.frame = self.view.frame
-            self.editorScrollView.contentSize = CGSize(width:self.view.frame.width,height:1000)
-            self.editorScrollView.backgroundColor = UIColor.white
-            editorViewController.view.addSubview(self.editorScrollView)
-            editorScrollView.set()
-            editorScrollView.isScrollEnabled = true
-            editorViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
+            editorViewController.zoom = Double(scrollView.zoomScale)
+            editorViewController.x = Double(scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
+            editorViewController.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.height/scrollView.zoomScale/2)
             
             self.show(editorViewController, sender: nil)
             
-            
-            
 //            performSegue(withIdentifier: "editor", sender: editorBtn)
-        }
-    }
-    @objc func done() {
-        
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "editor") {
-            let vc = segue.destination as! EditorViewController
-            vc.zoom = Double(scrollView.zoomScale)
-            vc.x = Double(scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
-            vc.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.height/scrollView.zoomScale/2)
         }
     }
     func back() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class EditorScrollView: UIScrollView {
     var titleLabel = UILabel()

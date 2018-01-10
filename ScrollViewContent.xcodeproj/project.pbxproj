@@ -12,7 +12,7 @@
 		04727BBC2003392C00E23872 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BB82003392C00E23872 /* Constant.swift */; };
 		04727BBD2003392C00E23872 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BB92003392C00E23872 /* TextContentView.swift */; };
 		04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BBE2004AC9600E23872 /* EditorScrollView.swift */; };
-		049385181FFE036900077765 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049385171FFE036900077765 /* EditorViewController.swift */; };
+		04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BC02006339D00E23872 /* EditorContentViewController.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 		04727BB82003392C00E23872 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		04727BB92003392C00E23872 /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
 		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
-		049385171FFE036900077765 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 				4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */,
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
 				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
-				049385171FFE036900077765 /* EditorViewController.swift */,
+				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
 				4E9107721FFC97F5009DB1C6 /* MarkerView */,
 				4E9107771FFC9973009DB1C6 /* MinimapView */,
 			);
@@ -182,7 +182,6 @@
 				04727BBB2003392C00E23872 /* VideoContentView.swift in Sources */,
 				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
 				04727BBA2003392C00E23872 /* AudioContentView.swift in Sources */,
-				049385181FFE036900077765 /* EditorViewController.swift in Sources */,
 				4E43B3131FFF77D600717B95 /* MarkerViewDataSoucrce.swift in Sources */,
 				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
@@ -190,6 +189,7 @@
 				4E43B3161FFF77D600717B95 /* MarkerView.swift in Sources */,
 				04727BBD2003392C00E23872 /* TextContentView.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
+				04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
