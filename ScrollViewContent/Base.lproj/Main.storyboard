@@ -77,15 +77,16 @@
                     <navigationItem key="navigationItem" id="gbg-0m-REA">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="KM6-iY-Zmp">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rau-yS-L2w">
-                                <rect key="frame" x="16" y="7" width="34" height="30"/>
+                                <rect key="frame" x="16" y="5.5" width="38" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zg3-WH-aKa"/>
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="editor" id="rQb-cf-peG">
+                        <barButtonItem key="rightBarButtonItem" title="Editor" id="rQb-cf-peG">
                             <connections>
                                 <action selector="editionButton:" destination="BYZ-38-t0r" id="d6L-Px-Meb"/>
                             </connections>

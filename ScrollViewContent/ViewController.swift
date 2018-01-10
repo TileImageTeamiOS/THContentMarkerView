@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var videoContentView = VideoContentView()
     var textContentView = TextContentView()
     var titleLabel = UILabel()
+    var editorScrollView = EditorScrollView()
     
     var minimapDataSource: MinimapDataSource!
     var markerDataSource: MarkerViewDataSource!
@@ -118,7 +119,7 @@ class ViewController: UIViewController {
     
     @IBAction func editionButton(_ sender: Any) {
         if isEditor == false {
-            editorBtn.title = "done"
+            editorBtn.title = "Done"
             scrollView.layer.borderWidth = 4
             scrollView.layer.borderColor = UIColor.red.cgColor
             centerPoint.isHidden = isEditor
@@ -126,15 +127,33 @@ class ViewController: UIViewController {
             isEditor = true
             
         } else {
-            editorBtn.title = "editor"
+            editorBtn.title = "Editor"
             scrollView.layer.borderWidth = 0
             centerPoint.isHidden = isEditor
             //markerView.setOpacity(alpha: 1)
             isEditor = false
-            performSegue(withIdentifier: "editor", sender: editorBtn)
+            
+            
+            let editorViewController = UIViewController()
+            
+            self.editorScrollView.frame = self.view.frame
+            self.editorScrollView.contentSize = CGSize(width:self.view.frame.width,height:1000)
+            self.editorScrollView.backgroundColor = UIColor.white
+            editorViewController.view.addSubview(self.editorScrollView)
+            editorScrollView.set()
+            editorScrollView.isScrollEnabled = true
+            editorViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
+            
+            self.show(editorViewController, sender: nil)
+            
+            
+            
+//            performSegue(withIdentifier: "editor", sender: editorBtn)
         }
     }
-    
+    @objc func done() {
+        
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "editor") {
             let vc = segue.destination as! EditorViewController
@@ -145,7 +164,7 @@ class ViewController: UIViewController {
     }
     func back() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "back"), object: nil)
-        editorBtn.title = "editor"
+        editorBtn.title = "Editor"
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
         //markerView.setOpacity(alpha: 1)
