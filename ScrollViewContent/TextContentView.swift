@@ -13,7 +13,7 @@ enum ContentStatus: Int {
     case hide
 }
 
-class TextContentView: UIView {
+public class TextContentView: UIView {
     var textContentResizeView = UIView()
     private var resizeTapGestureRecognizer = UITapGestureRecognizer()
     private var linkLabelTapGestureRecognizer = UITapGestureRecognizer()
@@ -27,7 +27,8 @@ class TextContentView: UIView {
     
     func setTextContent() {
         scrollSet()
-        labelSet(title: titleExam, link: linkExam, text: textExam)
+        self.backgroundColor = UIColor.white
+        
         textContentResizeView = UIView(frame: CGRect(x: self.frame.width - 30, y: 10, width: 25, height: 25))
         textContentResizeView.backgroundColor = UIColor.white
         contentScrollView.addSubview(textContentResizeView)
@@ -106,7 +107,7 @@ extension TextContentView: UIGestureRecognizerDelegate {
 
         let webView = UIWebView(frame: webViewController.view.frame)
         webViewController.view.addSubview(webView)
-        webView.loadRequest(URLRequest(url: URL(string: "https://grohong.github.io/")!))
+        webView.loadRequest(URLRequest(url: URL(string: linkLable.text!)!))
         
         parentVC?.show(webViewController, sender: nil)
     }

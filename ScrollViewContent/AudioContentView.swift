@@ -11,58 +11,41 @@ import AVFoundation
 enum AudioStatus: Int {
     case play = 0
     case stop
+    case finish
 }
 
-class AudioContentView: UIView {
+public class AudioContentView: UIView {
     var audioButton = UIButton()
     var audioCurrentTime = UILabel()
     var audioStatus = AudioStatus.stop
-    
-    private var audioUrl: URL?
-    private var audioPlayer: AVAudioPlayer?
-    private var audioIntever = TimeInterval()
-    
+
+    var audioUrl: URL?
+    var audioPlayer: AVAudioPlayer?
+    var audioIntever = TimeInterval()
+
     func setAudioPlayer() {
-        //버튼 세팅
-        audioButton.frame = CGRect(x: CGFloat(Double(self.frame.width - 50)/2),
-                                   y: CGFloat(10),
-                                   width: CGFloat(50),
-                                   height: CGFloat(50))
+        self.backgroundColor = UIColor.white
+        
+        audioButton.frame.origin = CGPoint.zero
+        audioButton.frame.size = self.frame.size
         audioButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         audioButton.addTarget(self, action: #selector(pressAudioButton(_:)), for: .touchUpInside)
-        
-        //시간 라벨 세팅
-//        audioCurrentTime.frame = CGRect(x: 0, y: self.frame.width - 20, width: self.frame.width, height: 20)
-//        audioCurrentTime.backgroundColor = UIColor.yellow
-        
+
         self.addSubview(audioButton)
         self.addSubview(audioCurrentTime)
     }
-    
-    func setAudio(name: String, format: String) {
-        audioUrl = Bundle.main.url(forResource: name, withExtension: format)
-        
-        if let url = audioUrl {
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: url)
-                guard let sound = audioPlayer else { return }
-                sound.prepareToPlay()
-            } catch let error {
-                print(error)
-            }
-        }
-    }
-    
+
     func setAudio(url: URL) {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.delegate = self
             guard let sound = audioPlayer else { return }
             sound.prepareToPlay()
         } catch let error {
             print(error)
         }
     }
-    
+
     func playAudio() {
         audioStatus = .play
         audioButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
@@ -72,18 +55,28 @@ class AudioContentView: UIView {
             audioPlayer?.play(atTime: audioIntever)
         }
     }
-    
+
     func stopAudio() {
         audioButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         audioStatus = .stop
         audioPlayer?.stop()
     }
-    
+
     @objc func pressAudioButton(_ sender: UIButton!) {
         if audioStatus == .stop{
             playAudio()
-        } else {
+        } else if audioStatus == .play {
             stopAudio()
+        } else if audioStatus == .finish {
+            playAudio()
         }
     }
 }
+
+extension AudioContentView: AVAudioPlayerDelegate {
+    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        audioStatus = .finish
+        audioButton.setImage(#imageLiteral(resourceName: "replay"), for: .normal)
+    }
+}
+

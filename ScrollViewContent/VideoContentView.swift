@@ -20,7 +20,7 @@ enum VideoStatus: Int {
     case hide
 }
 
-class VideoContentView: UIView {
+public class VideoContentView: UIView {
     private var videoTapGestureRecognizer = UITapGestureRecognizer()
     private var videoPanGestureRecognizer = UIPanGestureRecognizer()
     var player =  AVPlayer()
@@ -56,21 +56,6 @@ class VideoContentView: UIView {
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
     }
     
-    func setVideo(name: String, format: String) {
-        let videoUrl = Bundle.main.url(forResource: name, withExtension: format)
-        if let url = videoUrl {
-            player =  AVPlayer(url: url)
-            player.allowsExternalPlayback = false
-            
-            let layer: AVPlayerLayer = AVPlayerLayer(player: player)
-            layer.frame = self.bounds
-            layer.videoGravity = AVLayerVideoGravity.resizeAspect
-            self.layer.addSublayer(layer)
-            self.addSubview(fullscreenButton)
-            self.addSubview(videoButton)
-        }
-    }
-    
     func setVideo(url: URL) {
         player =  AVPlayer(url: url)
         player.allowsExternalPlayback = false
@@ -83,7 +68,7 @@ class VideoContentView: UIView {
         self.addSubview(videoButton)
     }
     
-    private func playVideo() {
+    func playVideo() {
         playStatus = .play
         videoButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
         player.play()
@@ -91,19 +76,19 @@ class VideoContentView: UIView {
         hideStatus()
     }
     
-    private func pauseVideo() {
+    func pauseVideo() {
         playStatus = .pause
         videoButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         player.pause()
     }
     
-    private func hideStatus() {
+    func hideStatus() {
         fullscreenButton.isHidden = true
         videoButton.isHidden = true
         videoStatus = .show
     }
     
-    private func showStatus() {
+    func showStatus() {
         fullscreenButton.isHidden = false
         videoButton.isHidden = false
         videoStatus = .hide

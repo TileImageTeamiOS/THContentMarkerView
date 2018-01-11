@@ -8,27 +8,21 @@
 
 import UIKit
 
-class MarkerView: UIView {
+public class MarkerView: UIView {
     fileprivate var dataSource: MarkerViewDataSource!
-    private var x = Double()
-    private var y = Double()
-    private var zoomScale = Double()
-    
-    private var positionX = Double()
-    private var positionY = Double()
-    private var ratioLength = Double()
-    private var scaleLength = Double()
+    var x = CGFloat()
+    var y = CGFloat()
+    var zoomScale = CGFloat()
+    var imageView: UIImageView?
     
     private var markerTapGestureRecognizer = UITapGestureRecognizer()
     
-    //marker content 존재 여부
     private var isTitleContent = false
     private var isAudioContent = false
     private var isVideoContent = false
     private var isTextContent = false
     
-    private var touchEnable = true
-    private var imageView : UIImageView!
+    private var destinationRect = CGRect()
     
     var videoURL: URL?
     var audioURL: URL?
@@ -37,21 +31,19 @@ class MarkerView: UIView {
     var textLink: String?
     var textContent: String?
     
-    public func initial(){
-        dataSource.audioContentView?.isHidden = true
-        dataSource.videoContentView?.isHidden = true
-
-    }
-    public func set(dataSource: MarkerViewDataSource, x: Double, y: Double, zoomScale: Double, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(frameSet),
-                                               name: NSNotification.Name(rawValue: "scollViewAction"),
-                                               object: nil)
+    public func set(dataSource: MarkerViewDataSource, x: CGFloat, y: CGFloat, zoomScale: CGFloat, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
         // marker 위치 설정후 scrollview에 추가
         self.dataSource = dataSource
         self.x = x
         self.y = y
         self.zoomScale = zoomScale
         dataSource.scrollView.addSubview(self)
+        
+        // zoom 했을떄 위치 설정
+        destinationRect.size.width = dataSource.scrollView.frame.width/zoomScale
+        destinationRect.size.height = dataSource.scrollView.frame.height/zoomScale
+        destinationRect.origin.x = x - destinationRect.size.width/2
+        destinationRect.origin.y = y - destinationRect.size.height/2
         
         // marker tap 설정
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
@@ -63,62 +55,23 @@ class MarkerView: UIView {
         self.isAudioContent = isAudioContent
         self.isVideoContent = isVideoContent
         self.isTextContent = isTextContent
-    
-        // 이미지 설정
-        imageView = UIImageView(frame: self.bounds)
-        NotificationCenter.default.addObserver(self, selector: #selector(back), name: NSNotification.Name(rawValue: "back"), object: nil)
-        
     }
-    @objc func back(){
-        touchEnable = true
-        self.isHidden = false
-    }
-    
-    func click(){
-        self.isHidden = true
-        touchEnable = false
-    }
-    
-    // 줌에 따른 마커 크기, 위치 세팅 변화
-    @objc private func frameSet() {
-        positionX = x * dataSource.zoomScale
-        positionY = y * dataSource.zoomScale
-        ratioLength = dataSource.rationHeight > dataSource.ratioWidth ? dataSource.rationHeight : dataSource.ratioWidth
-        scaleLength = dataSource.zoomScaleHeight > dataSource.zoomScaleWidth ? dataSource.zoomScaleHeight : dataSource.zoomScaleWidth
 
-        if dataSource.zoomScale > 1.0 {
-            self.frame = CGRect(x: positionX-scaleLength/4, y: positionY-scaleLength/4, width: scaleLength, height: scaleLength)
-        } else {
-            self.frame = CGRect(x: positionX-ratioLength/4, y: positionY-ratioLength/4, width: ratioLength, height: ratioLength)
-        }
-        
-        removeImage()
-        
-        let background = UIImage(named: "page")
-        imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode =  UIViewContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        self.addSubview(imageView)
-    }
-    
-    func removeImage(){
-        for view in self.subviews{
-            view.removeFromSuperview()
-        }
+    // marker image 설정
+    func setMarkerImage(markerImage: UIImage) {
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        imageView?.contentMode =  UIViewContentMode.scaleAspectFill
+        imageView?.image = markerImage
+        self.addSubview(imageView!)
     }
     
     // 비디오 url 설정
     func setVideoContent(url: URL) {
-        dataSource.videoContentView?.setVideoPlayer()
-//        dataSource.videoContentView?.setVideoUrl(url: url)
         videoURL = url
     }
     
     // 오디오 url 설정
     func setAudioContent(url: URL) {
-        dataSource.audioContentView?.setAudioPlayer()
-//        dataSource.videoContentView?.setVideoUrl(url: url)
         audioURL = url
     }
     
@@ -127,30 +80,11 @@ class MarkerView: UIView {
         self.title = title
     }
     
+    // text string 설정
     func setText(title: String, link: String, content: String) {
-        dataSource.textContentView?.setTextContent()
         self.textTitle = title
         self.textLink = link
         self.textContent = content
-    }
-    
-    // 마커 클릭시 카운데 정렬과, 줌 세팅
-    private func zoom(scale: CGFloat) {
-        var destinationRect: CGRect = .zero
-        destinationRect.size.width = dataSource.scrollView.frame.width/scale
-        destinationRect.size.height = dataSource.scrollView.frame.height/scale
-        destinationRect.origin.x = CGFloat(x - Double((self.dataSource.scrollView.frame.width/scale))/2)
-        destinationRect.origin.y = CGFloat(y - Double((self.dataSource.scrollView.frame.height/scale))/2)
-        
-        
-        UIView.animate(withDuration: 5.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
-            self.dataSource.scrollView.zoom(to: destinationRect, animated: false)
-        }, completion: {
-            completed in
-            if let delegate = self.dataSource.scrollView.delegate, delegate.responds(to: #selector(UIScrollViewDelegate.scrollViewDidEndZooming(_:with:atScale:))), let view = delegate.viewForZooming?(in: self.dataSource.scrollView) {
-                delegate.scrollViewDidEndZooming!(self.dataSource.scrollView, with: view, atScale: 1.0)
-            }
-        })
     }
     
     // 마커 클릭식, contentView set
@@ -160,6 +94,7 @@ class MarkerView: UIView {
             dataSource.titleLabelView?.text = title
             dataSource.titleLabelView?.sizeToFit()
             dataSource.titleLabelView?.isHidden = false
+            dataSource.titleLabelView?.center = (self.superview?.center)!
         }
         
         if isAudioContent {
@@ -181,11 +116,8 @@ class MarkerView: UIView {
 
 extension MarkerView: UIGestureRecognizerDelegate {
     @objc func markerViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        if touchEnable {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "click"), object: nil)
-            zoom(scale: CGFloat(zoomScale))
-            markerContentSet()
-        }
+        dataSource.zoom(destinationRect: destinationRect)
+        markerContentSet()
     }
 }
 
