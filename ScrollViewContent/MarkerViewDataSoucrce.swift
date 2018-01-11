@@ -69,10 +69,14 @@ public struct MarkerViewDataSource {
 extension MarkerViewDataSource {
     // 해당 위치로 줌
     func zoom(destinationRect: CGRect) {
+        // zoom 사이에 error 수정
+        scrollView.isMultipleTouchEnabled = false
+        
         UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
             self.scrollView.zoom(to: destinationRect, animated: false)
         }, completion: {
             completed in
+            self.scrollView.isMultipleTouchEnabled = true
             if let delegate = self.scrollView.delegate, delegate.responds(to: #selector(UIScrollViewDelegate.scrollViewDidEndZooming(_:with:atScale:))), let view = delegate.viewForZooming?(in: self.scrollView) {
                 delegate.scrollViewDidEndZooming!(self.scrollView, with: view, atScale: 1.0)
             }
