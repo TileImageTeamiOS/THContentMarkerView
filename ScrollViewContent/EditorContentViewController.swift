@@ -48,6 +48,12 @@ class EditorContentViewController: UIViewController {
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil
         )
+        
+        var editorTapGestureRecognizer = UITapGestureRecognizer()
+        editorTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(editorViewTap(_:)))
+        editorTapGestureRecognizer.delegate = self
+        self.view.addGestureRecognizer(editorTapGestureRecognizer)
+        
     }
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
@@ -124,7 +130,13 @@ extension EditorContentViewController: MPMediaPickerControllerDelegate {
     }
     
 }
-
+extension EditorContentViewController: UIGestureRecognizerDelegate {
+    @objc func editorViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        self.editorScrollView.detailText.resignFirstResponder()
+        self.editorScrollView.titleText.resignFirstResponder()
+        self.editorScrollView.linkText.resignFirstResponder()
+    }
+}
 
 extension EditorContentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
