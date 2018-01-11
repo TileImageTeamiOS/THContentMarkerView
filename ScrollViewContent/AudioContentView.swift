@@ -24,11 +24,10 @@ public class AudioContentView: UIView {
     var audioIntever = TimeInterval()
 
     func setAudioPlayer() {
-        self.backgroundColor = UIColor.white
-        
         audioButton.frame.origin = CGPoint.zero
         audioButton.frame.size = self.frame.size
-        audioButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+        audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
+        audioButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         audioButton.addTarget(self, action: #selector(pressAudioButton(_:)), for: .touchUpInside)
 
         self.addSubview(audioButton)
@@ -48,7 +47,7 @@ public class AudioContentView: UIView {
 
     func playAudio() {
         audioStatus = .play
-        audioButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
+        audioButton.setImage(UIImage(named: "audioPause.png"), for: .normal)
         if audioIntever == 0.0 {
             audioPlayer?.play()
         } else {
@@ -57,7 +56,7 @@ public class AudioContentView: UIView {
     }
 
     func stopAudio() {
-        audioButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+        audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
         audioStatus = .stop
         audioPlayer?.stop()
     }

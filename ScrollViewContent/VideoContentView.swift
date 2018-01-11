@@ -43,7 +43,8 @@ public class VideoContentView: UIView {
         fullscreenButton.frame = CGRect(x: self.frame.width - 30, y: self.frame.height - 30, width: 20, height: 20)
         fullscreenButton.layer.cornerRadius = 3
         fullscreenButton.layer.opacity = 0.5
-        fullscreenButton.setImage(#imageLiteral(resourceName: "fullscreen"), for: .normal)
+        fullscreenButton.setImage(UIImage(named: "enlarge.png"), for: .normal)
+        fullscreenButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         fullscreenButton.addTarget(self, action: #selector(pressfullscreenButton(_ :)), for: .touchUpInside)
         
         // 플레이 버튼 세팅

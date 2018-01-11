@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         self.view.addSubview(audioContentView)
         
         // video contentview 설정
-        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 30, width: 150, height: 100)
+        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
         self.view.addSubview(videoContentView)
         
         // text contentView 설정
