@@ -41,7 +41,6 @@ public class VideoContentView: UIView {
         
         // 전체화면 버튼 세팅
         fullscreenButton.frame = CGRect(x: self.frame.width - 30, y: self.frame.height - 30, width: 20, height: 20)
-        fullscreenButton.backgroundColor = UIColor.white
         fullscreenButton.layer.cornerRadius = 3
         fullscreenButton.layer.opacity = 0.5
         fullscreenButton.setImage(#imageLiteral(resourceName: "fullscreen"), for: .normal)
@@ -49,10 +48,10 @@ public class VideoContentView: UIView {
         
         // 플레이 버튼 세팅
         videoButton.frame = CGRect(x: self.frame.width/2 - 25, y: self.frame.height/2 - 25, width: 50, height: 50)
-        videoButton.backgroundColor = UIColor.white
         videoButton.layer.cornerRadius = 3
         videoButton.layer.opacity = 0.5
-        videoButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+        videoButton.setImage(UIImage(named: "playBtn.png"), for: .normal)
+        videoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
     }
     
@@ -70,7 +69,7 @@ public class VideoContentView: UIView {
     
     func playVideo() {
         playStatus = .play
-        videoButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
+        videoButton.setImage(UIImage(named: "pauseBtn.png"), for: .normal)
         player.play()
         
         hideStatus()
@@ -78,7 +77,7 @@ public class VideoContentView: UIView {
     
     func pauseVideo() {
         playStatus = .pause
-        videoButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+        videoButton.setImage(UIImage(named: "playBtn.png"), for: .normal)
         player.pause()
     }
     
