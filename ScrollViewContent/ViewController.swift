@@ -134,12 +134,21 @@ class ViewController: UIViewController {
     }
     
     @objc func showMarker(){
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.title = ""
         for marker in markerArray {
             marker.isHidden = true
         }
     }
     
     @IBAction func backButtonAction(_ sender: UIButton) {
+        isEditor = false
+        scrollView.layer.borderWidth = 0
+        centerPoint.isHidden = true
+        editorBtn.title = "Editor"
+        
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.title = "Editor"
         markerDataSource?.reset()
         for marker in markerArray {
             marker.isSelected = false
