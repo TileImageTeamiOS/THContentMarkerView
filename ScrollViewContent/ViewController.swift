@@ -59,6 +59,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
@@ -83,7 +84,7 @@ class ViewController: UIViewController {
         self.view.addSubview(textContentView)
         
         // markerData Source 설정
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 300, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 200, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
         
         // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
@@ -132,8 +133,18 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func showMarker(){
+        for marker in markerArray {
+            marker.isHidden = true
+        }
+    }
+    
     @IBAction func backButtonAction(_ sender: UIButton) {
         markerDataSource?.reset()
+        for marker in markerArray {
+            marker.isSelected = false
+            marker.isHidden = false
+        }
 
     }
     

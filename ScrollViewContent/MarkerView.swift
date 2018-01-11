@@ -30,6 +30,7 @@ public class MarkerView: UIView {
     var textTitle: String?
     var textLink: String?
     var textContent: String?
+    var isSelected = false
     
     public func set(dataSource: MarkerViewDataSource, x: CGFloat, y: CGFloat, zoomScale: CGFloat, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
         // marker 위치 설정후 scrollview에 추가
@@ -116,8 +117,12 @@ public class MarkerView: UIView {
 
 extension MarkerView: UIGestureRecognizerDelegate {
     @objc func markerViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        dataSource.zoom(destinationRect: destinationRect)
-        markerContentSet()
+        if isSelected == false {
+            dataSource.zoom(destinationRect: destinationRect)
+            markerContentSet()
+            isSelected = true
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showMarker"), object: nil, userInfo: nil)
+        }
     }
 }
 
