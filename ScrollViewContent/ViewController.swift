@@ -13,47 +13,94 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
-    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var minimapView: MinimapView!
-    var minimapDataSource: MinimapDataSource!
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
+    var audioContentView = AudioContentView()
+    var videoContentView = VideoContentView()
+    var textContentView = TextContentView()
+    var titleLabel = UILabel()
     
+    var minimapDataSource: MinimapDataSource!
+    var markerDataSource: MarkerViewDataSource!
     var isEditor = false
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    
     var centerPoint = UIView()
-    let markerView = MarkerView()
+    var markerArray = [MarkerView]()
+
+    @objc func addMarker(_ notification: NSNotification){
+        let marker = MarkerView()
+        
+        let x = notification.userInfo?["x"]
+        let y = notification.userInfo?["y"]
+        let zoom =  notification.userInfo?["zoomScale"]
+        let isAudioContent = notification.userInfo?["isAudioContent"]
+        let isVideoContent = notification.userInfo?["isVideoContent"]
+        let videoURL = notification.userInfo?["videoURL"]
+        let audioURL = notification.userInfo?["audioURL"]
+        let markerTitle = notification.userInfo?["title"]
+        let link = notification.userInfo?["link"]
+        let text = notification.userInfo?["text"]
+        let isText = notification.userInfo?["isText"]
+        
+        marker.set(dataSource: markerDataSource, x: CGFloat(x as! Double), y: CGFloat(y as! Double), zoomScale: CGFloat(zoom as! Double), isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, isTextContent: isText as! Bool)
+        
+        marker.setAudioContent(url: audioURL as! URL)
+        marker.setVideoContent(url: videoURL as! URL)
+        marker.setTitle(title: markerTitle as! String)
+        marker.setText(title: "", link: link as! String, content: text as! String)
+        marker.setMarkerImage(markerImage: #imageLiteral(resourceName: "page"))
+        
+        markerArray.append(marker)
+        markerDataSource.framSet(markerView: marker)
+        markerDataSource.reset()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        scrollView.contentInsetAdjustmentBehavior = .never
+        NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
+//        scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-        titleLabel.isHidden = true
-        let markerDataSoucrce = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 400, titleLabel: titleLabel)
+
+        // title contentView 설정
+        titleLabel.center = self.view.center
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.white
+        titleLabel.font.withSize(20)
+        self.view.addSubview(titleLabel)
         
+        // audio contentView 설정
+        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+        self.view.addSubview(audioContentView)
         
-        markerView.set(dataSource: markerDataSoucrce, x: 2000, y: 2000)
+        // video contentview 설정
+        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        self.view.addSubview(videoContentView)
         
+        // text contentView 설정
+        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+        self.view.addSubview(textContentView)
+        
+        // markerData Source 설정
+        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 200, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
+        
+        // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
         
         setZoomParametersForSize(scrollView.bounds.size)
         recenterImage()
         
-        centerPoint.frame = CGRect(x: scrollView.center.x, y: scrollView.center.y, width: CGFloat(10), height: CGFloat(10))
+        // edit center point 설정
+        centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2, width: CGFloat(10), height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
         centerPoint.layer.cornerRadius = 5
         
         self.view.addSubview(centerPoint)
         centerPoint.isHidden = true
         doneButton.isHidden = true
-        
     }
     
     override func viewWillLayoutSubviews() {
@@ -63,47 +110,51 @@ class ViewController: UIViewController {
     
     @IBAction func editionButton(_ sender: Any) {
         if isEditor == false {
-            editorBtn.title = "done"
+            editorBtn.title = "Done"
             scrollView.layer.borderWidth = 4
             scrollView.layer.borderColor = UIColor.red.cgColor
             centerPoint.isHidden = isEditor
-            markerView.setOpacity(alpha: 0)
             isEditor = true
             
         } else {
-            editorBtn.title = "editor"
+            editorBtn.title = "Editor"
             scrollView.layer.borderWidth = 0
             centerPoint.isHidden = isEditor
-            markerView.setOpacity(alpha: 1)
             isEditor = false
-            performSegue(withIdentifier: "editor", sender: editorBtn)
+            
+            
+            let editorViewController = EditorContentViewController()
+            
+            editorViewController.zoom = Double(scrollView.zoomScale)
+            editorViewController.x = Double(scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2)
+            editorViewController.y = Double(scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.height/scrollView.zoomScale/2)
+            
+            self.show(editorViewController, sender: nil)
         }
     }
-
+    
+    @objc func showMarker(){
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.title = ""
+        for marker in markerArray {
+            marker.isHidden = true
+        }
+    }
     
     @IBAction func backButtonAction(_ sender: UIButton) {
-        editorBtn.title = "editor"
-        titleLabel.isHidden = true
+        isEditor = false
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
-        markerView.setOpacity(alpha: 1)
-        isEditor = false
+        editorBtn.title = "Editor"
         
-        var destinationRect: CGRect = .zero
-        destinationRect.size.width = (imageView.image?.size.width)!
-        destinationRect.size.height = (imageView.image?.size.height)!
-        UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
-            self.scrollView.zoom(to: destinationRect, animated: false)
-        }, completion: {
-            completed in
-            if let delegate = self.scrollView.delegate, delegate.responds(to: #selector(UIScrollViewDelegate.scrollViewDidEndZooming(_:with:atScale:))), let view = delegate.viewForZooming?(in: self.scrollView) {
-                delegate.scrollViewDidEndZooming!(self.scrollView, with: view, atScale: 1.0)
-            }
-        })
-        
-    }
-    @IBAction func doneButtonAction(_ sender: Any) {
-        print(scrollView.zoomScale)
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.title = "Editor"
+        markerDataSource?.reset()
+        for marker in markerArray {
+            marker.isSelected = false
+            marker.isHidden = false
+        }
+
     }
     
     func recenterImage() {
@@ -137,8 +188,13 @@ extension ViewController: UIScrollViewDelegate {
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scollViewAction"), object: nil, userInfo: nil)
+    }
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scollViewAction"), object: nil, userInfo: nil)
+        markerArray.map { marker in
+            markerDataSource?.framSet(markerView: marker)
+        }
     }
 }

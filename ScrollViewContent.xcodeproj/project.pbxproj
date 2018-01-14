@@ -7,31 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		049385181FFE036900077765 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049385171FFE036900077765 /* EditorViewController.swift */; };
+		04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BBE2004AC9600E23872 /* EditorScrollView.swift */; };
+		04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BC02006339D00E23872 /* EditorContentViewController.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
-		4E2F83F51FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83F31FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
-		4E2F83FA1FF8E10E00511B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F81FF8E10E00511B4C /* LaunchScreen.storyboard */; };
-		4E91076F1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */; };
-		4E9107711FFC97F0009DB1C6 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107701FFC97F0009DB1C6 /* MarkerView.swift */; };
+		4E3CFE8C20068FC20019993C /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8720068FC10019993C /* MarkerViewDataSoucrce.swift */; };
+		4E3CFE8D20068FC20019993C /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8820068FC10019993C /* AudioContentView.swift */; };
+		4E3CFE8E20068FC20019993C /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8920068FC20019993C /* TextContentView.swift */; };
+		4E3CFE8F20068FC20019993C /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8A20068FC20019993C /* VideoContentView.swift */; };
+		4E3CFE9020068FC20019993C /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8B20068FC20019993C /* MarkerView.swift */; };
 		4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */; };
 		4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107751FFC996F009DB1C6 /* MinimapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		049385171FFE036900077765 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
+		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4E2F83F11FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4E2F83F41FF8E10E00511B4C /* ScrollViewContent.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScrollViewContent.xcdatamodel; sourceTree = "<group>"; };
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4E2F83F91FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
-		4E9107701FFC97F0009DB1C6 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
+		4E3CFE8720068FC10019993C /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
+		4E3CFE8820068FC10019993C /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
+		4E3CFE8920068FC20019993C /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
+		4E3CFE8A20068FC20019993C /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
+		4E3CFE8B20068FC20019993C /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapDataSource.swift; sourceTree = "<group>"; };
 		4E9107751FFC996F009DB1C6 /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,14 +70,13 @@
 		4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */ = {
 			isa = PBXGroup;
 			children = (
+				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
+				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
+				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */,
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
-				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
-				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
-				049385171FFE036900077765 /* EditorViewController.swift */,
-				4E2F83F81FF8E10E00511B4C /* LaunchScreen.storyboard */,
-				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
-				4E2F83F31FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld */,
+				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
+				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
 				4E9107721FFC97F5009DB1C6 /* MarkerView */,
 				4E9107771FFC9973009DB1C6 /* MinimapView */,
 			);
@@ -83,8 +86,11 @@
 		4E9107721FFC97F5009DB1C6 /* MarkerView */ = {
 			isa = PBXGroup;
 			children = (
-				4E9107701FFC97F0009DB1C6 /* MarkerView.swift */,
-				4E91076E1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift */,
+				4E3CFE8B20068FC20019993C /* MarkerView.swift */,
+				4E3CFE8720068FC10019993C /* MarkerViewDataSoucrce.swift */,
+				4E3CFE8820068FC10019993C /* AudioContentView.swift */,
+				4E3CFE8920068FC20019993C /* TextContentView.swift */,
+				4E3CFE8A20068FC20019993C /* VideoContentView.swift */,
 			);
 			name = MarkerView;
 			sourceTree = "<group>";
@@ -157,7 +163,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E2F83FA1FF8E10E00511B4C /* LaunchScreen.storyboard in Resources */,
 				4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */,
 				4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */,
 			);
@@ -170,14 +175,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E91076F1FFC97CD009DB1C6 /* MarkerViewDataSoucrce.swift in Sources */,
 				4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */,
-				4E2F83F51FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld in Sources */,
-				049385181FFE036900077765 /* EditorViewController.swift in Sources */,
+				4E3CFE8D20068FC20019993C /* AudioContentView.swift in Sources */,
+				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
 				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
+				4E3CFE8F20068FC20019993C /* VideoContentView.swift in Sources */,
+				4E3CFE8E20068FC20019993C /* TextContentView.swift in Sources */,
+				4E3CFE9020068FC20019993C /* MarkerView.swift in Sources */,
+				4E3CFE8C20068FC20019993C /* MarkerViewDataSoucrce.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
-				4E9107711FFC97F0009DB1C6 /* MarkerView.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
+				04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,14 +198,6 @@
 				4E2F83F11FF8E10E00511B4C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		4E2F83F81FF8E10E00511B4C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4E2F83F91FF8E10E00511B4C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -364,19 +364,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4E2F83F31FF8E10E00511B4C /* ScrollViewContent.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4E2F83F41FF8E10E00511B4C /* ScrollViewContent.xcdatamodel */,
-			);
-			currentVersion = 4E2F83F41FF8E10E00511B4C /* ScrollViewContent.xcdatamodel */;
-			path = ScrollViewContent.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4E2F83E11FF8E10E00511B4C /* Project object */;
 }

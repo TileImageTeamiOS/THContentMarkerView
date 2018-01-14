@@ -50,16 +50,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZM-uR-LgA">
                                 <rect key="frame" x="330" y="74" width="35" height="30"/>
                                 <state key="normal" title="done"/>
-                                <connections>
-                                    <action selector="doneButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rE7-Xp-Kf5"/>
-                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snL-rB-jE9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-cq-SEN" customClass="MinimapView" customModule="ScrollViewContent" customModuleProvider="target">
                                 <rect key="frame" x="320" y="612" width="30" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,35 +63,30 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1dd-1W-Gex"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1vg-Ez-TkF"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="83g-J0-oIg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qBH-cq-SEN" secondAttribute="bottom" constant="25" id="94c-mg-6aM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qBH-cq-SEN" secondAttribute="trailing" constant="25" id="GH4-aD-89t"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JWb-ND-THM"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T1j-6E-Qch"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="XRm-vD-yVU"/>
                             <constraint firstItem="MZM-uR-LgA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ck4-dq-w7B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MZM-uR-LgA" secondAttribute="trailing" constant="10" id="ezj-Sl-mcg"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k3x-Xj-Aqj"/>
                             <constraint firstItem="cpV-Yq-Yiz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="l4T-X6-v0h"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="snL-rB-jE9" secondAttribute="trailing" id="vKs-EA-VWE"/>
-                            <constraint firstItem="snL-rB-jE9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wGM-ub-N6y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="gbg-0m-REA">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="KM6-iY-Zmp">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rau-yS-L2w">
-                                <rect key="frame" x="16" y="7" width="34" height="30"/>
+                                <rect key="frame" x="16" y="5.5" width="38" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zg3-WH-aKa"/>
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="editor" id="rQb-cf-peG">
+                        <barButtonItem key="rightBarButtonItem" title="Editor" id="rQb-cf-peG">
                             <connections>
                                 <action selector="editionButton:" destination="BYZ-38-t0r" id="d6L-Px-Meb"/>
                             </connections>
@@ -115,133 +101,11 @@
                         <outlet property="minimapView" destination="qBH-cq-SEN" id="J37-c9-dIU"/>
                         <outlet property="minimapWidth" destination="c3I-rt-SDa" id="E2Z-DO-hUQ"/>
                         <outlet property="scrollView" destination="cpV-Yq-Yiz" id="hke-de-uff"/>
-                        <outlet property="titleLabel" destination="snL-rB-jE9" id="Uf0-tg-MEK"/>
-                        <segue destination="Ymz-33-GZK" kind="show" identifier="editor" id="og7-Sz-beU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="165.59999999999999" y="175.86206896551727"/>
-        </scene>
-        <!--Editor View Controller-->
-        <scene sceneID="Zi2-KN-yxc">
-            <objects>
-                <viewController storyboardIdentifier="editor" id="Ymz-33-GZK" customClass="EditorViewController" customModule="ScrollViewContent" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JiA-U1-xpc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mjo-KK-6ro">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4LD-HI-cCA">
-                                        <rect key="frame" x="46" y="52" width="277" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4d-bk-vzp">
-                                        <rect key="frame" x="45" y="23" width="29" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="audio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6a-LW-Ech">
-                                        <rect key="frame" x="45" y="115" width="43" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veT-n3-Ge0">
-                                        <rect key="frame" x="46" y="244" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="text or link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7j-4h-KsU">
-                                        <rect key="frame" x="45" y="349" width="80" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="파일을 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNI-nr-IWc">
-                                        <rect key="frame" x="46" y="296" width="197" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="파일을 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfa-kp-5OV">
-                                        <rect key="frame" x="45" y="171" width="198" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAI-sA-gOZ">
-                                        <rect key="frame" x="263" y="166" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="File">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="chooseAudio:" destination="Ymz-33-GZK" eventType="touchUpInside" id="trv-Ey-fp9"/>
-                                        </connections>
-                                    </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="apB-jP-Ll4">
-                                        <rect key="frame" x="37" y="378" width="300" height="204"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvJ-m7-sxV">
-                                        <rect key="frame" x="263" y="291" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="File">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="chooseVideo:" destination="Ymz-33-GZK" eventType="touchUpInside" id="CCh-1V-ksn"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="yiB-rc-hNl"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="nBw-WA-En7">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="xzc-bX-36E">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qpL-Yp-AS2">
-                                <rect key="frame" x="16" y="7" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="backButtonAction:" destination="Ymz-33-GZK" eventType="touchUpInside" id="20v-fi-o1d"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="done" id="Jmp-fY-7As">
-                            <connections>
-                                <action selector="doneButtonAction:" destination="Ymz-33-GZK" id="DwC-9T-KGA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="audioTitle" destination="BNI-nr-IWc" id="x1y-JF-qpq"/>
-                        <outlet property="videoTitle" destination="yfa-kp-5OV" id="gJk-9n-IQE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FBM-Cf-eIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1288.8" y="175.86206896551727"/>
         </scene>
     </scenes>
     <resources>
