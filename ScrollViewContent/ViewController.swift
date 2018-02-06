@@ -17,20 +17,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapView: MinimapView!
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
-    var audioContentView = AudioContentView()
-    var videoContentView = VideoContentView()
-    var textContentView = TextContentView()
-    var titleLabel = UILabel()
+    
+    var contentViewController = ContentViewController()
+    var thVideoContentView = THVideoContentView()
+    var thAudioContentView = THAudioContentView()
+    
+//    var audioContentView = AudioContentView()
+//    var videoContentView = VideoContentView()
+//    var textContentView = TextContentView()
+//    var titleLabel = UILabel()
     
     var minimapDataSource: MinimapDataSource!
-    var markerDataSource: MarkerViewDataSource!
     var isEditor = false
     var centerPoint = UIView()
-    var markerArray = [MarkerView]()
+    var markerArray = [THMarkerView]()
+    var contentArray = [Dictionary<String, Any>]()
 
     @objc func addMarker(_ notification: NSNotification){
-        let marker = MarkerView()
-        
         let x = notification.userInfo?["x"]
         let y = notification.userInfo?["y"]
         let zoom =  notification.userInfo?["zoomScale"]
@@ -42,49 +45,66 @@ class ViewController: UIViewController {
         let link = notification.userInfo?["link"]
         let text = notification.userInfo?["text"]
         let isText = notification.userInfo?["isText"]
-        
-        marker.set(dataSource: markerDataSource, x: CGFloat(x as! Double), y: CGFloat(y as! Double), zoomScale: CGFloat(zoom as! Double), isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, isTextContent: isText as! Bool)
-        
-        marker.setAudioContent(url: audioURL as! URL)
-        marker.setVideoContent(url: videoURL as! URL)
-        marker.setTitle(title: markerTitle as! String)
-        marker.setText(title: "", link: link as! String, content: text as! String)
-        marker.setMarkerImage(markerImage: #imageLiteral(resourceName: "page"))
-        
-        markerArray.append(marker)
-        markerDataSource.framSet(markerView: marker)
-        markerDataSource.reset()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
-//        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
 
-        // title contentView 설정
-        titleLabel.center = self.view.center
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = UIColor.white
-        titleLabel.font.withSize(20)
-        self.view.addSubview(titleLabel)
+        let marker = THMarkerView()
+        marker.frame.size =  CGSize(width: 20, height: 20)
+        marker.set(origin: CGPoint(x:1500, y:1500), zoomScale: 2.0, scrollView: scrollView)
+        marker.setImage(markerImage: UIImage(named: "marker.png")!)
         
-        // audio contentView 설정
-        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
-        self.view.addSubview(audioContentView)
+         marker.delegate = self
         
-        // video contentview 설정
-        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        self.view.addSubview(videoContentView)
+        marker.index = markerArray.count
+        markerArray.append(marker)
         
-        // text contentView 설정
-        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
-        self.view.addSubview(textContentView)
+        let marker1 = THMarkerView()
+        marker1.frame.size =  CGSize(width: 20, height: 20)
+        marker1.set(origin: CGPoint(x:1800, y:2000), zoomScale: 3.0, scrollView: scrollView)
+        marker1.setImage(markerImage: UIImage(named: "marker.png")!)
         
-        // markerData Source 설정
-        markerDataSource = MarkerViewDataSource(scrollView: scrollView, imageView: imageView, ratioByImage: 200, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
+        marker1.delegate = self
+        
+        marker1.index = markerArray.count
+        markerArray.append(marker1)
+        
+        let marker2 = THMarkerView()
+        marker2.frame.size =  CGSize(width: 20, height: 20)
+        marker2.set(origin: CGPoint(x:2100, y:2300), zoomScale: 4.0, scrollView: scrollView)
+        marker2.setImage(markerImage: UIImage(named: "marker.png")!)
+        
+        marker2.delegate = self
+        
+        marker2.index = markerArray.count
+        markerArray.append(marker2)
+        
+//        // title contentView 설정
+//        titleLabel.center = self.view.center
+//        titleLabel.textAlignment = .center
+//        titleLabel.textColor = UIColor.white
+//        titleLabel.font.withSize(20)
+//        self.view.addSubview(titleLabel)
+//
+//        // audio contentView 설정
+//        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+//        self.view.addSubview(audioContentView)
+//
+//        // video contentview 설정
+//        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+//        self.view.addSubview(videoContentView)
+//
+//        // text contentView 설정
+//        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+//        self.view.addSubview(textContentView)
+
+        
         
         // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
@@ -101,6 +121,25 @@ class ViewController: UIViewController {
         self.view.addSubview(centerPoint)
         centerPoint.isHidden = true
         doneButton.isHidden = true
+        
+        // thVideoContentView 설정
+        thVideoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        thVideoContentView.identifier = "thVideoContentView"
+        contentViewController.set(contentView: thVideoContentView, parentView: self.view)
+        
+        // thAudioContentView 설정
+        thAudioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+        thAudioContentView.identifier = "thAudioContentView"
+        contentViewController.set(contentView: thAudioContentView, parentView: self.view)
+        
+        // content dict 설정
+        var videoContentDict = Dictionary<String, Any>()
+        videoContentDict["thVideoContentView"] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
+        contentArray.append(videoContentDict)
+        
+        var audioContentDict = Dictionary<String, Any>()
+        audioContentDict["thAudioContentView"] = URL(string: "http://barronsbooks.com/tp/toeic/audio/hf28u/Track%2001.mp3")
+        contentArray.append(audioContentDict)
     }
     
     override func viewWillLayoutSubviews() {
@@ -149,12 +188,6 @@ class ViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem?.title = "Editor"
-        markerDataSource?.reset()
-        for marker in markerArray {
-            marker.isSelected = false
-            marker.isHidden = false
-        }
-
     }
     
     func recenterImage() {
@@ -188,13 +221,20 @@ extension ViewController: UIScrollViewDelegate {
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scollViewAction"), object: nil, userInfo: nil)
     }
+   
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scollViewAction"), object: nil, userInfo: nil)
         markerArray.map { marker in
-            markerDataSource?.framSet(markerView: marker)
+            marker.framSet()
         }
+    }
+}
+
+extension ViewController: THMarkerViewDelegate {
+    func tapEvent(marker: THMarkerView) {
+        contentViewController.showContent(contentDict: contentArray[marker.index])
     }
 }

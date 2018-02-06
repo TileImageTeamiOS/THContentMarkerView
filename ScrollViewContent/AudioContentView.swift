@@ -20,8 +20,7 @@ public class AudioContentView: UIView {
     var audioStatus = AudioStatus.stop
 
     var audioUrl: URL?
-    var audioPlayer: AVAudioPlayer?
-    var audioIntever = TimeInterval()
+    var audioPlayer: AVPlayer?
 
     func setAudioPlayer() {
         audioButton.frame.origin = CGPoint.zero
@@ -35,30 +34,19 @@ public class AudioContentView: UIView {
     }
 
     func setAudio(url: URL) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.delegate = self
-            guard let sound = audioPlayer else { return }
-            sound.prepareToPlay()
-        } catch let error {
-            print(error)
-        }
+        audioPlayer = AVPlayer(url: url)
+        audioPlayer?.allowsExternalPlayback = false
     }
 
     func playAudio() {
         audioStatus = .play
         audioButton.setImage(UIImage(named: "audioPause.png"), for: .normal)
-        if audioIntever == 0.0 {
-            audioPlayer?.play()
-        } else {
-            audioPlayer?.play(atTime: audioIntever)
-        }
     }
 
     func stopAudio() {
         audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
         audioStatus = .stop
-        audioPlayer?.stop()
+        audioPlayer?.pause()
     }
 
     @objc func pressAudioButton(_ sender: UIButton!) {
@@ -72,10 +60,4 @@ public class AudioContentView: UIView {
     }
 }
 
-extension AudioContentView: AVAudioPlayerDelegate {
-    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        audioStatus = .finish
-        audioButton.setImage(#imageLiteral(resourceName: "replay"), for: .normal)
-    }
-}
 

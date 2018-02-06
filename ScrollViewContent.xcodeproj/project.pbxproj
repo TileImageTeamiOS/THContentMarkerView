@@ -9,35 +9,49 @@
 /* Begin PBXBuildFile section */
 		04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BBE2004AC9600E23872 /* EditorScrollView.swift */; };
 		04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BC02006339D00E23872 /* EditorContentViewController.swift */; };
+		4E28B0BA202986DF00CD0452 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B0B9202986DF00CD0452 /* Content.swift */; };
+		4E28B0BC20298C8000CD0452 /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B0BB20298C8000CD0452 /* THAudioContentView.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
-		4E3CFE8C20068FC20019993C /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8720068FC10019993C /* MarkerViewDataSoucrce.swift */; };
 		4E3CFE8D20068FC20019993C /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8820068FC10019993C /* AudioContentView.swift */; };
 		4E3CFE8E20068FC20019993C /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8920068FC20019993C /* TextContentView.swift */; };
 		4E3CFE8F20068FC20019993C /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8A20068FC20019993C /* VideoContentView.swift */; };
-		4E3CFE9020068FC20019993C /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8B20068FC20019993C /* MarkerView.swift */; };
 		4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */; };
 		4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107751FFC996F009DB1C6 /* MinimapView.swift */; };
+		4EF630BD2026F6980044E6A8 /* THMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630BB2026F6970044E6A8 /* THMarkerView.swift */; };
+		4EF630BE2026F6980044E6A8 /* THMarkerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630BC2026F6970044E6A8 /* THMarkerViewDelegate.swift */; };
+		4EF630C120271DD60044E6A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C020271DD60044E6A8 /* ContentView.swift */; };
+		4EF630C5202849AC0044E6A8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C4202849AC0044E6A8 /* ContentViewController.swift */; };
+		4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C8202858B20044E6A8 /* THVideoContentView.swift */; };
+		4EF630CB20285CC80044E6A8 /* ContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630CA20285CC80044E6A8 /* ContentViewDelegate.swift */; };
+		4EF630CE20287A220044E6A8 /* reinhardt.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF630CD20287A220044E6A8 /* reinhardt.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
+		4E28B0B9202986DF00CD0452 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		4E28B0BB20298C8000CD0452 /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4E2F83F11FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E3CFE8720068FC10019993C /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
 		4E3CFE8820068FC10019993C /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
 		4E3CFE8920068FC20019993C /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
 		4E3CFE8A20068FC20019993C /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
-		4E3CFE8B20068FC20019993C /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapDataSource.swift; sourceTree = "<group>"; };
 		4E9107751FFC996F009DB1C6 /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
+		4EF630BB2026F6970044E6A8 /* THMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMarkerView.swift; sourceTree = "<group>"; };
+		4EF630BC2026F6970044E6A8 /* THMarkerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMarkerViewDelegate.swift; sourceTree = "<group>"; };
+		4EF630C020271DD60044E6A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4EF630C4202849AC0044E6A8 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		4EF630C8202858B20044E6A8 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoContentView.swift; sourceTree = "<group>"; };
+		4EF630CA20285CC80044E6A8 /* ContentViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDelegate.swift; sourceTree = "<group>"; };
+		4EF630CD20287A220044E6A8 /* reinhardt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = reinhardt.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,9 @@
 		4E2F83E01FF8E10E00511B4C = {
 			isa = PBXGroup;
 			children = (
+				4EF630CC20287A030044E6A8 /* Resource */,
+				4EF630BF20271DBA0044E6A8 /* ContentView */,
+				4EF630BA2026F6970044E6A8 /* THMarkerView */,
 				4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
 			);
@@ -77,22 +94,12 @@
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
 				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
 				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
-				4E9107721FFC97F5009DB1C6 /* MarkerView */,
+				4E3CFE8A20068FC20019993C /* VideoContentView.swift */,
+				4E3CFE8820068FC10019993C /* AudioContentView.swift */,
+				4E3CFE8920068FC20019993C /* TextContentView.swift */,
 				4E9107771FFC9973009DB1C6 /* MinimapView */,
 			);
 			path = ScrollViewContent;
-			sourceTree = "<group>";
-		};
-		4E9107721FFC97F5009DB1C6 /* MarkerView */ = {
-			isa = PBXGroup;
-			children = (
-				4E3CFE8B20068FC20019993C /* MarkerView.swift */,
-				4E3CFE8720068FC10019993C /* MarkerViewDataSoucrce.swift */,
-				4E3CFE8820068FC10019993C /* AudioContentView.swift */,
-				4E3CFE8920068FC20019993C /* TextContentView.swift */,
-				4E3CFE8A20068FC20019993C /* VideoContentView.swift */,
-			);
-			name = MarkerView;
 			sourceTree = "<group>";
 		};
 		4E9107771FFC9973009DB1C6 /* MinimapView */ = {
@@ -102,6 +109,36 @@
 				4E9107751FFC996F009DB1C6 /* MinimapView.swift */,
 			);
 			name = MinimapView;
+			sourceTree = "<group>";
+		};
+		4EF630BA2026F6970044E6A8 /* THMarkerView */ = {
+			isa = PBXGroup;
+			children = (
+				4EF630BB2026F6970044E6A8 /* THMarkerView.swift */,
+				4EF630BC2026F6970044E6A8 /* THMarkerViewDelegate.swift */,
+			);
+			path = THMarkerView;
+			sourceTree = "<group>";
+		};
+		4EF630BF20271DBA0044E6A8 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				4E28B0B9202986DF00CD0452 /* Content.swift */,
+				4EF630C020271DD60044E6A8 /* ContentView.swift */,
+				4EF630CA20285CC80044E6A8 /* ContentViewDelegate.swift */,
+				4EF630C4202849AC0044E6A8 /* ContentViewController.swift */,
+				4EF630C8202858B20044E6A8 /* THVideoContentView.swift */,
+				4E28B0BB20298C8000CD0452 /* THAudioContentView.swift */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
+		4EF630CC20287A030044E6A8 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4EF630CD20287A220044E6A8 /* reinhardt.mp4 */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */,
+				4EF630CE20287A220044E6A8 /* reinhardt.mp4 in Resources */,
 				4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,14 +213,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF630C5202849AC0044E6A8 /* ContentViewController.swift in Sources */,
+				4E28B0BC20298C8000CD0452 /* THAudioContentView.swift in Sources */,
+				4EF630C120271DD60044E6A8 /* ContentView.swift in Sources */,
+				4EF630BD2026F6980044E6A8 /* THMarkerView.swift in Sources */,
+				4E28B0BA202986DF00CD0452 /* Content.swift in Sources */,
 				4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */,
+				4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */,
+				4EF630CB20285CC80044E6A8 /* ContentViewDelegate.swift in Sources */,
 				4E3CFE8D20068FC20019993C /* AudioContentView.swift in Sources */,
 				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
 				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
 				4E3CFE8F20068FC20019993C /* VideoContentView.swift in Sources */,
 				4E3CFE8E20068FC20019993C /* TextContentView.swift in Sources */,
-				4E3CFE9020068FC20019993C /* MarkerView.swift in Sources */,
-				4E3CFE8C20068FC20019993C /* MarkerViewDataSoucrce.swift in Sources */,
+				4EF630BE2026F6980044E6A8 /* THMarkerViewDelegate.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
 				04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */,
