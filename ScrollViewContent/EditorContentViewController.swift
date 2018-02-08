@@ -8,22 +8,20 @@
 
 import UIKit
 import MediaPlayer
+import THMarkerView
 
 class EditorContentViewController: UIViewController {
     var editorScrollView = EditorScrollView()
     var imagePicker: UIImagePickerController!
     var audioPicker: MPMediaPickerController!
-    var videoPath = NSURL()
-    var audioPath = NSURL()
+    var videoPath = ""
+    var audioPath = ""
     
-    var x: Double = 0
-    var y: Double = 0
-    var zoom: Double = 1
-    var isAudio = false
-    var isVideo = false
+    var x: CGFloat = 0
+    var y: CGFloat = 0
+    var zoom: CGFloat = 1
     var focusOnText = false
     var keyboardHeight:CGFloat = 0
-    var isText = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,14 +85,25 @@ class EditorContentViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     @objc func editorDone() {
-        if (editorScrollView.linkText.text?.isEmpty)! && editorScrollView.detailText.text.isEmpty {
-            isText = false
-        }
         
-        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":editorScrollView.titleText.text ?? "", "link":editorScrollView.linkText.text ?? "", "text":editorScrollView.detailText.text ?? "", "isText" : isText]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
-
+        var content = Dictionary<String, Any>()
+        let link = editorScrollView.linkText.text
+        let text = editorScrollView.detailText.text
+        let textTitle = editorScrollView.titleText.text
         
+//        if title != "" {
+//            content["titleoContent"] = title
+//        }
+//        if videoPath != "" {
+//            content["videoContent"] = URL(string: videoPath)
+//        }
+//        if audioPath != "" {
+//            content["audioContent"] = URL(string: audioPath)
+//        }
+//        if !(textTitle == "" && text == "" && link == "") {
+//            content["textContent"] = textContent
+//        }
+    
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
@@ -114,17 +123,14 @@ extension EditorContentViewController: UITextViewDelegate{
 extension EditorContentViewController: MPMediaPickerControllerDelegate {
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        audioPath = (mediaItemCollection.items.first?.assetURL as NSURL?)!
-        
+        audioPath = (mediaItemCollection.items.first?.assetURL?.description)!
         self.editorScrollView.audioNameText.text = mediaItemCollection.items.first?.title
         audioPicker.dismiss(animated:true)
         audioPicker = nil
-        isAudio = true
     }
     
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
         self.editorScrollView.audioNameText.text = "파일을 선택해 주세요"
-        isAudio = false
         audioPicker.dismiss(animated:true)
         audioPicker = nil
     }
@@ -141,12 +147,11 @@ extension EditorContentViewController: UIGestureRecognizerDelegate {
 extension EditorContentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        videoPath = info["UIImagePickerControllerMediaURL"] as! NSURL
-        
-        self.editorScrollView.videoNameText.text = videoPath.lastPathComponent
+        let video = (info["UIImagePickerControllerMediaURL"] as! NSURL)
+        videoPath = video.description
+        self.editorScrollView.videoNameText.text = video.lastPathComponent
         imagePicker.dismiss(animated: true, completion: nil)
         imagePicker = nil
-        isVideo = true
     }
     
     
@@ -154,7 +159,6 @@ extension EditorContentViewController: UIImagePickerControllerDelegate, UINaviga
         self.editorScrollView.videoNameText.text = "파일을 선택해 주세요"
         imagePicker.dismiss(animated: true, completion: nil)
         imagePicker = nil
-        isVideo = false
     }
 }
 

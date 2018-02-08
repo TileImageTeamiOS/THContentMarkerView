@@ -8,4 +8,5 @@ target 'ScrollViewContent' do
   # Pods for ScrollViewContent
 	pod ‘Alamofire’
 	pod 'SwiftyJSON'
+	pod ‘THMarkerView’
 end

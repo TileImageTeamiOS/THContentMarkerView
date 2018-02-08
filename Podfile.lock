@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.6.0)
   - SwiftyJSON (4.0.0)
+  - THMarkerView (0.1.2)
 
 DEPENDENCIES:
   - Alamofire
   - SwiftyJSON
+  - THMarkerView
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  THMarkerView: d47e4a36fe311e3cdb412c8419460a1395b7c3af
 
-PODFILE CHECKSUM: a7dbdfc8a82e4c3b456fd0989b63e5c372bde72e
+PODFILE CHECKSUM: 2590ba94a985228096bd747ce7416edd9f317b51
 
 COCOAPODS: 1.3.1

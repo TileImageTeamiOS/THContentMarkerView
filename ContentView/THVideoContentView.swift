@@ -10,10 +10,21 @@ import UIKit
 import AVFoundation
 import AVKit
 
-public class THVideoContentView: ContentView {
+enum PlayStatus: Int {
+    case play = 0
+    case pause
+}
+
+enum VideoStatus: Int {
+    case show = 0
+    case hide
+}
+
+public class THVideoContentView: THContentView {
     private var videoTapGestureRecognizer = UITapGestureRecognizer()
     private var videoPanGestureRecognizer = UIPanGestureRecognizer()
     var player =  AVPlayer()
+    var playerLayer = AVPlayerLayer()
     var playStatus = PlayStatus.pause
     var videoStatus = VideoStatus.show
     var fullscreenButton = UIButton()
@@ -58,15 +69,13 @@ public class THVideoContentView: ContentView {
         let playerViewController = AVPlayerViewController()
         playerViewController.allowsPictureInPicturePlayback = true
         playerViewController.player = player
-        
         self.parentViewController?.present(playerViewController, animated: true) {
             playerViewController.player!.play()
         }
     }
-}
-
-extension THVideoContentView: ContentViewDelegate {
+    
     public func setContentView() {
+        delegate = self
         videoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTap(_:)))
         videoPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(videoViewPan(_:)))
         videoPanGestureRecognizer.delegate = self
@@ -91,17 +100,24 @@ extension THVideoContentView: ContentViewDelegate {
         videoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
     }
-    
-    public func setContentInfo() {
-        player =  AVPlayer(url: info as! URL)
+}
+
+extension THVideoContentView: THContentViewDelegate {
+    public func setContent(info: Any?) {
+        player = AVPlayer(url: info as! URL)
         player.allowsExternalPlayback = false
         
-        let layer: AVPlayerLayer = AVPlayerLayer(player: player)
-        layer.frame = self.bounds
-        layer.videoGravity = AVLayerVideoGravity.resizeAspect
-        self.layer.addSublayer(layer)
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.bounds
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+        self.layer.addSublayer(playerLayer)
         self.addSubview(fullscreenButton)
         self.addSubview(videoButton)
+    }
+    public func dismiss() {
+        pauseVideo()
+        showStatus()
+        self.playerLayer.removeFromSuperlayer()
     }
 }
 
@@ -134,5 +150,16 @@ extension THVideoContentView: UIGestureRecognizerDelegate {
         }
     }
 }
-
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder?.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
+}
 

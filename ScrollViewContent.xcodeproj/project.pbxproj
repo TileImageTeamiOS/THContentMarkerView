@@ -7,61 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04274B2D2029955A0084DED0 /* OverwatchEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04274B2C2029955A0084DED0 /* OverwatchEx.swift */; };
-		04274B2F2029BDB40084DED0 /* THTextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04274B2E2029BDB40084DED0 /* THTextContentView.swift */; };
+		044D780E202C59A600FF8918 /* JsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D780D202C59A600FF8918 /* JsonParsing.swift */; };
 		04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BBE2004AC9600E23872 /* EditorScrollView.swift */; };
 		04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BC02006339D00E23872 /* EditorContentViewController.swift */; };
-		04FCE4D92029D2D0001B1A24 /* THTitleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCE4D82029D2D0001B1A24 /* THTitleContentView.swift */; };
-		4E28B0BA202986DF00CD0452 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B0B9202986DF00CD0452 /* Content.swift */; };
-		4E28B0BC20298C8000CD0452 /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B0BB20298C8000CD0452 /* THAudioContentView.swift */; };
+		4E28B0C1202ABCFB00CD0452 /* THContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B0C0202ABCFB00CD0452 /* THContentController.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
-		4E3CFE8D20068FC20019993C /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8820068FC10019993C /* AudioContentView.swift */; };
-		4E3CFE8E20068FC20019993C /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8920068FC20019993C /* TextContentView.swift */; };
-		4E3CFE8F20068FC20019993C /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3CFE8A20068FC20019993C /* VideoContentView.swift */; };
-		4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */; };
-		4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9107751FFC996F009DB1C6 /* MinimapView.swift */; };
-		4EF630BD2026F6980044E6A8 /* THMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630BB2026F6970044E6A8 /* THMarkerView.swift */; };
-		4EF630BE2026F6980044E6A8 /* THMarkerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630BC2026F6970044E6A8 /* THMarkerViewDelegate.swift */; };
-		4EF630C120271DD60044E6A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C020271DD60044E6A8 /* ContentView.swift */; };
-		4EF630C5202849AC0044E6A8 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C4202849AC0044E6A8 /* ContentViewController.swift */; };
 		4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C8202858B20044E6A8 /* THVideoContentView.swift */; };
-		4EF630CB20285CC80044E6A8 /* ContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630CA20285CC80044E6A8 /* ContentViewDelegate.swift */; };
-		4EF630CE20287A220044E6A8 /* reinhardt.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF630CD20287A220044E6A8 /* reinhardt.mp4 */; };
-		848458889DEBEA022795BB9D /* Pods_ScrollViewContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B7B67A971F0CE636CC013E /* Pods_ScrollViewContent.framework */; };
+		B655D5D7CC7088EDC90FF7C5 /* Pods_ScrollViewContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04274B2C2029955A0084DED0 /* OverwatchEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverwatchEx.swift; sourceTree = "<group>"; };
-		04274B2E2029BDB40084DED0 /* THTextContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentView.swift; sourceTree = "<group>"; };
+		044D780D202C59A600FF8918 /* JsonParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParsing.swift; sourceTree = "<group>"; };
 		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
-		04FCE4D82029D2D0001B1A24 /* THTitleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentView.swift; sourceTree = "<group>"; };
-		2C6ADBA8D9D96450A76084A1 /* Pods-ScrollViewContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.debug.xcconfig"; sourceTree = "<group>"; };
-		4E28B0B9202986DF00CD0452 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		4E28B0BB20298C8000CD0452 /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
+		2B5FFC51AFDFCFE3EF6C2382 /* Pods-ScrollViewContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.release.xcconfig"; sourceTree = "<group>"; };
+		4E28B0C0202ABCFB00CD0452 /* THContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentController.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4E2F83F11FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E3CFE8820068FC10019993C /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
-		4E3CFE8920068FC20019993C /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
-		4E3CFE8A20068FC20019993C /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
-		4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapDataSource.swift; sourceTree = "<group>"; };
-		4E9107751FFC996F009DB1C6 /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
-		4EF630BB2026F6970044E6A8 /* THMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMarkerView.swift; sourceTree = "<group>"; };
-		4EF630BC2026F6970044E6A8 /* THMarkerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMarkerViewDelegate.swift; sourceTree = "<group>"; };
-		4EF630C020271DD60044E6A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4EF630C4202849AC0044E6A8 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		4EF630C8202858B20044E6A8 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoContentView.swift; sourceTree = "<group>"; };
-		4EF630CA20285CC80044E6A8 /* ContentViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDelegate.swift; sourceTree = "<group>"; };
-		4EF630CD20287A220044E6A8 /* reinhardt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = reinhardt.mp4; sourceTree = "<group>"; };
-		76B7B67A971F0CE636CC013E /* Pods_ScrollViewContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScrollViewContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C6E33EB912D2D960FD5DFF1 /* Pods-ScrollViewContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.release.xcconfig"; sourceTree = "<group>"; };
+		4EF630C8202858B20044E6A8 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = THVideoContentView.swift; path = ../ContentView/THVideoContentView.swift; sourceTree = "<group>"; };
+		C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScrollViewContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F84F8BAE572CF6BAAE9BD511 /* Pods-ScrollViewContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,31 +41,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				848458889DEBEA022795BB9D /* Pods_ScrollViewContent.framework in Frameworks */,
+				B655D5D7CC7088EDC90FF7C5 /* Pods_ScrollViewContent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A177B67875B650CBBFD1128 /* Frameworks */ = {
+		0CD3266EB8E41C041454D145 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				76B7B67A971F0CE636CC013E /* Pods_ScrollViewContent.framework */,
+				F84F8BAE572CF6BAAE9BD511 /* Pods-ScrollViewContent.debug.xcconfig */,
+				2B5FFC51AFDFCFE3EF6C2382 /* Pods-ScrollViewContent.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		120590FF5495170E854D9358 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E28B0BF202ABCE200CD0452 /* THContentView */ = {
+			isa = PBXGroup;
+			children = (
+				4E28B0C0202ABCFB00CD0452 /* THContentController.swift */,
+				4EF630C8202858B20044E6A8 /* THVideoContentView.swift */,
+			);
+			path = THContentView;
 			sourceTree = "<group>";
 		};
 		4E2F83E01FF8E10E00511B4C = {
 			isa = PBXGroup;
 			children = (
-				4EF630CC20287A030044E6A8 /* Resource */,
-				4EF630BF20271DBA0044E6A8 /* ContentView */,
-				4EF630BA2026F6970044E6A8 /* THMarkerView */,
+				4E28B0BF202ABCE200CD0452 /* THContentView */,
 				4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
-				4FF5E8486294572EDFD34E7E /* Pods */,
-				2A177B67875B650CBBFD1128 /* Frameworks */,
+				120590FF5495170E854D9358 /* Frameworks */,
+				0CD3266EB8E41C041454D145 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,66 +100,12 @@
 				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
 				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */,
-				04274B2C2029955A0084DED0 /* OverwatchEx.swift */,
+				044D780D202C59A600FF8918 /* JsonParsing.swift */,
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
 				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
 				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
-				4E3CFE8A20068FC20019993C /* VideoContentView.swift */,
-				4E3CFE8820068FC10019993C /* AudioContentView.swift */,
-				4E3CFE8920068FC20019993C /* TextContentView.swift */,
-				4E9107771FFC9973009DB1C6 /* MinimapView */,
 			);
 			path = ScrollViewContent;
-			sourceTree = "<group>";
-		};
-		4E9107771FFC9973009DB1C6 /* MinimapView */ = {
-			isa = PBXGroup;
-			children = (
-				4E9107731FFC9961009DB1C6 /* MinimapDataSource.swift */,
-				4E9107751FFC996F009DB1C6 /* MinimapView.swift */,
-			);
-			name = MinimapView;
-			sourceTree = "<group>";
-		};
-		4EF630BA2026F6970044E6A8 /* THMarkerView */ = {
-			isa = PBXGroup;
-			children = (
-				4EF630BB2026F6970044E6A8 /* THMarkerView.swift */,
-				4EF630BC2026F6970044E6A8 /* THMarkerViewDelegate.swift */,
-			);
-			path = THMarkerView;
-			sourceTree = "<group>";
-		};
-		4EF630BF20271DBA0044E6A8 /* ContentView */ = {
-			isa = PBXGroup;
-			children = (
-				4E28B0B9202986DF00CD0452 /* Content.swift */,
-				4EF630C020271DD60044E6A8 /* ContentView.swift */,
-				4EF630CA20285CC80044E6A8 /* ContentViewDelegate.swift */,
-				4EF630C4202849AC0044E6A8 /* ContentViewController.swift */,
-				4EF630C8202858B20044E6A8 /* THVideoContentView.swift */,
-				4E28B0BB20298C8000CD0452 /* THAudioContentView.swift */,
-				04274B2E2029BDB40084DED0 /* THTextContentView.swift */,
-				04FCE4D82029D2D0001B1A24 /* THTitleContentView.swift */,
-			);
-			path = ContentView;
-			sourceTree = "<group>";
-		};
-		4EF630CC20287A030044E6A8 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				4EF630CD20287A220044E6A8 /* reinhardt.mp4 */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		4FF5E8486294572EDFD34E7E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2C6ADBA8D9D96450A76084A1 /* Pods-ScrollViewContent.debug.xcconfig */,
-				9C6E33EB912D2D960FD5DFF1 /* Pods-ScrollViewContent.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */,
-				4EF630CE20287A220044E6A8 /* reinhardt.mp4 in Resources */,
 				4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,11 +187,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/THMarkerView/THMarkerView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THMarkerView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -305,23 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04274B2F2029BDB40084DED0 /* THTextContentView.swift in Sources */,
-				4EF630C5202849AC0044E6A8 /* ContentViewController.swift in Sources */,
-				4E28B0BC20298C8000CD0452 /* THAudioContentView.swift in Sources */,
-				4EF630C120271DD60044E6A8 /* ContentView.swift in Sources */,
-				4EF630BD2026F6980044E6A8 /* THMarkerView.swift in Sources */,
-				4E28B0BA202986DF00CD0452 /* Content.swift in Sources */,
-				4E9107761FFC996F009DB1C6 /* MinimapView.swift in Sources */,
-				04274B2D2029955A0084DED0 /* OverwatchEx.swift in Sources */,
 				4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */,
-				4EF630CB20285CC80044E6A8 /* ContentViewDelegate.swift in Sources */,
-				4E3CFE8D20068FC20019993C /* AudioContentView.swift in Sources */,
-				04FCE4D92029D2D0001B1A24 /* THTitleContentView.swift in Sources */,
+				044D780E202C59A600FF8918 /* JsonParsing.swift in Sources */,
+				4E28B0C1202ABCFB00CD0452 /* THContentController.swift in Sources */,
 				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
-				4E9107741FFC9961009DB1C6 /* MinimapDataSource.swift in Sources */,
-				4E3CFE8F20068FC20019993C /* VideoContentView.swift in Sources */,
-				4E3CFE8E20068FC20019993C /* TextContentView.swift in Sources */,
-				4EF630BE2026F6980044E6A8 /* THMarkerViewDelegate.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
 				04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */,
@@ -451,7 +373,7 @@
 		};
 		4E2F83FF1FF8E10E00511B4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C6ADBA8D9D96450A76084A1 /* Pods-ScrollViewContent.debug.xcconfig */;
+			baseConfigurationReference = F84F8BAE572CF6BAAE9BD511 /* Pods-ScrollViewContent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,7 +390,7 @@
 		};
 		4E2F84001FF8E10E00511B4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C6E33EB912D2D960FD5DFF1 /* Pods-ScrollViewContent.release.xcconfig */;
+			baseConfigurationReference = 2B5FFC51AFDFCFE3EF6C2382 /* Pods-ScrollViewContent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
