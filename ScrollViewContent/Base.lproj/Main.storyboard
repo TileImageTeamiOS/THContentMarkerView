@@ -36,8 +36,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpV-Yq-Yiz">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bench" translatesAutoresizingMaskIntoConstraints="NO" id="KEG-6e-aqR">
-                                        <rect key="frame" x="0.0" y="0.0" width="5214" height="7300"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="overwatch" translatesAutoresizingMaskIntoConstraints="NO" id="KEG-6e-aqR">
+                                        <rect key="frame" x="0.0" y="0.0" width="7680" height="4320"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -109,7 +109,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bench" width="5214" height="7300"/>
+        <image name="overwatch" width="7680" height="4320"/>
     </resources>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

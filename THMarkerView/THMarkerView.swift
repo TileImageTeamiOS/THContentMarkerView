@@ -15,6 +15,7 @@ open class THMarkerView: UIView {
     private var zoomScale = CGFloat()
     private var origin = CGPoint()
     private var destinationRect = CGRect()
+    private var initialZoom = CGFloat()
     
     /// marker has tap Gesture, and we implement tap event in `THMarkerView`
     private var markerTapGestureRecognizer = UITapGestureRecognizer()
@@ -27,7 +28,7 @@ open class THMarkerView: UIView {
         self.zoomScale = zoomScale
         self.scrollView = scrollView
         self.origin = origin
-        
+        self.initialZoom = scrollView.zoomScale
         frame.origin = origin
         scrollView.addSubview(self)
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))

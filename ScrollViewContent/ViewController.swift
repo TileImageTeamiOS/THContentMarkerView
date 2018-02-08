@@ -21,6 +21,9 @@ class ViewController: UIViewController {
     var contentViewController = ContentViewController()
     var thVideoContentView = THVideoContentView()
     var thAudioContentView = THAudioContentView()
+    var thTextContentView = THTextContentView()
+    
+    var overwatch = OverwatchEx()
     
 //    var audioContentView = AudioContentView()
 //    var videoContentView = VideoContentView()
@@ -32,6 +35,7 @@ class ViewController: UIViewController {
     var centerPoint = UIView()
     var markerArray = [THMarkerView]()
     var contentArray = [Dictionary<String, Any>]()
+    var imageSize = CGSize()
 
     @objc func addMarker(_ notification: NSNotification){
         let x = notification.userInfo?["x"]
@@ -48,42 +52,24 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
+        imageSize = (imageView.image?.size)!
+        overwatch.setOverwatchEx(scrollView: scrollView) {_ in
+            for i in 0..<self.overwatch.markerArray.count {
+                self.overwatch.markerArray[i].delegate = self
+                self.markerArray.append(self.overwatch.markerArray[i])
+                self.contentArray.append(self.overwatch.contentArray[i])
+            }
+            self.markerArray.map { marker in
+                marker.framSet()
+            }
+        }
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-
-        let marker = THMarkerView()
-        marker.frame.size =  CGSize(width: 20, height: 20)
-        marker.set(origin: CGPoint(x:1500, y:1500), zoomScale: 2.0, scrollView: scrollView)
-        marker.setImage(markerImage: UIImage(named: "marker.png")!)
-        
-         marker.delegate = self
-        
-        marker.index = markerArray.count
-        markerArray.append(marker)
-        
-        let marker1 = THMarkerView()
-        marker1.frame.size =  CGSize(width: 20, height: 20)
-        marker1.set(origin: CGPoint(x:1800, y:2000), zoomScale: 3.0, scrollView: scrollView)
-        marker1.setImage(markerImage: UIImage(named: "marker.png")!)
-        
-        marker1.delegate = self
-        
-        marker1.index = markerArray.count
-        markerArray.append(marker1)
-        
-        let marker2 = THMarkerView()
-        marker2.frame.size =  CGSize(width: 20, height: 20)
-        marker2.set(origin: CGPoint(x:2100, y:2300), zoomScale: 4.0, scrollView: scrollView)
-        marker2.setImage(markerImage: UIImage(named: "marker.png")!)
-        
-        marker2.delegate = self
-        
-        marker2.index = markerArray.count
-        markerArray.append(marker2)
         
 //        // title contentView 설정
 //        titleLabel.center = self.view.center
@@ -104,8 +90,6 @@ class ViewController: UIViewController {
 //        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
 //        self.view.addSubview(textContentView)
 
-        
-        
         // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
@@ -132,14 +116,10 @@ class ViewController: UIViewController {
         thAudioContentView.identifier = "thAudioContentView"
         contentViewController.set(contentView: thAudioContentView, parentView: self.view)
         
-        // content dict 설정
-        var videoContentDict = Dictionary<String, Any>()
-        videoContentDict["thVideoContentView"] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
-        contentArray.append(videoContentDict)
-        
-        var audioContentDict = Dictionary<String, Any>()
-        audioContentDict["thAudioContentView"] = URL(string: "http://barronsbooks.com/tp/toeic/audio/hf28u/Track%2001.mp3")
-        contentArray.append(audioContentDict)
+        // thTextContentView 설정
+        thTextContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+        thTextContentView.identifier = "thTextContentView"
+        contentViewController.set(contentView: thTextContentView, parentView: self.view)
     }
     
     override func viewWillLayoutSubviews() {
@@ -185,9 +165,17 @@ class ViewController: UIViewController {
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
         editorBtn.title = "Editor"
-        
+        contentViewController.dismissContent()
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem?.title = "Editor"
+        
+        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+            self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        })
+        
+        markerArray.map { marker in
+            marker.isHidden = false
+        }
     }
     
     func recenterImage() {
@@ -236,5 +224,8 @@ extension ViewController: UIScrollViewDelegate {
 extension ViewController: THMarkerViewDelegate {
     func tapEvent(marker: THMarkerView) {
         contentViewController.showContent(contentDict: contentArray[marker.index])
+        markerArray.map { marker in
+            marker.isHidden = true
+        }
     }
 }

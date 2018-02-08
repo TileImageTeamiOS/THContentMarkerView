@@ -23,7 +23,9 @@ open class ContentViewController {
     }
     
     public func dismissContent() {
-        
+        for contentView in contentViewArray {
+            contentView.isHidden = true
+        }
     }
     
     public func set(contentView: ContentView, parentView: UIView) {
