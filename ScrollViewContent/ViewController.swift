@@ -18,20 +18,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapHeight: NSLayoutConstraint!
     @IBOutlet weak var minimapWidth: NSLayoutConstraint!
     
-    var contentViewController = ContentViewController()
-    var thVideoContentView = THVideoContentView()
-    var thAudioContentView = THAudioContentView()
-    
-//    var audioContentView = AudioContentView()
-//    var videoContentView = VideoContentView()
-//    var textContentView = TextContentView()
-//    var titleLabel = UILabel()
+    // THContent
+    var contentArray: [THContent] = []
+    var contentViewController = THContentViewController()
     
     var minimapDataSource: MinimapDataSource!
     var isEditor = false
     var centerPoint = UIView()
     var markerArray = [THMarkerView]()
-    var contentArray = [Dictionary<String, Any>]()
 
     @objc func addMarker(_ notification: NSNotification){
         let x = notification.userInfo?["x"]
@@ -54,7 +48,8 @@ class ViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         scrollView.delegate = self
-
+        
+//        UICollectionView
         let marker = THMarkerView()
         marker.frame.size =  CGSize(width: 20, height: 20)
         marker.set(origin: CGPoint(x:1500, y:1500), zoomScale: 2.0, scrollView: scrollView)
@@ -85,27 +80,6 @@ class ViewController: UIViewController {
         marker2.index = markerArray.count
         markerArray.append(marker2)
         
-//        // title contentView 설정
-//        titleLabel.center = self.view.center
-//        titleLabel.textAlignment = .center
-//        titleLabel.textColor = UIColor.white
-//        titleLabel.font.withSize(20)
-//        self.view.addSubview(titleLabel)
-//
-//        // audio contentView 설정
-//        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
-//        self.view.addSubview(audioContentView)
-//
-//        // video contentview 설정
-//        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-//        self.view.addSubview(videoContentView)
-//
-//        // text contentView 설정
-//        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
-//        self.view.addSubview(textContentView)
-
-        
-        
         // minimap 설정
         minimapDataSource = MinimapDataSource(scrollView: scrollView, image: imageView.image!, borderWidth: 2, borderColor: UIColor.yellow.cgColor, ratio: 70.0)
         minimapView.set(dataSource: minimapDataSource, height: minimapHeight, width: minimapWidth)
@@ -122,24 +96,36 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-        // thVideoContentView 설정
-        thVideoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        thVideoContentView.identifier = "thVideoContentView"
-        contentViewController.set(contentView: thVideoContentView, parentView: self.view)
-        
-        // thAudioContentView 설정
-        thAudioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
-        thAudioContentView.identifier = "thAudioContentView"
-        contentViewController.set(contentView: thAudioContentView, parentView: self.view)
+//        // thVideoContentView 설정
+//        thVideoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+//        thVideoContentView.identifier = "thVideoContentView"
+//        contentViewController.set(contentView: thVideoContentView, parentView: self.view)
+//
+//        // thAudioContentView 설정
+//        thAudioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+//        thAudioContentView.identifier = "thAudioContentView"
+//        contentViewController.set(contentView: thAudioContentView, parentView: self.view)
         
         // content dict 설정
-        var videoContentDict = Dictionary<String, Any>()
-        videoContentDict["thVideoContentView"] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
-        contentArray.append(videoContentDict)
+//        var videoContentDict = Dictionary<String, Any>()
+//        videoContentDict["thVideoContentView"] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
+//        contentArray.append(videoContentDict)
+//
+//        var audioContentDict = Dictionary<String, Any>()
+//        audioContentDict["thAudioContentView"] = URL(string: "http://barronsbooks.com/tp/toeic/audio/hf28u/Track%2001.mp3")
+//        contentArray.append(audioContentDict)
         
-        var audioContentDict = Dictionary<String, Any>()
-        audioContentDict["thAudioContentView"] = URL(string: "http://barronsbooks.com/tp/toeic/audio/hf28u/Track%2001.mp3")
-        contentArray.append(audioContentDict)
+        // content dict 설정
+        var content1 = Dictionary<String, Any>()
+        content1["videoContent"] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
+        contentArray.append(THContent(contentInfo: content1))
+    
+        var content2 = Dictionary<String, Any>()
+        content2["audioContent"] = URL(string: "http://barronsbooks.com/tp/toeic/audio/hf28u/Track%2001.mp3")
+        contentArray.append(THContent(contentInfo: content2))
+        
+        contentViewController.dataSource = self
+        contentViewController.set(parentView: self.view)
     }
     
     override func viewWillLayoutSubviews() {
@@ -235,6 +221,20 @@ extension ViewController: UIScrollViewDelegate {
 
 extension ViewController: THMarkerViewDelegate {
     func tapEvent(marker: THMarkerView) {
-        contentViewController.showContent(contentDict: contentArray[marker.index])
+        contentViewController.show(content: contentArray[marker.index])
+    }
+}
+
+extension ViewController: THContentViewControllerDataSource {
+    func setContentView(_ contentController: THContentViewController) -> [THContentView] {
+        let videoContentView = THVideoContentView()
+        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        videoContentView.setContentView()
+        
+        return [videoContentView]
+    }
+    
+    func setContentKey(_ contentController: THContentViewController) -> [String] {
+        return ["videoContent"]
     }
 }

@@ -8,6 +8,18 @@
 
 import Foundation
 
-public struct Content {
-    
-}
+//public struct Content {
+//    var contentViewIdentifierArray: [String] = []
+//    var contentViewArray: [Any] = []
+//}
+//
+//extension Content {
+//    func getViewInfo(contentViewIdentifier: String) -> Any? {
+//        if let index = contentViewIdentifierArray.index(of: contentViewIdentifier) {
+//            return contentViewArray[index]
+//        }
+//        
+//        return nil
+//    }
+//}
+

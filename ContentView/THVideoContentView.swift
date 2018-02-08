@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-public class THVideoContentView: ContentView {
+public class THVideoContentView: THContentView {
     private var videoTapGestureRecognizer = UITapGestureRecognizer()
     private var videoPanGestureRecognizer = UIPanGestureRecognizer()
     var player =  AVPlayer()
@@ -63,10 +63,9 @@ public class THVideoContentView: ContentView {
             playerViewController.player!.play()
         }
     }
-}
-
-extension THVideoContentView: ContentViewDelegate {
+    
     public func setContentView() {
+        delegate = self
         videoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTap(_:)))
         videoPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(videoViewPan(_:)))
         videoPanGestureRecognizer.delegate = self
@@ -91,9 +90,11 @@ extension THVideoContentView: ContentViewDelegate {
         videoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
     }
-    
-    public func setContentInfo() {
-        player =  AVPlayer(url: info as! URL)
+}
+
+extension THVideoContentView: THContentViewDelegate {
+    public func setContent(info: Any?) {
+        player = AVPlayer(url: info as! URL)
         player.allowsExternalPlayback = false
         
         let layer: AVPlayerLayer = AVPlayerLayer(player: player)
