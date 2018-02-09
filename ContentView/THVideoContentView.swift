@@ -114,6 +114,7 @@ extension THVideoContentView: THContentViewDelegate {
         self.addSubview(fullscreenButton)
         self.addSubview(videoButton)
     }
+    
     public func dismiss() {
         pauseVideo()
         showStatus()

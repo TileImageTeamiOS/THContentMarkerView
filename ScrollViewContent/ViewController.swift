@@ -9,7 +9,7 @@
 import UIKit
 import THMarkerView
 
-class ViewController: UIViewController {
+class ViewController: THContentViewController {
     @IBOutlet weak var editorBtn: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     
     // THContent
     var contentArray: [THContent] = []
-    var contentViewController = THContentViewController()
     var isEditor = false
     var centerPoint = UIView()
     var markerArray = [THMarkerView]()
@@ -39,11 +38,13 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         showMarker()
         back()
         self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showMarker()
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         imageSize = (imageView.image?.size)!
         scrollView.delegate = self
-
+        
         // edit center point 설정
         centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2, width: CGFloat(10), height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
@@ -61,10 +62,8 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-        
-        // content dict 설정
-        contentViewController.dataSource = self
-        contentViewController.set(parentView: self.view)
+        dataSource = self
+        set(parentView: self.view)
     }
     
     override func viewWillLayoutSubviews() {
@@ -105,7 +104,7 @@ class ViewController: UIViewController {
         for marker in markerArray {
             marker.isHidden = false
         }
-        contentViewController.dismiss()
+        dismiss()
     }
     @IBAction func backButtonAction(_ sender: UIButton) {
         back()
@@ -158,22 +157,27 @@ extension ViewController: THMarkerViewDelegate {
         for marker in markerArray {
             marker.isHidden = true
         }
-        contentViewController.show(content: contentArray[marker.index])
+        
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.title = ""
+        show(content: contentArray[marker.index])
     }
 }
 
 extension ViewController: THContentViewControllerDataSource {
-    func setContentView(_ contentController: THContentViewController) -> [THContentView] {
+    func setContentView(_ contentController: THContentViewController) -> [THContentWrapper] {
         let videoContentView = THVideoContentView()
         videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
         videoContentView.setContentView()
         
-        return [videoContentView]
-    }
-    
-    func setContentKey(_ contentController: THContentViewController) -> [String] {
-        return ["videoContent"]
+        let audioContentView = THAudioContentView()
+        audioContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        audioContentView.setContentView()
+        
+        var contentArray: [THContentWrapper] = []
+        contentArray.append(THContentWrapper(contentKey: "videoContent", contentView: videoContentView))
+        contentArray.append(THContentWrapper(contentKey: "audioContent", contentView: audioContentView))
+        
+        return contentArray
     }
 }

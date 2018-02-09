@@ -8,36 +8,39 @@
 
 import UIKit
 
-class THContentViewController {
-    var contentKeyArray: [String] = []
-    var contentViewArray: [THContentView] = []
+struct THContentWrapper {
+    var contentKey: String
+    var contentView: THContentView
+}
+
+class THContentViewController: UIViewController {
+    var contentWrapArray: [THContentWrapper] = []
     
     var dataSource: THContentViewControllerDataSource!
     
     func set(parentView: UIView) {
-        contentKeyArray.removeAll()
-        contentViewArray.removeAll()
-        contentViewArray = dataSource.setContentView(self)
-        contentKeyArray = dataSource.setContentKey(self)
-        for contentView in contentViewArray {
-            parentView.addSubview(contentView)
-            contentView.isHidden = true
+        contentWrapArray.removeAll()
+        contentWrapArray = dataSource.setContentView(self)
+        
+        contentWrapArray.map { contentView in
+            parentView.addSubview(contentView.contentView)
+            contentView.contentView.isHidden = true
         }
     }
     
     func show(content: THContent) {
-        for (index, contentView) in contentViewArray.enumerated() {
-            if let info = content.contentInfo[contentKeyArray[index]] {
-                contentView.delegate.setContent(info: info)
-                contentView.isHidden = false
+        for (index, contentView) in contentWrapArray.enumerated() {
+            if let info = content.contentInfo[contentView.contentKey] {
+                contentView.contentView.delegate.setContent(info: info)
+                contentView.contentView.isHidden = false
             }
         }
     }
     
     func dismiss() {
-        for contentView in contentViewArray {
-            contentView.isHidden = true
-            contentView.delegate.dismiss()
+        for contentWrap in contentWrapArray {
+            contentWrap.contentView.isHidden = true
+            contentWrap.contentView.delegate.dismiss()
         }
     }
 }
@@ -61,7 +64,5 @@ public protocol THContentViewDelegate: class {
 
 
 protocol THContentViewControllerDataSource: class {
-    func setContentView(_ contentController: THContentViewController) -> [THContentView]
-    
-    func setContentKey(_ contentController: THContentViewController) -> [String]
+    func setContentView(_ contentController: THContentViewController) -> [THContentWrapper]
 }

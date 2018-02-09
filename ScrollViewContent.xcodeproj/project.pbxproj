@@ -15,6 +15,7 @@
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
+		4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */; };
 		4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C8202858B20044E6A8 /* THVideoContentView.swift */; };
 		B655D5D7CC7088EDC90FF7C5 /* Pods_ScrollViewContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		4E2F83F11FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
 		4EF630C8202858B20044E6A8 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = THVideoContentView.swift; path = ../ContentView/THVideoContentView.swift; sourceTree = "<group>"; };
 		C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScrollViewContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84F8BAE572CF6BAAE9BD511 /* Pods-ScrollViewContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				4E28B0C0202ABCFB00CD0452 /* THContentController.swift */,
 				4EF630C8202858B20044E6A8 /* THVideoContentView.swift */,
+				4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */,
 			);
 			path = THContentView;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */,
 				044D780E202C59A600FF8918 /* JsonParsing.swift in Sources */,
 				4E28B0C1202ABCFB00CD0452 /* THContentController.swift in Sources */,
+				4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */,
 				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
