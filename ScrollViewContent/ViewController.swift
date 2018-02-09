@@ -174,9 +174,15 @@ extension ViewController: THContentViewControllerDataSource {
         audioContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
         audioContentView.setContentView()
         
+        let textContentView = THTextContentView()
+        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
+        textContentView.setContentView()
+        
+        
         var contentArray: [THContentWrapper] = []
         contentArray.append(THContentWrapper(contentKey: "videoContent", contentView: videoContentView))
         contentArray.append(THContentWrapper(contentKey: "audioContent", contentView: audioContentView))
+        contentArray.append(THContentWrapper(contentKey: "textContent", contentView: textContentView))
         
         return contentArray
     }
