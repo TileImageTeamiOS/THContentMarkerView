@@ -9,45 +9,48 @@
 import UIKit
 import THMarkerView
 
-class ViewController: THContentViewController {
+class ViewController: UIViewController {
     @IBOutlet weak var editorBtn: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
-    var jsonParsing = JsonParsing()
+    var contentMarkerController = THContentMarkerController()
+    
+//    var jsonParsing = JsonParsing()
     var imageSize = CGSize()
     
     // THContent
     var contentArray: [THContent] = []
     var isEditor = false
     var centerPoint = UIView()
-    var markerArray = [THMarkerView]()
+    var markerArray = [THMarker]()
+//    var markerArray = [THMarkerView]()
     
-    func showMarker() {
-        markerArray.removeAll()
-        jsonParsing.set(scrollView: scrollView) {_ in
-            for i in 0..<self.jsonParsing.markerArray.count {
-                self.jsonParsing.markerArray[i].delegate = self
-                self.markerArray.append(self.jsonParsing.markerArray[i])
-                self.contentArray.append(self.jsonParsing.contentArray[i])
-            }
-            for marker in self.markerArray {
-                marker.framSet()
-            }
-        }
-    }
+//    func showMarker() {
+//        markerArray.removeAll()
+//        jsonParsing.set(scrollView: scrollView) {_ in
+//            for i in 0..<self.jsonParsing.markerArray.count {
+//                self.jsonParsing.markerArray[i].delegate = self
+//                self.markerArray.append(self.jsonParsing.markerArray[i])
+//                self.contentArray.append(self.jsonParsing.contentArray[i])
+//            }
+//            for marker in self.markerArray {
+//                marker.framSet()
+//            }
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
-        showMarker()
-        back()
+//        showMarker()
+//        back()
         self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showMarker()
+//        showMarker()
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         imageSize = (imageView.image?.size)!
@@ -62,8 +65,13 @@ class ViewController: THContentViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-        dataSource = self
-        set(parentView: self.view)
+        contentMarkerController.markerViewImage = #imageLiteral(resourceName: "marker")
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000)))
+        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500)))
+        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000)))
+//        set(parentView: self.view, dataSource: self)
+        
+        contentMarkerController.set(parentView: self.view, scrollView: self.scrollView, dataSource: self)
     }
     
     override func viewWillLayoutSubviews() {
@@ -101,10 +109,10 @@ class ViewController: THContentViewController {
         editorBtn.title = "Editor"
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem?.title = "Editor"
-        for marker in markerArray {
-            marker.isHidden = false
-        }
-        dismiss()
+//        for marker in markerArray {
+//            marker.isHidden = false
+//        }
+//        dismiss()
     }
     @IBAction func backButtonAction(_ sender: UIButton) {
         back()
@@ -146,44 +154,58 @@ extension ViewController: UIScrollViewDelegate {
     }
    
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        for marker in markerArray {
-            marker.framSet()
-        }
+        contentMarkerController.setMarkerFrame()
     }
 }
 
-extension ViewController: THMarkerViewDelegate {
-    func tapEvent(marker: THMarkerView) {
-        for marker in markerArray {
-            marker.isHidden = true
-        }
-        
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.title = ""
-        show(content: contentArray[marker.index])
+//extension ViewController: THMarkerViewDelegate {
+//    func tapEvent(marker: THMarkerView) {
+//        for marker in markerArray {
+//            marker.isHidden = true
+//        }
+//
+//        self.navigationItem.rightBarButtonItem?.isEnabled = false
+//        self.navigationItem.rightBarButtonItem?.title = ""
+//        show(content: contentArray[marker.index])
+//    }
+//}
+
+//extension ViewController: THContentViewControllerDataSource {
+//    func setContentView(_ contentController: THContentViewController) -> [THContentWrapper] {
+//        let videoContentView = THVideoContentView()
+//        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+//        videoContentView.setContentView()
+//
+//        let audioContentView = THAudioContentView()
+//        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+//        audioContentView.setContentView()
+//
+//        let textContentView = THTextContentView()
+//        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
+//        textContentView.setContentView()
+//
+//        let titleContentView = THTitleContentView()
+//        titleContentView.setView()
+//        titleContentView.center = self.view.center
+//        titleContentView.frame.size = CGSize(width: 50, height: 50)
+//
+//        var contentArray: [THContentWrapper] = []
+//        contentArray.append(THContentWrapper(contentKey: "videoContent", contentView: videoContentView))
+//        contentArray.append(THContentWrapper(contentKey: "audioContent", contentView: audioContentView))
+//        contentArray.append(THContentWrapper(contentKey: "textContent", contentView: textContentView))
+//        contentArray.append(THContentWrapper(contentKey: "titleContent", contentView: titleContentView))
+//
+//        return contentArray
+//    }
+//}
+
+extension ViewController: THContentMarkerControllerDataSource {
+    func setMarker(_ contentMarkerController: THContentMarkerController, index: Int) -> THMarker {
+        return markerArray[index]
+    }
+    
+    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
+        return 3
     }
 }
 
-extension ViewController: THContentViewControllerDataSource {
-    func setContentView(_ contentController: THContentViewController) -> [THContentWrapper] {
-        let videoContentView = THVideoContentView()
-        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        videoContentView.setContentView()
-        
-        let audioContentView = THAudioContentView()
-        audioContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        audioContentView.setContentView()
-        
-        let textContentView = THTextContentView()
-        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
-        textContentView.setContentView()
-        
-        
-        var contentArray: [THContentWrapper] = []
-        contentArray.append(THContentWrapper(contentKey: "videoContent", contentView: videoContentView))
-        contentArray.append(THContentWrapper(contentKey: "audioContent", contentView: audioContentView))
-        contentArray.append(THContentWrapper(contentKey: "textContent", contentView: textContentView))
-        
-        return contentArray
-    }
-}

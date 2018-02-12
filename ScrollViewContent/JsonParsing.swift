@@ -39,10 +39,10 @@ class JsonParsing {
                         let link = textContent["link"].description
                         let textTitle = textContent["textTitle"].description
                         
-                        marker.frame.size =  CGSize(width: 20, height: 20)
-                        marker.set(origin: CGPoint(x: CGFloat(x), y: CGFloat(y)), zoomScale: CGFloat(zoomScale), scrollView: scrollView)
-                        marker.setImage(markerImage: UIImage(named: "marker.png")!)
-                        marker.index = i
+//                        marker.frame.size =  CGSize(width: 20, height: 20)
+//                        marker.set(origin: CGPoint(x: CGFloat(x), y: CGFloat(y)), zoomScale: CGFloat(zoomScale), scrollView: scrollView)
+//                        marker.setImage(markerImage: UIImage(named: "marker.png")!)
+//                        marker.index = i
                         
                         if title != "" {
                             content["titleoContent"] = title

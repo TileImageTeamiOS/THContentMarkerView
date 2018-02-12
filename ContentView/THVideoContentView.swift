@@ -99,6 +99,10 @@ public class THVideoContentView: THContentView {
         videoButton.setImage(UIImage(named: "playBtn.png"), for: .normal)
         videoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
+        
+        self.addSubview(fullscreenButton)
+        self.addSubview(videoButton)
+
     }
 }
 
@@ -111,8 +115,7 @@ extension THVideoContentView: THContentViewDelegate {
         playerLayer.frame = self.bounds
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
         self.layer.addSublayer(playerLayer)
-        self.addSubview(fullscreenButton)
-        self.addSubview(videoButton)
+        
     }
     
     public func dismiss() {

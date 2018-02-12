@@ -29,6 +29,7 @@ public class THTextContentView: THContentView {
     var contentStatus: ContentStatus = .hide
 
     func setContentView() {
+        delegate = self
         scrollSet()
         self.backgroundColor = UIColor.white
         

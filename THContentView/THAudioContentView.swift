@@ -22,6 +22,7 @@ public class THAudioContentView: THContentView {
     var audioPlayer: AVPlayer?
 
     func setContentView() {
+        delegate = self
         audioButton.frame.origin = CGPoint.zero
         audioButton.frame.size = self.frame.size
         audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)

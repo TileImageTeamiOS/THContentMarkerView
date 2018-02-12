@@ -17,6 +17,8 @@
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
 		4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */; };
 		4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */; };
+		4EC0FB8A202D8915001CEF1C /* THTitleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */; };
+		4EC0FB9720316E36001CEF1C /* THContentMarkerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB9620316E36001CEF1C /* THContentMarkerController.swift */; };
 		4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C8202858B20044E6A8 /* THVideoContentView.swift */; };
 		B655D5D7CC7088EDC90FF7C5 /* Pods_ScrollViewContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,8 @@
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
 		4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentView.swift; sourceTree = "<group>"; };
+		4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentView.swift; sourceTree = "<group>"; };
+		4EC0FB9620316E36001CEF1C /* THContentMarkerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentMarkerController.swift; sourceTree = "<group>"; };
 		4EF630C8202858B20044E6A8 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = THVideoContentView.swift; path = ../ContentView/THVideoContentView.swift; sourceTree = "<group>"; };
 		C1AF3E8BEE922E13C8AAF981 /* Pods_ScrollViewContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScrollViewContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84F8BAE572CF6BAAE9BD511 /* Pods-ScrollViewContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewContent/Pods-ScrollViewContent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				4EF630C8202858B20044E6A8 /* THVideoContentView.swift */,
 				4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */,
 				4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */,
+				4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */,
 			);
 			path = THContentView;
 			sourceTree = "<group>";
@@ -83,6 +88,7 @@
 		4E2F83E01FF8E10E00511B4C = {
 			isa = PBXGroup;
 			children = (
+				4EC0FB9520316E0C001CEF1C /* THContentMarkerView */,
 				4E28B0BF202ABCE200CD0452 /* THContentView */,
 				4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
@@ -112,6 +118,14 @@
 				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
 			);
 			path = ScrollViewContent;
+			sourceTree = "<group>";
+		};
+		4EC0FB9520316E0C001CEF1C /* THContentMarkerView */ = {
+			isa = PBXGroup;
+			children = (
+				4EC0FB9620316E36001CEF1C /* THContentMarkerController.swift */,
+			);
+			path = THContentMarkerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC0FB9720316E36001CEF1C /* THContentMarkerController.swift in Sources */,
 				4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */,
+				4EC0FB8A202D8915001CEF1C /* THTitleContentView.swift in Sources */,
 				044D780E202C59A600FF8918 /* JsonParsing.swift in Sources */,
 				4E28B0C1202ABCFB00CD0452 /* THContentController.swift in Sources */,
 				4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */,

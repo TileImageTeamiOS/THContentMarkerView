@@ -5,7 +5,6 @@
 //  Created by Seong ho Hong on 2018. 2. 7..
 //  Copyright © 2018년 Seong ho Hong. All rights reserved.
 //
-
 import UIKit
 
 struct THContentWrapper {
@@ -18,7 +17,8 @@ class THContentViewController: UIViewController {
     
     var dataSource: THContentViewControllerDataSource!
     
-    func set(parentView: UIView) {
+    func set(parentView: UIView, dataSource: THContentViewControllerDataSource) {
+        self.dataSource = dataSource
         contentWrapArray.removeAll()
         contentWrapArray = dataSource.setContentView(self)
         
