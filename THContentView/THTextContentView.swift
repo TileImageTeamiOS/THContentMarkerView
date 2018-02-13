@@ -23,8 +23,7 @@ public class THTextContentView: THContentView {
     var linkLable = UILabel()
     var textLabel = UILabel()
     
-    var upYFloat = CGFloat()
-    var downYFloat = CGFloat()
+    var upYFloat = CGFloat(180)
     
     var contentStatus: ContentStatus = .hide
 
@@ -56,20 +55,18 @@ public class THTextContentView: THContentView {
         self.addSubview(contentScrollView)
     }
     
-    public func frameSet(upYFloat: CGFloat, downYFloat: CGFloat) {
+    public func frameSet(upYFloat: CGFloat) {
         self.upYFloat = upYFloat
-        self.downYFloat = downYFloat
     }
-
 }
 
 extension THTextContentView: UIGestureRecognizerDelegate {
     @objc func resizeViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
         if contentStatus == .hide {
             contentStatus = .show
-            
+    
             UIView.animate(withDuration: 0.5, animations: {
-                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - self.upYFloat, width: (self.superview?.frame.width)!, height: self.upYFloat)
+                self.frame = CGRect(x: 0, y: self.frame.origin.y - self.upYFloat, width: (self.superview?.frame.width)!, height: self.frame.height+self.upYFloat)
                 self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
             })
@@ -77,7 +74,7 @@ extension THTextContentView: UIGestureRecognizerDelegate {
             contentStatus = .hide
             
             UIView.animate(withDuration: 0.5, animations: {
-                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - self.downYFloat, width: (self.superview?.frame.width)!, height: self.downYFloat)
+                self.frame = CGRect(x: 0, y: self.frame.origin.y + self.upYFloat, width: (self.superview?.frame.width)!, height: self.frame.height-self.upYFloat)
                 self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
             })
@@ -158,6 +155,7 @@ extension THTextContentView: THContentViewDelegate {
     
     public func dismiss() {
         labelSet(title: "", link: "", text: "")
+        textContentResizeView = UIView(frame: CGRect(x: self.frame.width - 30, y: 10, width: 25, height: 25))
     }
 }
 

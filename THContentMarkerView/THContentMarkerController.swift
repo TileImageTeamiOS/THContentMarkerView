@@ -11,10 +11,6 @@ import UIKit
 class THContentMarkerController: THMarkerViewDelegate {
     open var markerViewSize: CGSize = CGSize(width: 20, height: 20)
     open var markerViewImage: UIImage?
-
-    private var duration = Double(3.0)
-    private var delay = Double(0.0)
-    private var initialSpringVelocity = CGFloat(0.66)
     
     var dataSource: THContentMarkerControllerDataSource!
     var delegate: THContentMarkerControllerDelegate!
@@ -23,14 +19,17 @@ class THContentMarkerController: THMarkerViewDelegate {
     var scrollView: UIScrollView!
     var markerViewArray: [THMarkerView] = []
     var markerDataArray: [THMarker] = []
-    
     var contentSetArray: [THContentSet] = []
+    
+    private var duration = Double(3.0)
+    private var delay = Double(0.0)
+    private var initialSpringVelocity = CGFloat(0.66)
 
-    public func set(parentView: UIView, scrollView: UIScrollView, dataSource: THContentMarkerControllerDataSource, delegate: THContentMarkerControllerDelegate) {
+    public func set(parentView: UIView, scrollView: UIScrollView) {
         self.parentView = parentView
         self.scrollView = scrollView
-        self.dataSource = dataSource
-        self.delegate = delegate
+//        self.dataSource = dataSource
+//        self.delegate = delegate
 
         markerViewArray.removeAll()
         markerViewArray.forEach { markerView in
@@ -100,19 +99,6 @@ class THContentMarkerController: THMarkerViewDelegate {
         self.initialSpringVelocity = initialSpringVelocity
     }
     
-    func tapEvent(marker: THMarkerView) {
-        delegate.markerTap(self, markerIndex: marker.index)
-        zoom(destinationRect: marker.destinationRect)
-        if let contentInfo = markerDataArray[marker.index].contentInfo {
-            for contentIndex in 0..<self.dataSource.numberOfContent(self) {
-                if let info = contentInfo[contentSetArray[contentIndex].contentKey] {
-                    contentSetArray[contentIndex].contentView.isHidden = false
-                    contentSetArray[contentIndex].contentView.delegate.setContent(info: info)
-                }
-            }
-        }
-    }
-    
     public func markerHidden(Bool: Bool) {
         markerViewArray.forEach { markerView in
             markerView.isHidden = Bool
@@ -149,6 +135,19 @@ class THContentMarkerController: THMarkerViewDelegate {
                 delegate.scrollViewDidEndZooming!(self.scrollView, with: view, atScale: 1.0)
             }
         })
+    }
+    
+    func tapEvent(marker: THMarkerView) {
+        delegate.markerTap(self, markerIndex: marker.index)
+        zoom(destinationRect: marker.destinationRect)
+        if let contentInfo = markerDataArray[marker.index].contentInfo {
+            for contentIndex in 0..<self.dataSource.numberOfContent(self) {
+                if let info = contentInfo[contentSetArray[contentIndex].contentKey] {
+                    contentSetArray[contentIndex].contentView.isHidden = false
+                    contentSetArray[contentIndex].contentView.delegate.setContent(info: info)
+                }
+            }
+        }
     }
 }
 

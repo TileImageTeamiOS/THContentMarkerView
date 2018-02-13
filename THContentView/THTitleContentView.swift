@@ -17,18 +17,21 @@ public class THTitleContentView: THContentView {
     
     func set(title: String) {
         titleLabel.text = title
+        titleLabel.textColor = UIColor.white
         titleLabel.sizeToFit()
-        titleLabel.center = self.center
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
+        self.addSubview(titleLabel)
     }
 }
 
 extension THTitleContentView: THContentViewDelegate {
     public func setContent(info: Any?) {
-        var titleInfo = info as? String
+        let titleInfo = info as? String
         set(title: titleInfo!)
     }
     
     public func dismiss() {
-        
+        titleLabel.text = ""
     }
 }
