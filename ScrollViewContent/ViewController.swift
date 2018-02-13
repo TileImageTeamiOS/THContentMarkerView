@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     
     var contentMarkerController = THContentMarkerController()
     
-//    var jsonParsing = JsonParsing()
     var imageSize = CGSize()
     
     // THContent
@@ -26,31 +25,16 @@ class ViewController: UIViewController {
     var isEditor = false
     var centerPoint = UIView()
     var markerArray = [THMarker]()
-//    var markerArray = [THMarkerView]()
     
-//    func showMarker() {
-//        markerArray.removeAll()
-//        jsonParsing.set(scrollView: scrollView) {_ in
-//            for i in 0..<self.jsonParsing.markerArray.count {
-//                self.jsonParsing.markerArray[i].delegate = self
-//                self.markerArray.append(self.jsonParsing.markerArray[i])
-//                self.contentArray.append(self.jsonParsing.contentArray[i])
-//            }
-//            for marker in self.markerArray {
-//                marker.framSet()
-//            }
-//        }
-//    }
+    var contentSetArray = [THContentSet]()
+    var content = [THContent]()
     
     override func viewWillAppear(_ animated: Bool) {
-//        showMarker()
-//        back()
         self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        showMarker()
         scrollView.contentInsetAdjustmentBehavior = .never
         imageView.frame.size = (imageView.image?.size)!
         imageSize = (imageView.image?.size)!
@@ -65,13 +49,32 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
         
-        contentMarkerController.markerViewImage = #imageLiteral(resourceName: "marker")
-        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000)))
-        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500)))
-        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000)))
-//        set(parentView: self.view, dataSource: self)
+        // contentView set
+        let videoKey = "videoContent"
+        let thVideoContent = THVideoContentView()
+        thVideoContent.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        thVideoContent.setContentView()
+        contentSetArray.append(THContentSet(contentKey: videoKey, contentView: thVideoContent))
         
-        contentMarkerController.set(parentView: self.view, scrollView: self.scrollView, dataSource: self)
+        let audioKey = "audioContent"
+        let thAudioContent = THAudioContentView()
+        thAudioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+        thAudioContent.setContentView()
+        contentSetArray.append(THContentSet(contentKey: audioKey, contentView: thAudioContent))
+        
+        // marker set
+        var content1 = Dictionary<String ,Any?>()
+        content1[contentSetArray[0].contentKey] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
+        content1[contentSetArray[1].contentKey] = URL(string: "http://barronsbooks.com/tp/toeic/audio/hf28u/Track%2001.mp3")
+        
+        contentMarkerController.markerViewImage = #imageLiteral(resourceName: "marker")
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000), contentInfo: nil))
+        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500), contentInfo: content1))
+        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), contentInfo: nil))
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), contentInfo: content1))
+        contentMarkerController.markerViewSize = CGSize(width: 18, height: 18)
+        
+        contentMarkerController.set(parentView: self.view, scrollView: self.scrollView, dataSource: self, delegate: self)
     }
     
     override func viewWillLayoutSubviews() {
@@ -102,18 +105,18 @@ class ViewController: UIViewController {
             self.show(editorViewController, sender: nil)
         }
     }
+    
     func back() {
+        contentMarkerController.markerHidden(Bool: false)
+        contentMarkerController.contentDismiss()
         isEditor = false
         scrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
         editorBtn.title = "Editor"
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem?.title = "Editor"
-//        for marker in markerArray {
-//            marker.isHidden = false
-//        }
-//        dismiss()
     }
+    
     @IBAction func backButtonAction(_ sender: UIButton) {
         back()
         UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
@@ -158,54 +161,28 @@ extension ViewController: UIScrollViewDelegate {
     }
 }
 
-//extension ViewController: THMarkerViewDelegate {
-//    func tapEvent(marker: THMarkerView) {
-//        for marker in markerArray {
-//            marker.isHidden = true
-//        }
-//
-//        self.navigationItem.rightBarButtonItem?.isEnabled = false
-//        self.navigationItem.rightBarButtonItem?.title = ""
-//        show(content: contentArray[marker.index])
-//    }
-//}
-
-//extension ViewController: THContentViewControllerDataSource {
-//    func setContentView(_ contentController: THContentViewController) -> [THContentWrapper] {
-//        let videoContentView = THVideoContentView()
-//        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-//        videoContentView.setContentView()
-//
-//        let audioContentView = THAudioContentView()
-//        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
-//        audioContentView.setContentView()
-//
-//        let textContentView = THTextContentView()
-//        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
-//        textContentView.setContentView()
-//
-//        let titleContentView = THTitleContentView()
-//        titleContentView.setView()
-//        titleContentView.center = self.view.center
-//        titleContentView.frame.size = CGSize(width: 50, height: 50)
-//
-//        var contentArray: [THContentWrapper] = []
-//        contentArray.append(THContentWrapper(contentKey: "videoContent", contentView: videoContentView))
-//        contentArray.append(THContentWrapper(contentKey: "audioContent", contentView: audioContentView))
-//        contentArray.append(THContentWrapper(contentKey: "textContent", contentView: textContentView))
-//        contentArray.append(THContentWrapper(contentKey: "titleContent", contentView: titleContentView))
-//
-//        return contentArray
-//    }
-//}
-
 extension ViewController: THContentMarkerControllerDataSource {
-    func setMarker(_ contentMarkerController: THContentMarkerController, index: Int) -> THMarker {
-        return markerArray[index]
+    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
+        return markerArray.count
     }
     
-    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
-        return 3
+    func setMarker(_ contentMarkerController: THContentMarkerController, markerIndex: Int) -> THMarker {
+        return markerArray[markerIndex]
+    }
+    
+    func numberOfContent(_ contentMarkerController: THContentMarkerController) -> Int {
+        return contentSetArray.count
+    }
+    
+    func setContentView(_ contentMarkerController: THContentMarkerController, contentSetIndex: Int) -> THContentSet {
+        return contentSetArray[contentSetIndex]
+        
+    }
+}
+
+extension ViewController: THContentMarkerControllerDelegate {
+    func markerTap(_ contentMarkerController: THContentMarkerController, markerIndex: Int) {
+        contentMarkerController.markerHidden(Bool: true)
     }
 }
 
