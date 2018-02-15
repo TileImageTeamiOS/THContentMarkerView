@@ -28,8 +28,6 @@ class THContentMarkerController: THMarkerViewDelegate {
     public func set(parentView: UIView, scrollView: UIScrollView) {
         self.parentView = parentView
         self.scrollView = scrollView
-//        self.dataSource = dataSource
-//        self.delegate = delegate
 
         markerViewArray.removeAll()
         markerViewArray.forEach { markerView in

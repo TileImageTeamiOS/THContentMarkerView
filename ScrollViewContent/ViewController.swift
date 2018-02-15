@@ -21,13 +21,12 @@ class ViewController: UIViewController {
     var imageSize = CGSize()
     
     // THContent
-    var contentArray: [THContent] = []
     var isEditor = false
     var centerPoint = UIView()
     var markerArray = [THMarker]()
     
     var contentSetArray = [THContentSet]()
-    var content = [THContent]()
+    var contentArray: [THContent] = []
     
     override func viewWillAppear(_ animated: Bool) {
         self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
@@ -201,7 +200,6 @@ extension ViewController: THContentMarkerControllerDataSource {
     
     func setContentView(_ contentMarkerController: THContentMarkerController, contentSetIndex: Int) -> THContentSet {
         return contentSetArray[contentSetIndex]
-        
     }
 }
 
