@@ -10,10 +10,10 @@ import UIKit
 
 public struct THContentSet {
     // MARK: - Properties
-    
+
     // The 'THContentView' identifier key
     public var contentKey: String
-    
+
     // The 'THContentView' by contentKey
     public var contentView: THContentView
 }

@@ -10,13 +10,13 @@ import UIKit
 
 public struct THMarker {
     // MARK: - Properties
-    
+
     // When tap 'THMarkerView' focus zoomScale
     public var zoomScale: CGFloat
-    
+
     // 'THMarkerView' location origin
     public var origin: CGPoint
-    
+
     // When tap 'THMarkerView', show content info
-    public var contentInfo: Dictionary<String, Any?>?
+    public var contentInfo: [String: Any?]?
 }

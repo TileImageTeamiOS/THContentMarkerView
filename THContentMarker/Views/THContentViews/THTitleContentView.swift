@@ -10,11 +10,11 @@ import UIKit
 
 public class THTitleContentView: THContentView {
     var titleLabel = UILabel()
-    
+
     func setView() {
         delegate = self
     }
-    
+
     func set(title: String) {
         titleLabel.text = title
         titleLabel.textColor = UIColor.white
@@ -30,7 +30,7 @@ extension THTitleContentView: THContentViewDelegate {
         let titleInfo = info as? String
         set(title: titleInfo!)
     }
-    
+
     public func dismiss() {
         titleLabel.text = ""
     }

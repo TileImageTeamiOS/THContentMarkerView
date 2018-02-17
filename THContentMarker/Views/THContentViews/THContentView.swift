@@ -9,19 +9,18 @@
 import UIKit
 
 protocol THContentType {
-    var contentInfo: Dictionary<String, Any?> { get set }
+    var contentInfo: [String: Any?] { get set }
 }
 
 public struct THContent: THContentType {
-    var contentInfo: Dictionary<String, Any?>
+    var contentInfo: [String: Any?]
 }
 
 public class THContentView: UIView {
-    var delegate: THContentViewDelegate!
+    weak var delegate: THContentViewDelegate!
 }
 
 public protocol THContentViewDelegate: class {
     func setContent(info: Any?)
     func dismiss()
 }
-

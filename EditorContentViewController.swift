@@ -15,29 +15,27 @@ class EditorContentViewController: UIViewController {
     var audioPicker: MPMediaPickerController!
     var videoPath = ""
     var audioPath = ""
-    
-    var x: CGFloat = 0
-    var y: CGFloat = 0
+
+    var xFloat: CGFloat = 0
+    var yFloat: CGFloat = 0
     var zoom: CGFloat = 1
     var focusOnText = false
-    var keyboardHeight:CGFloat = 0
-    
+    var keyboardHeight: CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.editorScrollView.frame = self.view.frame
-        self.editorScrollView.contentSize = CGSize(width:self.view.frame.width,height:1000)
+        self.editorScrollView.contentSize = CGSize(width: self.view.frame.width, height: 1000)
         self.editorScrollView.backgroundColor = UIColor.white
         self.view.addSubview(self.editorScrollView)
         editorScrollView.set()
         editorScrollView.isScrollEnabled = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(editorBack))
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(editorDone))
-        
-        
+
         editorScrollView.audioSelectBtn.addTarget(self, action: #selector(self.chooseAudio), for: .touchUpInside)
         editorScrollView.videoSelectBtn.addTarget(self, action: #selector(self.chooseVideo), for: .touchUpInside)
-        
+
         editorScrollView.detailText.delegate = self
         NotificationCenter.default.addObserver(
             self,
@@ -45,19 +43,18 @@ class EditorContentViewController: UIViewController {
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil
         )
-        
+
         var editorTapGestureRecognizer = UITapGestureRecognizer()
         editorTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(editorViewTap(_:)))
         editorTapGestureRecognizer.delegate = self
         self.view.addGestureRecognizer(editorTapGestureRecognizer)
-        
     }
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height
         }
-        
+
     }
     @objc func chooseAudio() {
         audioPicker = MPMediaPickerController(mediaTypes: MPMediaType.music)
@@ -65,16 +62,15 @@ class EditorContentViewController: UIViewController {
         audioPicker.allowsPickingMultipleItems = false
         present(audioPicker, animated: true, completion: nil)
     }
-    
+
    @objc func chooseVideo() {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = ["public.movie"]
-        
+
         present(imagePicker, animated: true, completion: nil)
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -84,12 +80,11 @@ class EditorContentViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     @objc func editorDone() {
-        
+
 //        var content = Dictionary<String, Any>()
 //        let link = editorScrollView.linkText.text
 //        let text = editorScrollView.detailText.text
 //        let textTitle = editorScrollView.titleText.text
-        
 //        if title != "" {
 //            content["titleoContent"] = title
 //        }
@@ -102,7 +97,7 @@ class EditorContentViewController: UIViewController {
 //        if !(textTitle == "" && text == "" && link == "") {
 //            content["textContent"] = textContent
 //        }
-    
+
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
@@ -111,7 +106,7 @@ extension EditorContentViewController: UITextViewDelegate{
         UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
             self.view.frame.origin.y -= self.keyboardHeight
         })
-        
+
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
@@ -120,20 +115,18 @@ extension EditorContentViewController: UITextViewDelegate{
     }
 }
 extension EditorContentViewController: MPMediaPickerControllerDelegate {
-    
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         audioPath = (mediaItemCollection.items.first?.assetURL?.description)!
         self.editorScrollView.audioNameText.text = mediaItemCollection.items.first?.title
-        audioPicker.dismiss(animated:true)
+        audioPicker.dismiss(animated: true)
         audioPicker = nil
     }
-    
+
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
         self.editorScrollView.audioNameText.text = "파일을 선택해 주세요"
-        audioPicker.dismiss(animated:true)
+        audioPicker.dismiss(animated: true)
         audioPicker = nil
     }
-    
 }
 extension EditorContentViewController: UIGestureRecognizerDelegate {
     @objc func editorViewTap(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -144,16 +137,15 @@ extension EditorContentViewController: UIGestureRecognizerDelegate {
 }
 
 extension EditorContentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let video = (info["UIImagePickerControllerMediaURL"] as! NSURL)
-        videoPath = video.description
-        self.editorScrollView.videoNameText.text = video.lastPathComponent
-        imagePicker.dismiss(animated: true, completion: nil)
-        imagePicker = nil
+        if let video = info["UIImagePickerControllerMediaURL"] as? NSURL {
+            videoPath = video.description
+            self.editorScrollView.videoNameText.text = video.lastPathComponent
+            imagePicker.dismiss(animated: true, completion: nil)
+            imagePicker = nil
+        }
     }
-    
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.editorScrollView.videoNameText.text = "파일을 선택해 주세요"
         imagePicker.dismiss(animated: true, completion: nil)
@@ -161,7 +153,7 @@ extension EditorContentViewController: UIImagePickerControllerDelegate, UINaviga
     }
 }
 
-extension EditorContentViewController:  UITextFieldDelegate {
+extension EditorContentViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
