@@ -1,8 +1,8 @@
 //
 //  THContentView.swift
-//  ScrollViewContent
+//  THContentMarkerView
 //
-//  Created by Seong ho Hong on 2018. 2. 7..
+//  Created by Seong ho Hong on 2018. 2. 18..
 //  Copyright © 2018년 Seong ho Hong. All rights reserved.
 //
 
@@ -24,3 +24,4 @@ public protocol THContentViewDelegate: class {
     func setContent(info: Any?)
     func dismiss()
 }
+

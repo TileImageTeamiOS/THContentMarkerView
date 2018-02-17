@@ -1,8 +1,8 @@
 //
-//  VideoContentView.swift
-//  ScrollViewContent
+//  THVideoContentView.swift
+//  THContentMarkerView
 //
-//  Created by Seong ho Hong on 2018. 2. 5..
+//  Created by Seong ho Hong on 2018. 2. 18..
 //  Copyright © 2018년 Seong ho Hong. All rights reserved.
 //
 
@@ -164,4 +164,5 @@ extension UIView {
         return nil
     }
 }
+
 

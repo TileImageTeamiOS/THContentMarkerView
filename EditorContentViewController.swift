@@ -85,10 +85,10 @@ class EditorContentViewController: UIViewController {
     }
     @objc func editorDone() {
         
-        var content = Dictionary<String, Any>()
-        let link = editorScrollView.linkText.text
-        let text = editorScrollView.detailText.text
-        let textTitle = editorScrollView.titleText.text
+//        var content = Dictionary<String, Any>()
+//        let link = editorScrollView.linkText.text
+//        let text = editorScrollView.detailText.text
+//        let textTitle = editorScrollView.titleText.text
         
 //        if title != "" {
 //            content["titleoContent"] = title
