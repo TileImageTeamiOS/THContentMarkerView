@@ -25,7 +25,7 @@
 		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
 		4E28B0C0202ABCFB00CD0452 /* THContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentView.swift; sourceTree = "<group>"; };
-		4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THContentMarkerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4E2F83F11FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,9 +64,10 @@
 		4E2F83E01FF8E10E00511B4C = {
 			isa = PBXGroup;
 			children = (
+				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
 				4EC0FB9520316E0C001CEF1C /* THContentMarkerView */,
 				4E28B0BF202ABCE200CD0452 /* THContentView */,
-				4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */,
+				4E2F83EB1FF8E10E00511B4C /* SupportingFiles */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,15 +75,14 @@
 		4E2F83EA1FF8E10E00511B4C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */,
+				4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4E2F83EB1FF8E10E00511B4C /* ScrollViewContent */ = {
+		4E2F83EB1FF8E10E00511B4C /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
 				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
 				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */,
@@ -90,7 +90,7 @@
 				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
 				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
 			);
-			path = ScrollViewContent;
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		4EC0FB9520316E0C001CEF1C /* THContentMarkerView */ = {
@@ -104,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4E2F83E81FF8E10E00511B4C /* ScrollViewContent */ = {
+		4E2F83E81FF8E10E00511B4C /* THContentMarkerView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E2F83FE1FF8E10E00511B4C /* Build configuration list for PBXNativeTarget "ScrollViewContent" */;
+			buildConfigurationList = 4E2F83FE1FF8E10E00511B4C /* Build configuration list for PBXNativeTarget "THContentMarkerView" */;
 			buildPhases = (
 				4E2F83E51FF8E10E00511B4C /* Sources */,
 				4E2F83E61FF8E10E00511B4C /* Frameworks */,
@@ -116,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = ScrollViewContent;
+			name = THContentMarkerView;
 			productName = ScrollViewContent;
-			productReference = 4E2F83E91FF8E10E00511B4C /* ScrollViewContent.app */;
+			productReference = 4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,7 +137,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4E2F83E41FF8E10E00511B4C /* Build configuration list for PBXProject "ScrollViewContent" */;
+			buildConfigurationList = 4E2F83E41FF8E10E00511B4C /* Build configuration list for PBXProject "THContentMarkerView" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -150,7 +150,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4E2F83E81FF8E10E00511B4C /* ScrollViewContent */,
+				4E2F83E81FF8E10E00511B4C /* THContentMarkerView */,
 			);
 		};
 /* End PBXProject section */
@@ -312,10 +312,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W6XUQ3PPN9;
-				INFOPLIST_FILE = ScrollViewContent/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.grohong.ScrollViewContent;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.grohong.THContentMarkerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -328,10 +328,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W6XUQ3PPN9;
-				INFOPLIST_FILE = ScrollViewContent/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.grohong.ScrollViewContent;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.grohong.THContentMarkerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4E2F83E41FF8E10E00511B4C /* Build configuration list for PBXProject "ScrollViewContent" */ = {
+		4E2F83E41FF8E10E00511B4C /* Build configuration list for PBXProject "THContentMarkerView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E2F83FC1FF8E10E00511B4C /* Debug */,
@@ -350,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E2F83FE1FF8E10E00511B4C /* Build configuration list for PBXNativeTarget "ScrollViewContent" */ = {
+		4E2F83FE1FF8E10E00511B4C /* Build configuration list for PBXNativeTarget "THContentMarkerView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E2F83FF1FF8E10E00511B4C /* Debug */,
