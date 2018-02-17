@@ -21,9 +21,15 @@ class THContentMarkerController: THMarkerViewDelegate {
     var markerDataArray: [THMarker] = []
     var contentSetArray: [THContentSet] = []
     
-    private var duration = Double(3.0)
-    private var delay = Double(0.0)
-    private var initialSpringVelocity = CGFloat(0.66)
+    private var duration: Double
+    private var delay: Double
+    private var initialSpringVelocity: CGFloat
+
+    init(duration: Double, delay: Double, initialSpringVelocity: CGFloat) {
+        self.duration = duration
+        self.delay = delay
+        self.initialSpringVelocity = initialSpringVelocity
+    }
 
     public func set(parentView: UIView, scrollView: UIScrollView) {
         self.parentView = parentView
@@ -36,11 +42,13 @@ class THContentMarkerController: THMarkerViewDelegate {
         
         // set markerView
         for index in 0..<self.dataSource.numberOfMarker(self) {
-            let thMarkerView = THMarkerView()
+
+            let origin = self.dataSource.setMarker(self, markerIndex: index).origin
+            let zoomScale = self.dataSource.setMarker(self, markerIndex: index).zoomScale
+
+            let thMarkerView = THMarkerView(origin: origin, zoomScale: zoomScale, index: index)
+
             thMarkerView.frame.size = markerViewSize
-            thMarkerView.zoomScale = self.dataSource.setMarker(self, markerIndex: index).zoomScale
-            thMarkerView.origin = self.dataSource.setMarker(self, markerIndex: index).origin
-            thMarkerView.index = index
             thMarkerView.setMarker(scrollView: self.scrollView)
             thMarkerView.delegate = self
             markerDataArray.append(self.dataSource.setMarker(self, markerIndex: index))
@@ -64,8 +72,15 @@ class THContentMarkerController: THMarkerViewDelegate {
     }
     
     public func setMarkerFrame() {
+        guard let scrollView = self.scrollView else { return }
+
         for marker in markerViewArray {
-            marker.frame = CGRect(x: marker.origin.x * (self.scrollView?.zoomScale)! - marker.frame.size.width/2, y: marker.origin.y * (self.scrollView?.zoomScale)! - marker.frame.size.height/2, width: marker.frame.size.width, height: marker.frame.size.height)
+
+            let markerSize = marker.frame.size
+            let originX = (marker.origin.x * scrollView.zoomScale) - markerSize.width / 2
+            let originY = (marker.origin.y * scrollView.zoomScale) - markerSize.height / 2
+
+            marker.frame = CGRect(origin: CGPoint(x: originX, y: originY), size: markerSize)
         }
     }
     
@@ -77,15 +92,17 @@ class THContentMarkerController: THMarkerViewDelegate {
         }
         
         for index in 0..<self.dataSource.numberOfMarker(self) {
-            let thMarkerView = THMarkerView()
+
+            let origin = self.dataSource.setMarker(self, markerIndex: index).origin
+            let thMarkerView = THMarkerView(origin: origin, index: index)
+
             thMarkerView.frame.size = markerViewSize
-            thMarkerView.origin = self.dataSource.setMarker(self, markerIndex: index).origin
-            thMarkerView.index = index
             thMarkerView.setMarker(scrollView: self.scrollView)
             
             if let image = markerViewImage {
                 setImage(markerImage: image, markerView: thMarkerView)
             }
+
             markerViewArray.append(thMarkerView)
             self.scrollView?.addSubview(thMarkerView)
         }
@@ -110,19 +127,18 @@ class THContentMarkerController: THMarkerViewDelegate {
         }
     }
     
-    private func setImage(markerImage: UIImage, markerView: UIView){
-        let width = markerView.frame.size.width
-        let height = markerView.frame.size.height
-        
-        let imageViewBackground = UIImageView(frame: CGRect(x:0, y:0, width:width, height:height))
+    private func setImage(markerImage: UIImage, markerView: UIView) {
+        let size = markerView.frame.size
+
+        let imageViewBackground = UIImageView(frame: CGRect(origin: .zero, size: size))
         imageViewBackground.image = markerImage
-        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFit
+        imageViewBackground.contentMode = .scaleAspectFit
         
         markerView.addSubview(imageViewBackground)
         markerView.sendSubview(toBack: imageViewBackground)
     }
     
-    private func zoom(destinationRect: CGRect){
+    private func zoom(destinationRect: CGRect) {
         self.scrollView.isMultipleTouchEnabled = false
         UIView.animate(withDuration: self.duration, delay: self.delay, usingSpringWithDamping: 2.0, initialSpringVelocity: initialSpringVelocity, options: [.allowUserInteraction], animations: {
             self.scrollView.zoom(to: destinationRect, animated: false)
@@ -149,18 +165,22 @@ class THContentMarkerController: THMarkerViewDelegate {
     }
 }
 
-public class THMarkerView: UIView, UIGestureRecognizerDelegate {
-    open var origin: CGPoint = CGPoint()
-    open var zoomScale: CGFloat = CGFloat()
-    open var index: Int = Int()
+public class THMarkerView: UIView {
+    open var origin: CGPoint = .zero
+    open var zoomScale: CGFloat = 0.0
+    open var index: Int = 0
     open var delegate: THMarkerViewDelegate?
-    open var destinationRect = CGRect()
-    
-    private var markerTapGestureRecognizer = UITapGestureRecognizer()
-    
+    open var destinationRect: CGRect = .zero
+
+    convenience init(origin: CGPoint, zoomScale: CGFloat = 0.0, index: Int = 0) {
+        self.init()
+        self.origin = origin
+        self.zoomScale = zoomScale
+        self.index = index
+    }
+
     func setMarker(scrollView: UIScrollView) {
-        markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
-        markerTapGestureRecognizer.delegate = self
+        let markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
         self.addGestureRecognizer(markerTapGestureRecognizer)
         
         self.destinationRect.size.width = scrollView.frame.width/zoomScale
