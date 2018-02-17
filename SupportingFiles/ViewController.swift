@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import THMarkerView
 
 class ViewController: UIViewController {
     @IBOutlet weak var editorBtn: UIBarButtonItem!
@@ -16,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
-    var contentMarkerController = THContentMarkerController()
+    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
     
     var imageSize = CGSize()
     
