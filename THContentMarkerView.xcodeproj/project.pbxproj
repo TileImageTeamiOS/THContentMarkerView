@@ -86,43 +86,24 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		4EC7B1A320382FD5006CA244 /* THContentMarker */ = {
+		4E741FB4203AAED200BE1B80 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4EC7B1A620387F93006CA244 /* Views */,
-				4EC7B1A420387F54006CA244 /* Controllers */,
-				4EC7B1A520387F7F006CA244 /* Models */,
+				4E741FB6203AAEE600BE1B80 /* THContentViews */,
+				4E741FB5203AAEDD00BE1B80 /* THMarkerView */,
 			);
-			path = THContentMarker;
+			name = Views;
 			sourceTree = "<group>";
 		};
-		4EC7B1A420387F54006CA244 /* Controllers */ = {
+		4E741FB5203AAEDD00BE1B80 /* THMarkerView */ = {
 			isa = PBXGroup;
 			children = (
-				4EC7B1B120388279006CA244 /* THContentMarkerController.swift */,
+				4EC7B1AD203880BA006CA244 /* THMarkerView.swift */,
 			);
-			path = Controllers;
+			name = THMarkerView;
 			sourceTree = "<group>";
 		};
-		4EC7B1A520387F7F006CA244 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4EC7B1A920387FF2006CA244 /* THMarker.swift */,
-				4EC7B1AB2038806D006CA244 /* THContentSet .swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		4EC7B1A620387F93006CA244 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4EC7B1A820387FAF006CA244 /* THMarker */,
-				4EC7B1A720387F9C006CA244 /* THContentViews */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4EC7B1A720387F9C006CA244 /* THContentViews */ = {
+		4E741FB6203AAEE600BE1B80 /* THContentViews */ = {
 			isa = PBXGroup;
 			children = (
 				4EC7B1B32038832C006CA244 /* THContentView.swift */,
@@ -131,15 +112,34 @@
 				4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */,
 				4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */,
 			);
-			path = THContentViews;
+			name = THContentViews;
 			sourceTree = "<group>";
 		};
-		4EC7B1A820387FAF006CA244 /* THMarker */ = {
+		4E741FB8203AAF2F00BE1B80 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4EC7B1AD203880BA006CA244 /* THMarkerView.swift */,
+				4EC7B1B120388279006CA244 /* THContentMarkerController.swift */,
 			);
-			path = THMarker;
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4E741FB9203AAF4100BE1B80 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4EC7B1A920387FF2006CA244 /* THMarker.swift */,
+				4EC7B1AB2038806D006CA244 /* THContentSet .swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4EC7B1A320382FD5006CA244 /* THContentMarker */ = {
+			isa = PBXGroup;
+			children = (
+				4E741FB9203AAF4100BE1B80 /* Models */,
+				4E741FB8203AAF2F00BE1B80 /* Controllers */,
+				4E741FB4203AAED200BE1B80 /* Views */,
+			);
+			path = THContentMarker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
