@@ -28,7 +28,8 @@ class ViewController: UIViewController {
     var contentArray: [THContent] = []
 
     override func viewWillAppear(_ animated: Bool) {
-        self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: self.imageSize.width, height: self.imageSize.height),
+                             animated: false)
     }
 
     override func viewDidLoad() {
@@ -43,7 +44,9 @@ class ViewController: UIViewController {
         scrollView.delegate = self
 
         // edit center point 설정
-        centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2, width: CGFloat(10), height: CGFloat(10))
+        centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2,
+                                   width: CGFloat(10),
+                                   height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
         centerPoint.layer.cornerRadius = 5
 
@@ -51,6 +54,13 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         doneButton.isHidden = true
 
+        setContentView()
+        setMarker()
+
+        contentMarkerController.set(parentView: self.view, scrollView: self.scrollView)
+    }
+
+    func setContentView() {
         // contentView set
         let videoKey = "videoContent"
         let thVideoContent = THVideoContentView()
@@ -73,10 +83,14 @@ class ViewController: UIViewController {
 
         let textKey = "textContent"
         let thTextContent = THTextContentView()
-        thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
+        thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5),
+                                     width: self.view.frame.width,
+                                     height: self.view.frame.height*(1/5))
         thTextContent.setContentView()
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
+    }
 
+    func setMarker() {
         // marker set
         var content1 = [String: Any?]()
         content1[contentSetArray[0].contentKey] = URL(string: "http://amd-ssl.cdn.turner.com/cnn/big/ads/2018/01/18/Tohoku_Hiking_digest_30_pre-roll_2_768x432.mp4")
@@ -103,8 +117,6 @@ class ViewController: UIViewController {
         markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), contentInfo: nil))
         markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), contentInfo: content1))
         contentMarkerController.markerViewSize = CGSize(width: 18, height: 18)
-
-        contentMarkerController.set(parentView: self.view, scrollView: self.scrollView)
     }
 
     override func viewWillLayoutSubviews() {
@@ -148,8 +160,12 @@ class ViewController: UIViewController {
 
     @IBAction func backButtonAction(_ sender: UIButton) {
         back()
-        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
-            self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66,
+                       options: [.allowUserInteraction], animations: {
+            self.scrollView.zoom(to: CGRect(x: 0, y: 0,
+                                            width: (self.imageSize.width),
+                                            height: (self.imageSize.height)),
+                                            animated: false)
         })
     }
 
@@ -160,7 +176,8 @@ class ViewController: UIViewController {
         let horizontalSpace = imageSize.width < scrollViewSize.width ? (scrollViewSize.width - imageSize.width) / 2 : 0
         let verticalSpace = imageSize.height < scrollViewSize.height ? (scrollViewSize.height - imageSize.height) / 2 : 0
 
-        scrollView.contentInset = UIEdgeInsets(top: verticalSpace, left: horizontalSpace, bottom: verticalSpace, right: horizontalSpace)
+        scrollView.contentInset = UIEdgeInsets(top: verticalSpace, left: horizontalSpace,
+                                               bottom: verticalSpace, right: horizontalSpace)
     }
 
     func setZoomParametersForSize(_ scrollViewSize: CGSize) {

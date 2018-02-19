@@ -101,21 +101,24 @@ class EditorContentViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
-extension EditorContentViewController: UITextViewDelegate{
+extension EditorContentViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66,
+                       options: [.allowUserInteraction], animations: {
             self.view.frame.origin.y -= self.keyboardHeight
         })
 
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 3.0, initialSpringVelocity: 0.66,
+                       options: [.allowUserInteraction], animations: {
             self.view.frame.origin.y += self.keyboardHeight
         })
     }
 }
 extension EditorContentViewController: MPMediaPickerControllerDelegate {
-    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+    func mediaPicker(_ mediaPicker: MPMediaPickerController,
+                     didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         audioPath = (mediaItemCollection.items.first?.assetURL?.description)!
         self.editorScrollView.audioNameText.text = mediaItemCollection.items.first?.title
         audioPicker.dismiss(animated: true)
@@ -137,7 +140,7 @@ extension EditorContentViewController: UIGestureRecognizerDelegate {
 }
 
 extension EditorContentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         if let video = info["UIImagePickerControllerMediaURL"] as? NSURL {
             videoPath = video.description
             self.editorScrollView.videoNameText.text = video.lastPathComponent

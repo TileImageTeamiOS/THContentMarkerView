@@ -155,7 +155,9 @@ class THContentMarkerController: THMarkerViewDelegate {
     /// when you tap 'THMarker', zoom animate set
     private func zoom(destinationRect: CGRect) {
         self.scrollView.isMultipleTouchEnabled = false
-        UIView.animate(withDuration: self.duration, delay: self.delay, usingSpringWithDamping: 2.0, initialSpringVelocity: initialSpringVelocity, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: self.duration, delay: self.delay, usingSpringWithDamping: 2.0,
+                       initialSpringVelocity: self.initialSpringVelocity, options: [.allowUserInteraction],
+                       animations: {
             self.scrollView.zoom(to: destinationRect, animated: false)
         }, completion: { _ in
             self.scrollView.isMultipleTouchEnabled = true

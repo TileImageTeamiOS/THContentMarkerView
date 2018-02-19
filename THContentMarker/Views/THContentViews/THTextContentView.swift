@@ -64,7 +64,9 @@ extension THTextContentView: UIGestureRecognizerDelegate {
             contentStatus = .show
 
             UIView.animate(withDuration: 0.5, animations: {
-                self.frame = CGRect(x: 0, y: self.frame.origin.y - self.upYFloat, width: (self.superview?.frame.width)!, height: self.frame.height+self.upYFloat)
+                self.frame = CGRect(x: 0, y: self.frame.origin.y - self.upYFloat,
+                                    width: (self.superview?.frame.width)!,
+                                    height: self.frame.height+self.upYFloat)
                 self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
             })
@@ -72,7 +74,9 @@ extension THTextContentView: UIGestureRecognizerDelegate {
             contentStatus = .hide
 
             UIView.animate(withDuration: 0.5, animations: {
-                self.frame = CGRect(x: 0, y: self.frame.origin.y + self.upYFloat, width: (self.superview?.frame.width)!, height: self.frame.height-self.upYFloat)
+                self.frame = CGRect(x: 0, y: self.frame.origin.y + self.upYFloat,
+                                    width: (self.superview?.frame.width)!,
+                                    height: self.frame.height-self.upYFloat)
                 self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
             })
@@ -125,7 +129,10 @@ extension THTextContentView: UIGestureRecognizerDelegate {
         contentScrollView.addSubview(textLabel)
 
         contentScrollView.sizeToFit()
-        contentScrollView.contentSize = CGSize(width: self.frame.width, height: titleLable.frame.height + linkLable.frame.height + textLabel.frame.height + 10 + 10 + 10)
+        contentScrollView.contentSize = CGSize(width: self.frame.width,
+                                               height: titleLable.frame.height +
+                                                        linkLable.frame.height +
+                                                        textLabel.frame.height + 10 + 10 + 10)
     }
 }
 
