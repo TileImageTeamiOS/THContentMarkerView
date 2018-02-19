@@ -58,12 +58,12 @@
 		4E2F83E01FF8E10E00511B4C = {
 			isa = PBXGroup;
 			children = (
+				4EC7B1A320382FD5006CA244 /* THContentMarker */,
 				4E2F83EB1FF8E10E00511B4C /* SupportingFiles */,
 				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
 				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
 				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
-				4EC7B1A320382FD5006CA244 /* THContentMarker */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
 			);
 			sourceTree = "<group>";
