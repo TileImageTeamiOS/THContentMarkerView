@@ -1,8 +1,8 @@
 //
-//  VideoContentView.swift
-//  ScrollViewContent
+//  THVideoContentView.swift
+//  THContentMarkerView
 //
-//  Created by Seong ho Hong on 2018. 2. 5..
+//  Created by Seong ho Hong on 2018. 2. 18..
 //  Copyright © 2018년 Seong ho Hong. All rights reserved.
 //
 
@@ -30,33 +30,32 @@ public class THVideoContentView: THContentView {
     var fullscreenButton = UIButton()
     var videoButton = UIButton()
     var topVC = UIApplication.shared.keyWindow?.rootViewController
-    
+
     func playVideo() {
         playStatus = .play
         videoButton.setImage(UIImage(named: "pauseBtn.png"), for: .normal)
         player.play()
-        
         hideStatus()
     }
-    
+
     func pauseVideo() {
         playStatus = .pause
         videoButton.setImage(UIImage(named: "playBtn.png"), for: .normal)
         player.pause()
     }
-    
+
     func hideStatus() {
         fullscreenButton.isHidden = true
         videoButton.isHidden = true
         videoStatus = .show
     }
-    
+
     func showStatus() {
         fullscreenButton.isHidden = false
         videoButton.isHidden = false
         videoStatus = .hide
     }
-    
+
     @objc func pressVideoButton(_ sender: UIButton!) {
         if playStatus == .pause {
             playVideo()
@@ -64,7 +63,7 @@ public class THVideoContentView: THContentView {
             pauseVideo()
         }
     }
-    
+
     @objc func pressfullscreenButton(_ sender: UIButton!) {
         let playerViewController = AVPlayerViewController()
         playerViewController.allowsPictureInPicturePlayback = true
@@ -73,17 +72,17 @@ public class THVideoContentView: THContentView {
             playerViewController.player!.play()
         }
     }
-    
+
     public func setContentView() {
         delegate = self
         videoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTap(_:)))
         videoPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(videoViewPan(_:)))
         videoPanGestureRecognizer.delegate = self
-        
+
         self.addGestureRecognizer(videoTapGestureRecognizer)
         self.addGestureRecognizer(videoPanGestureRecognizer)
         self.backgroundColor = UIColor.black
-        
+
         // 전체화면 버튼 세팅
         fullscreenButton.frame = CGRect(x: self.frame.width - 30, y: self.frame.height - 30, width: 20, height: 20)
         fullscreenButton.layer.cornerRadius = 3
@@ -91,7 +90,7 @@ public class THVideoContentView: THContentView {
         fullscreenButton.setImage(UIImage(named: "enlarge.png"), for: .normal)
         fullscreenButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         fullscreenButton.addTarget(self, action: #selector(pressfullscreenButton(_ :)), for: .touchUpInside)
-        
+
         // 플레이 버튼 세팅
         videoButton.frame = CGRect(x: self.frame.width/2 - 25, y: self.frame.height/2 - 25, width: 50, height: 50)
         videoButton.layer.cornerRadius = 3
@@ -99,25 +98,23 @@ public class THVideoContentView: THContentView {
         videoButton.setImage(UIImage(named: "playBtn.png"), for: .normal)
         videoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
-        
-        self.addSubview(fullscreenButton)
-        self.addSubview(videoButton)
-
     }
 }
 
 extension THVideoContentView: THContentViewDelegate {
     public func setContent(info: Any?) {
-        player = AVPlayer(url: info as! URL)
+        if let url = info as? URL {
+            player = AVPlayer(url: url)
+        }
         player.allowsExternalPlayback = false
-        
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
         self.layer.addSublayer(playerLayer)
-        
+        self.addSubview(fullscreenButton)
+        self.addSubview(videoButton)
     }
-    
+
     public func dismiss() {
         pauseVideo()
         showStatus()
@@ -133,10 +130,10 @@ extension THVideoContentView: UIGestureRecognizerDelegate {
             hideStatus()
         }
     }
-    
+
     @objc func videoViewPan(_ gestureRecognizer: UIPanGestureRecognizer) {
         let translation = gestureRecognizer.translation(in: self)
-        
+
         if abs(translation.x) > abs(translation.y) { // Horizontal pan
             let changedX = self.center.x + translation.x
             if changedX >= (self.superview?.frame.width)!/2 {
@@ -144,12 +141,12 @@ extension THVideoContentView: UIGestureRecognizerDelegate {
             }
             gestureRecognizer.setTranslation(CGPoint.zero, in: self)
         }
-        
+
         if gestureRecognizer.state == .ended {
             if self.center.x >= (self.superview?.frame.width)!/2 + (self.superview?.frame.width)!/4 {
-                self.center = CGPoint(x: (self.superview?.frame.width)! + self.frame.width/3  , y: self.center.y)
+                self.center = CGPoint(x: (self.superview?.frame.width)! + self.frame.width/3, y: self.center.y)
             } else {
-                self.center = CGPoint(x: (self.superview?.frame.width)!/2 , y: self.center.y)
+                self.center = CGPoint(x: (self.superview?.frame.width)!/2, y: self.center.y)
             }
         }
     }
@@ -166,4 +163,3 @@ extension UIView {
         return nil
     }
 }
-

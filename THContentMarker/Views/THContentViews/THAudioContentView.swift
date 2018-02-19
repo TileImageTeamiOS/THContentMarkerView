@@ -28,25 +28,25 @@ public class THAudioContentView: THContentView {
         audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
         audioButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         audioButton.addTarget(self, action: #selector(pressAudioButton(_:)), for: .touchUpInside)
-        
+
         self.addSubview(audioButton)
         self.addSubview(audioCurrentTime)
     }
-    
+
     func playAudio() {
         audioStatus = .play
         audioButton.setImage(UIImage(named: "audioPause.png"), for: .normal)
         audioPlayer?.play()
     }
-    
+
     func stopAudio() {
         audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
             audioStatus = .stop
             audioPlayer?.pause()
         }
-    
+
     @objc func pressAudioButton(_ sender: UIButton!) {
-        if audioStatus == .stop{
+        if audioStatus == .stop {
             playAudio()
         } else if audioStatus == .play {
             stopAudio()
@@ -58,10 +58,12 @@ public class THAudioContentView: THContentView {
 
 extension THAudioContentView: THContentViewDelegate {
     public func setContent(info: Any?) {
-        audioPlayer = AVPlayer(url: info as! URL)
+        if let url = info as? URL {
+            audioPlayer = AVPlayer(url: url)
+        }
         audioPlayer?.allowsExternalPlayback = false
     }
-    
+
     public func dismiss() {
         stopAudio()
     }

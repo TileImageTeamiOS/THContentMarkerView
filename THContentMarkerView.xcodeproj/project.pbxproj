@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BBE2004AC9600E23872 /* EditorScrollView.swift */; };
 		04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BC02006339D00E23872 /* EditorContentViewController.swift */; };
-		4E28B0C1202ABCFB00CD0452 /* THContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B0C0202ABCFB00CD0452 /* THContentView.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
@@ -17,14 +16,17 @@
 		4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */; };
 		4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */; };
 		4EC0FB8A202D8915001CEF1C /* THTitleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */; };
-		4EC0FB9720316E36001CEF1C /* THContentMarkerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB9620316E36001CEF1C /* THContentMarkerController.swift */; };
-		4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF630C8202858B20044E6A8 /* THVideoContentView.swift */; };
+		4EC7B1AA20387FF2006CA244 /* THMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1A920387FF2006CA244 /* THMarker.swift */; };
+		4EC7B1AC2038806D006CA244 /* THContentSet .swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1AB2038806D006CA244 /* THContentSet .swift */; };
+		4EC7B1AE203880BA006CA244 /* THMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1AD203880BA006CA244 /* THMarkerView.swift */; };
+		4EC7B1B220388279006CA244 /* THContentMarkerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1B120388279006CA244 /* THContentMarkerController.swift */; };
+		4EC7B1B42038832C006CA244 /* THContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1B32038832C006CA244 /* THContentView.swift */; };
+		4EC7B1B620388383006CA244 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1B520388383006CA244 /* THVideoContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
-		4E28B0C0202ABCFB00CD0452 /* THContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentView.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THContentMarkerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,8 +36,12 @@
 		4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
 		4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentView.swift; sourceTree = "<group>"; };
 		4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentView.swift; sourceTree = "<group>"; };
-		4EC0FB9620316E36001CEF1C /* THContentMarkerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentMarkerController.swift; sourceTree = "<group>"; };
-		4EF630C8202858B20044E6A8 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = THVideoContentView.swift; path = ../ContentView/THVideoContentView.swift; sourceTree = "<group>"; };
+		4EC7B1A920387FF2006CA244 /* THMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THMarker.swift; sourceTree = "<group>"; };
+		4EC7B1AB2038806D006CA244 /* THContentSet .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "THContentSet .swift"; sourceTree = "<group>"; };
+		4EC7B1AD203880BA006CA244 /* THMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THMarkerView.swift; sourceTree = "<group>"; };
+		4EC7B1B120388279006CA244 /* THContentMarkerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentMarkerController.swift; sourceTree = "<group>"; };
+		4EC7B1B32038832C006CA244 /* THContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentView.swift; sourceTree = "<group>"; };
+		4EC7B1B520388383006CA244 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,25 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E28B0BF202ABCE200CD0452 /* THContentView */ = {
-			isa = PBXGroup;
-			children = (
-				4E28B0C0202ABCFB00CD0452 /* THContentView.swift */,
-				4EF630C8202858B20044E6A8 /* THVideoContentView.swift */,
-				4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */,
-				4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */,
-				4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */,
-			);
-			path = THContentView;
-			sourceTree = "<group>";
-		};
 		4E2F83E01FF8E10E00511B4C = {
 			isa = PBXGroup;
 			children = (
-				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
-				4EC0FB9520316E0C001CEF1C /* THContentMarkerView */,
-				4E28B0BF202ABCE200CD0452 /* THContentView */,
 				4E2F83EB1FF8E10E00511B4C /* SupportingFiles */,
+				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
+				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
+				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
+				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
+				4EC7B1A320382FD5006CA244 /* THContentMarker */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,19 +82,64 @@
 				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
 				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */,
-				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
-				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
-				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		4EC0FB9520316E0C001CEF1C /* THContentMarkerView */ = {
+		4EC7B1A320382FD5006CA244 /* THContentMarker */ = {
 			isa = PBXGroup;
 			children = (
-				4EC0FB9620316E36001CEF1C /* THContentMarkerController.swift */,
+				4EC7B1A620387F93006CA244 /* Views */,
+				4EC7B1A420387F54006CA244 /* Controllers */,
+				4EC7B1A520387F7F006CA244 /* Models */,
 			);
-			path = THContentMarkerView;
+			path = THContentMarker;
+			sourceTree = "<group>";
+		};
+		4EC7B1A420387F54006CA244 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4EC7B1B120388279006CA244 /* THContentMarkerController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4EC7B1A520387F7F006CA244 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4EC7B1A920387FF2006CA244 /* THMarker.swift */,
+				4EC7B1AB2038806D006CA244 /* THContentSet .swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4EC7B1A620387F93006CA244 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4EC7B1A820387FAF006CA244 /* THMarker */,
+				4EC7B1A720387F9C006CA244 /* THContentViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4EC7B1A720387F9C006CA244 /* THContentViews */ = {
+			isa = PBXGroup;
+			children = (
+				4EC7B1B32038832C006CA244 /* THContentView.swift */,
+				4EC7B1B520388383006CA244 /* THVideoContentView.swift */,
+				4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */,
+				4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */,
+				4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */,
+			);
+			path = THContentViews;
+			sourceTree = "<group>";
+		};
+		4EC7B1A820387FAF006CA244 /* THMarker */ = {
+			isa = PBXGroup;
+			children = (
+				4EC7B1AD203880BA006CA244 /* THMarkerView.swift */,
+			);
+			path = THMarker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +152,7 @@
 				4E2F83E51FF8E10E00511B4C /* Sources */,
 				4E2F83E61FF8E10E00511B4C /* Frameworks */,
 				4E2F83E71FF8E10E00511B4C /* Resources */,
+				4EC7B1B720388657006CA244 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -167,21 +209,40 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4EC7B1B720388657006CA244 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4E2F83E51FF8E10E00511B4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EC0FB9720316E36001CEF1C /* THContentMarkerController.swift in Sources */,
-				4EF630C9202858B20044E6A8 /* THVideoContentView.swift in Sources */,
+				4EC7B1AC2038806D006CA244 /* THContentSet .swift in Sources */,
 				4EC0FB8A202D8915001CEF1C /* THTitleContentView.swift in Sources */,
-				4E28B0C1202ABCFB00CD0452 /* THContentView.swift in Sources */,
+				4EC7B1AE203880BA006CA244 /* THMarkerView.swift in Sources */,
+				4EC7B1B620388383006CA244 /* THVideoContentView.swift in Sources */,
 				4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */,
 				4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */,
 				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
+				4EC7B1B42038832C006CA244 /* THContentView.swift in Sources */,
 				04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */,
+				4EC7B1AA20387FF2006CA244 /* THMarker.swift in Sources */,
+				4EC7B1B220388279006CA244 /* THContentMarkerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W6XUQ3PPN9;
+				DEVELOPMENT_TEAM = Y4TX5PVNK4;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -327,7 +388,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W6XUQ3PPN9;
+				DEVELOPMENT_TEAM = Y4TX5PVNK4;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
