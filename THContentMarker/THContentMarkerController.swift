@@ -47,12 +47,6 @@ class THContentMarkerController: THMarkerViewDelegate {
         self.parentView = parentView
         self.scrollView = scrollView
 
-        /// when set, markerview reset
-        markerViewArray.removeAll()
-        markerViewArray.forEach { markerView in
-            markerView.removeFromSuperview()
-        }
-
         /// set markerView, by dataSource
         for index in 0..<self.dataSource.numberOfMarker(self) {
 
@@ -103,10 +97,10 @@ class THContentMarkerController: THMarkerViewDelegate {
 
     /// when change 'THMarker', you can reload 'THMarkerView' by reloadData
     public func reloadData() {
+        /// when set, markerview reset
         markerViewArray.removeAll()
-
-        for marker in markerViewArray {
-            marker.removeFromSuperview()
+        markerViewArray.forEach { markerView in
+            markerView.removeFromSuperview()
         }
 
         for index in 0..<self.dataSource.numberOfMarker(self) {
