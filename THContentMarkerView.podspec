@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors            = { "Hong Seong Ho" => "grohong76@gmail.com",  'Changnam Hong' => 'hcn1519@gmail.com', 'Han JeeWoong'=>'hjw01234@gmail.com'}
 
-  s.ios.deployment_target = "9.0"
+  s.ios.deployment_target = "10.0"
   s.source       = {  :git => "https://github.com/TileImageTeamiOS/THContentMarkerView.git", :tag => s.version.to_s }
-  s.source_files  = 'THContentMarkerView/THContentMarker/*.swift'
+  s.source_files  = 'THContentMarker/*.swift'
   s.frameworks = 'UIKit'
 
 end
