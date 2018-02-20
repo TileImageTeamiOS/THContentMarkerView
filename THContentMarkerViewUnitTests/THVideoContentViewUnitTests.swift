@@ -9,7 +9,7 @@
 import XCTest
 @testable import THContentMarkerView
 
-class THVideoContentViewTests: XCTestCase {
+class THVideoContentViewUnitTests: XCTestCase {
     let thVideoContent = THVideoContentView()
 
     override func setUp() {
