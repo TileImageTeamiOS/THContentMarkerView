@@ -9,19 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var editorBtn: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
 
     var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
-
     var imageSize = CGSize()
 
     // THContent
-    var isEditor = false
-    var centerPoint = UIView()
     var markerArray = [THMarker]()
 
     var contentSetArray = [THContentSet]()
@@ -42,16 +38,6 @@ class ViewController: UIViewController {
         imageView.frame.size = (imageView.image?.size)!
         imageSize = (imageView.image?.size)!
         scrollView.delegate = self
-
-        // edit center point 설정
-        centerPoint.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2 + scrollView.frame.origin.y/2,
-                                   width: CGFloat(10),
-                                   height: CGFloat(10))
-        centerPoint.backgroundColor = UIColor.red
-        centerPoint.layer.cornerRadius = 5
-
-        self.view.addSubview(centerPoint)
-        centerPoint.isHidden = true
         doneButton.isHidden = true
 
         setContentView()
@@ -124,38 +110,10 @@ class ViewController: UIViewController {
         recenterImage()
     }
 
-    @IBAction func editionButton(_ sender: Any) {
-        if isEditor == false {
-            editorBtn.title = "Done"
-            scrollView.layer.borderWidth = 4
-            scrollView.layer.borderColor = UIColor.red.cgColor
-            centerPoint.isHidden = isEditor
-            isEditor = true
-        } else {
-            editorBtn.title = "Editor"
-            scrollView.layer.borderWidth = 0
-            centerPoint.isHidden = isEditor
-            isEditor = false
-
-            let editorViewController = EditorContentViewController()
-
-            editorViewController.zoom = scrollView.zoomScale
-            editorViewController.xFloat = scrollView.contentOffset.x/scrollView.zoomScale + scrollView.bounds.size.width/scrollView.zoomScale/2
-            editorViewController.yFloat = scrollView.contentOffset.y/scrollView.zoomScale + scrollView.bounds.size.height/scrollView.zoomScale/2
-
-            self.show(editorViewController, sender: nil)
-        }
-    }
-
     func back() {
         contentMarkerController.markerHidden(bool: false)
         contentMarkerController.contentDismiss()
-        isEditor = false
         scrollView.layer.borderWidth = 0
-        centerPoint.isHidden = true
-        editorBtn.title = "Editor"
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
-        self.navigationItem.rightBarButtonItem?.title = "Editor"
     }
 
     @IBAction func backButtonAction(_ sender: UIButton) {
