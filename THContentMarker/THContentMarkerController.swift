@@ -98,10 +98,10 @@ class THContentMarkerController: THMarkerViewDelegate {
     /// when change 'THMarker', you can reload 'THMarkerView' by reloadData
     public func reloadData() {
         /// when set, markerview reset
-        markerViewArray.removeAll()
         markerViewArray.forEach { markerView in
             markerView.removeFromSuperview()
         }
+        markerViewArray.removeAll()
 
         for index in 0..<self.dataSource.numberOfMarker(self) {
             let origin = self.dataSource.setMarker(self, markerIndex: index).origin
@@ -165,7 +165,8 @@ class THContentMarkerController: THMarkerViewDelegate {
 
     /// 'THMarkerView' tap event set
     func tapEvent(marker: THMarkerView) {
-        delegate.markerTap(self, markerIndex: marker.index)
+        if let delegate = self.delegate { delegate.markerTap(self, markerIndex: marker.index) }
+
         zoom(destinationRect: marker.destinationRect)
         if let contentInfo = markerDataArray[marker.index].contentInfo {
             for contentIndex in 0..<self.dataSource.numberOfContent(self) {
