@@ -11,11 +11,11 @@
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
-		4E741FC1203AB99600BE1B80 /* THContentMarkerViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FC0203AB99600BE1B80 /* THContentMarkerViewUnitTests.swift */; };
 		4E741FCB203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FCA203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift */; };
 		4E741FCF203AD31600BE1B80 /* THAudioContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FCE203AD31600BE1B80 /* THAudioContentViewUnitTests.swift */; };
 		4E741FD1203C0A1300BE1B80 /* THTextContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FD0203C0A1300BE1B80 /* THTextContentViewUnitTests.swift */; };
 		4E741FD3203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FD2203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift */; };
+		4E741FD6203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FD5203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift */; };
 		4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */; };
 		4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */; };
 		4EC0FB8A202D8915001CEF1C /* THTitleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */; };
@@ -45,12 +45,12 @@
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E741FBE203AB99600BE1B80 /* THContentMarkerViewUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THContentMarkerViewUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E741FC0203AB99600BE1B80 /* THContentMarkerViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentMarkerViewUnitTests.swift; sourceTree = "<group>"; };
 		4E741FC2203AB99600BE1B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E741FCA203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoContentViewUnitTests.swift; sourceTree = "<group>"; };
 		4E741FCE203AD31600BE1B80 /* THAudioContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentViewUnitTests.swift; sourceTree = "<group>"; };
 		4E741FD0203C0A1300BE1B80 /* THTextContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentViewUnitTests.swift; sourceTree = "<group>"; };
 		4E741FD2203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentViewUnitTests.swift; sourceTree = "<group>"; };
+		4E741FD5203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentMarkerControllerUnitTests.swift; sourceTree = "<group>"; };
 		4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
 		4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentView.swift; sourceTree = "<group>"; };
 		4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentView.swift; sourceTree = "<group>"; };
@@ -160,7 +160,6 @@
 		4E741FBF203AB99600BE1B80 /* THContentMarkerViewUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				4E741FC0203AB99600BE1B80 /* THContentMarkerViewUnitTests.swift */,
 				4E741FC8203AC1B200BE1B80 /* THContentMarkerViewsTests */,
 				4E741FC2203AB99600BE1B80 /* Info.plist */,
 			);
@@ -170,6 +169,7 @@
 		4E741FC8203AC1B200BE1B80 /* THContentMarkerViewsTests */ = {
 			isa = PBXGroup;
 			children = (
+				4E741FD4203C690A00BE1B80 /* THContentControllerTests */,
 				4E741FC9203AC1C300BE1B80 /* THContentViewsTests */,
 			);
 			name = THContentMarkerViewsTests;
@@ -184,6 +184,14 @@
 				4E741FD2203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift */,
 			);
 			name = THContentViewsTests;
+			sourceTree = "<group>";
+		};
+		4E741FD4203C690A00BE1B80 /* THContentControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E741FD5203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift */,
+			);
+			name = THContentControllerTests;
 			sourceTree = "<group>";
 		};
 		4EC7B1A320382FD5006CA244 /* THContentMarker */ = {
@@ -337,7 +345,7 @@
 				4E741FD3203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift in Sources */,
 				4E741FCB203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift in Sources */,
 				4E741FD1203C0A1300BE1B80 /* THTextContentViewUnitTests.swift in Sources */,
-				4E741FC1203AB99600BE1B80 /* THContentMarkerViewUnitTests.swift in Sources */,
+				4E741FD6203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
