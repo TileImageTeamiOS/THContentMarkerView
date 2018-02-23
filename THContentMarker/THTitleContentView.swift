@@ -32,6 +32,6 @@ extension THTitleContentView: THContentViewDelegate {
     }
 
     public func dismiss() {
-        titleLabel.text = ""
+        set(title: "")
     }
 }

@@ -1,51 +1,119 @@
 //
-//  ViewController.swift
-//  ScrollViewContent
+//  THContentMarkerControllerUnitTests.swift
+//  THContentMarkerViewUnitTests
 //
-//  Created by Seong ho Hong on 2017. 12. 31..
-//  Copyright © 2017년 Seong ho Hong. All rights reserved.
+//  Created by Seong ho Hong on 2018. 2. 20..
+//  Copyright © 2018년 Seong ho Hong. All rights reserved.
 //
 
-import UIKit
+import XCTest
+@testable import THContentMarkerView
 
-class ViewController: UIViewController {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
-
+class THContentMarkerControllerUnitTests: XCTestCase {
     var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
-    var imageSize = CGSize()
 
-    // THContent
+    var scrollView = UIScrollView()
+    var imageView = UIImageView()
+    var view = UIView()
+
+    // THData Set
     var markerArray = [THMarker]()
-
     var contentSetArray = [THContentSet]()
-    var contentArray: [THContent] = []
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.scrollView.zoom(to: CGRect(x: 0, y: 0, width: self.imageSize.width, height: self.imageSize.height),
-                             animated: false)
-    }
+    override func setUp() {
+        super.setUp()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        // ViewController set
+        imageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 4000, height: 5000))
+        scrollView.addSubview(imageView)
+        view.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 400, height: 500))
+        view.addSubview(scrollView)
+        recenterImage()
 
-        contentMarkerController.dataSource = self
-        contentMarkerController.delegate = self
-
-        scrollView.contentInsetAdjustmentBehavior = .never
-        imageView.frame.size = (imageView.image?.size)!
-        imageSize = (imageView.image?.size)!
-        scrollView.delegate = self
-        doneButton.isHidden = true
-
+        // content and merker set
         setContentView()
         setMarker()
 
+        // content data source, view set
+        contentMarkerController.dataSource = self
         contentMarkerController.set(parentView: self.view, scrollView: self.scrollView)
     }
 
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+
+    func testSetContentMarker() {
+        // set test, 'THMarker' and 'THMarkerView'
+        XCTAssertEqual(markerArray.count, contentMarkerController.markerViewArray.count)
+        // 'THContentSet' and 'THContentView'
+        XCTAssertEqual(contentSetArray.count, contentMarkerController.contentSetArray.count)
+    }
+
+    func testReloadData() {
+        // append 'THMarker' data
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 3000, y: 5000), contentInfo: nil))
+        contentMarkerController.reloadData()
+
+        // if reload data, 'THMarkerView' reload.
+        XCTAssertEqual(markerArray.count, contentMarkerController.markerViewArray.count)
+    }
+
+    func testMarkerHidden() {
+        // if markerHidden is true, all 'THMarkerView' is Hidden
+        contentMarkerController.markerHidden(bool: true)
+        for contentMarker in contentMarkerController.markerViewArray {
+            XCTAssertTrue(contentMarker.isHidden)
+        }
+
+        // if markerHidden is false, all 'THMarkerView' is not Hidden
+        contentMarkerController.markerHidden(bool: false)
+        for contentMarker in contentMarkerController.markerViewArray {
+            XCTAssertFalse(contentMarker.isHidden)
+        }
+    }
+
+    func testMarkerEvent() {
+        // if tap marker, 'THMarkerView's content show
+        contentMarkerController.tapEvent(marker: contentMarkerController.markerViewArray[0])
+        XCTAssertFalse(contentMarkerController.contentSetArray[2].contentView.isHidden)
+
+        // if dismiss the content, all 'THContentView' is Hidden
+        contentMarkerController.contentDismiss()
+        XCTAssertTrue(contentMarkerController.contentSetArray[2].contentView.isHidden)
+    }
+}
+
+extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSource {
+    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
+        return markerArray.count
+    }
+
+    func setMarker(_ contentMarkerController: THContentMarkerController, markerIndex: Int) -> THMarker {
+        return markerArray[markerIndex]
+    }
+
+    func numberOfContent(_ contentMarkerController: THContentMarkerController) -> Int {
+        return contentSetArray.count
+    }
+
+    func setContentView(_ contentMarkerController: THContentMarkerController, contentSetIndex: Int) -> THContentSet {
+        return contentSetArray[contentSetIndex]
+    }
+
+    func recenterImage() {
+        let scrollViewSize = scrollView.bounds.size
+        let imageSize = imageView.frame.size
+
+        let horizontalSpace = imageSize.width < scrollViewSize.width ? (scrollViewSize.width - imageSize.width) / 2 : 0
+        let verticalSpace = imageSize.height < scrollViewSize.height ? (scrollViewSize.height - imageSize.height) / 2 : 0
+
+        scrollView.contentInset = UIEdgeInsets(top: verticalSpace, left: horizontalSpace,
+                                               bottom: verticalSpace, right: horizontalSpace)
+    }
+
+    // dummy content view
     func setContentView() {
         // contentView set
         let videoKey = "videoContent"
@@ -76,6 +144,7 @@ class ViewController: UIViewController {
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
     }
 
+    // dummy marker
     func setMarker() {
         // marker set
         var content1 = [String: Any?]()
@@ -103,88 +172,5 @@ class ViewController: UIViewController {
         markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), contentInfo: nil))
         markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), contentInfo: content1))
         contentMarkerController.markerViewSize = CGSize(width: 18, height: 18)
-    }
-
-    override func viewWillLayoutSubviews() {
-        setZoomParametersForSize(scrollView.bounds.size)
-        recenterImage()
-    }
-
-    func back() {
-        contentMarkerController.markerHidden(bool: false)
-        contentMarkerController.contentDismiss()
-        scrollView.layer.borderWidth = 0
-    }
-
-    @IBAction func backButtonAction(_ sender: UIButton) {
-        back()
-        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66,
-                       options: [.allowUserInteraction], animations: {
-            self.scrollView.zoom(to: CGRect(x: 0, y: 0,
-                                            width: (self.imageSize.width),
-                                            height: (self.imageSize.height)),
-                                            animated: false)
-        })
-    }
-
-    func recenterImage() {
-        let scrollViewSize = scrollView.bounds.size
-        let imageSize = imageView.frame.size
-
-        let horizontalSpace = imageSize.width < scrollViewSize.width ? (scrollViewSize.width - imageSize.width) / 2 : 0
-        let verticalSpace = imageSize.height < scrollViewSize.height ? (scrollViewSize.height - imageSize.height) / 2 : 0
-
-        scrollView.contentInset = UIEdgeInsets(top: verticalSpace, left: horizontalSpace,
-                                               bottom: verticalSpace, right: horizontalSpace)
-    }
-
-    func setZoomParametersForSize(_ scrollViewSize: CGSize) {
-        let imageSize = imageView.bounds.size
-        let widthScale = scrollViewSize.width / imageSize.width
-        let heightScale = scrollViewSize.height / imageSize.height
-        let minScale = min(widthScale, heightScale)
-
-        scrollView.minimumZoomScale = minScale
-        scrollView.maximumZoomScale = 3.0
-        scrollView.zoomScale = minScale
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-
-extension ViewController: UIScrollViewDelegate {
-    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-
-    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        contentMarkerController.setMarkerFrame()
-    }
-}
-
-extension ViewController: THContentMarkerControllerDataSource {
-    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
-        return markerArray.count
-    }
-
-    func setMarker(_ contentMarkerController: THContentMarkerController, markerIndex: Int) -> THMarker {
-        return markerArray[markerIndex]
-    }
-
-    func numberOfContent(_ contentMarkerController: THContentMarkerController) -> Int {
-        return contentSetArray.count
-    }
-
-    func setContentView(_ contentMarkerController: THContentMarkerController, contentSetIndex: Int) -> THContentSet {
-        return contentSetArray[contentSetIndex]
-    }
-}
-
-extension ViewController: THContentMarkerControllerDelegate {
-    func markerTap(_ contentMarkerController: THContentMarkerController, markerIndex: Int) {
-        contentMarkerController.markerHidden(bool: true)
     }
 }

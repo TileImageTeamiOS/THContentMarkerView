@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BBE2004AC9600E23872 /* EditorScrollView.swift */; };
-		04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04727BC02006339D00E23872 /* EditorContentViewController.swift */; };
 		4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */; };
 		4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F83EE1FF8E10E00511B4C /* ViewController.swift */; };
 		4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F01FF8E10E00511B4C /* Main.storyboard */; };
 		4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F83F61FF8E10E00511B4C /* Assets.xcassets */; };
+		4E741FCB203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FCA203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift */; };
+		4E741FCF203AD31600BE1B80 /* THAudioContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FCE203AD31600BE1B80 /* THAudioContentViewUnitTests.swift */; };
+		4E741FD1203C0A1300BE1B80 /* THTextContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FD0203C0A1300BE1B80 /* THTextContentViewUnitTests.swift */; };
+		4E741FD3203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FD2203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift */; };
+		4E741FD6203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E741FD5203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift */; };
 		4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */; };
 		4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */; };
 		4EC0FB8A202D8915001CEF1C /* THTitleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */; };
@@ -24,15 +27,30 @@
 		4EC7B1B620388383006CA244 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7B1B520388383006CA244 /* THVideoContentView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4E741FC3203AB99600BE1B80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E2F83E11FF8E10E00511B4C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E2F83E81FF8E10E00511B4C;
+			remoteInfo = THContentMarkerView;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		04727BBE2004AC9600E23872 /* EditorScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
-		04727BC02006339D00E23872 /* EditorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
 		4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THContentMarkerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E2F83EE1FF8E10E00511B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4E2F83F11FF8E10E00511B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E2F83F61FF8E10E00511B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2F83FB1FF8E10E00511B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E741FBE203AB99600BE1B80 /* THContentMarkerViewUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THContentMarkerViewUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E741FC2203AB99600BE1B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E741FCA203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoContentViewUnitTests.swift; sourceTree = "<group>"; };
+		4E741FCE203AD31600BE1B80 /* THAudioContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentViewUnitTests.swift; sourceTree = "<group>"; };
+		4E741FD0203C0A1300BE1B80 /* THTextContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentViewUnitTests.swift; sourceTree = "<group>"; };
+		4E741FD2203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentViewUnitTests.swift; sourceTree = "<group>"; };
+		4E741FD5203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentMarkerControllerUnitTests.swift; sourceTree = "<group>"; };
 		4EC0FB85202D67A1001CEF1C /* THAudioContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioContentView.swift; sourceTree = "<group>"; };
 		4EC0FB87202D7B14001CEF1C /* THTextContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTextContentView.swift; sourceTree = "<group>"; };
 		4EC0FB89202D8915001CEF1C /* THTitleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTitleContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +70,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E741FBB203AB99600BE1B80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,10 +86,10 @@
 				4EC7B1A320382FD5006CA244 /* THContentMarker */,
 				4E2F83EB1FF8E10E00511B4C /* SupportingFiles */,
 				4E2F83FB1FF8E10E00511B4C /* Info.plist */,
+				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83EE1FF8E10E00511B4C /* ViewController.swift */,
-				04727BBE2004AC9600E23872 /* EditorScrollView.swift */,
-				04727BC02006339D00E23872 /* EditorContentViewController.swift */,
 				4E2F83EA1FF8E10E00511B4C /* Products */,
+				4E741FBF203AB99600BE1B80 /* THContentMarkerViewUnitTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */,
+				4E741FBE203AB99600BE1B80 /* THContentMarkerViewUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				4E2F83F61FF8E10E00511B4C /* Assets.xcassets */,
-				4E2F83F01FF8E10E00511B4C /* Main.storyboard */,
 				4E2F83EC1FF8E10E00511B4C /* AppDelegate.swift */,
 			);
 			path = SupportingFiles;
@@ -132,6 +157,43 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		4E741FBF203AB99600BE1B80 /* THContentMarkerViewUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E741FC8203AC1B200BE1B80 /* THContentMarkerViewsTests */,
+				4E741FC2203AB99600BE1B80 /* Info.plist */,
+			);
+			path = THContentMarkerViewUnitTests;
+			sourceTree = "<group>";
+		};
+		4E741FC8203AC1B200BE1B80 /* THContentMarkerViewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E741FD4203C690A00BE1B80 /* THContentControllerTests */,
+				4E741FC9203AC1C300BE1B80 /* THContentViewsTests */,
+			);
+			name = THContentMarkerViewsTests;
+			sourceTree = "<group>";
+		};
+		4E741FC9203AC1C300BE1B80 /* THContentViewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E741FCA203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift */,
+				4E741FCE203AD31600BE1B80 /* THAudioContentViewUnitTests.swift */,
+				4E741FD0203C0A1300BE1B80 /* THTextContentViewUnitTests.swift */,
+				4E741FD2203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift */,
+			);
+			name = THContentViewsTests;
+			sourceTree = "<group>";
+		};
+		4E741FD4203C690A00BE1B80 /* THContentControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E741FD5203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift */,
+			);
+			name = THContentControllerTests;
+			sourceTree = "<group>";
+		};
 		4EC7B1A320382FD5006CA244 /* THContentMarker */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +225,24 @@
 			productReference = 4E2F83E91FF8E10E00511B4C /* THContentMarkerView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4E741FBD203AB99600BE1B80 /* THContentMarkerViewUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E741FC5203AB99600BE1B80 /* Build configuration list for PBXNativeTarget "THContentMarkerViewUnitTests" */;
+			buildPhases = (
+				4E741FBA203AB99600BE1B80 /* Sources */,
+				4E741FBB203AB99600BE1B80 /* Frameworks */,
+				4E741FBC203AB99600BE1B80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E741FC4203AB99600BE1B80 /* PBXTargetDependency */,
+			);
+			name = THContentMarkerViewUnitTests;
+			productName = THContentMarkerViewUnitTests;
+			productReference = 4E741FBE203AB99600BE1B80 /* THContentMarkerViewUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -176,6 +256,11 @@
 					4E2F83E81FF8E10E00511B4C = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					4E741FBD203AB99600BE1B80 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4E2F83E81FF8E10E00511B4C;
 					};
 				};
 			};
@@ -193,6 +278,7 @@
 			projectRoot = "";
 			targets = (
 				4E2F83E81FF8E10E00511B4C /* THContentMarkerView */,
+				4E741FBD203AB99600BE1B80 /* THContentMarkerViewUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,6 +290,13 @@
 			files = (
 				4E2F83F71FF8E10E00511B4C /* Assets.xcassets in Resources */,
 				4E2F83F21FF8E10E00511B4C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E741FBC203AB99600BE1B80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,17 +329,35 @@
 				4EC7B1B620388383006CA244 /* THVideoContentView.swift in Sources */,
 				4EC0FB88202D7B14001CEF1C /* THTextContentView.swift in Sources */,
 				4EC0FB86202D67A1001CEF1C /* THAudioContentView.swift in Sources */,
-				04727BBF2004AC9700E23872 /* EditorScrollView.swift in Sources */,
 				4E2F83EF1FF8E10E00511B4C /* ViewController.swift in Sources */,
 				4E2F83ED1FF8E10E00511B4C /* AppDelegate.swift in Sources */,
 				4EC7B1B42038832C006CA244 /* THContentView.swift in Sources */,
-				04727BC12006339D00E23872 /* EditorContentViewController.swift in Sources */,
 				4EC7B1AA20387FF2006CA244 /* THMarker.swift in Sources */,
 				4EC7B1B220388279006CA244 /* THContentMarkerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E741FBA203AB99600BE1B80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E741FCF203AD31600BE1B80 /* THAudioContentViewUnitTests.swift in Sources */,
+				4E741FD3203C5EDE00BE1B80 /* THTitleContentViewUnitTests.swift in Sources */,
+				4E741FCB203AC1EB00BE1B80 /* THVideoContentViewUnitTests.swift in Sources */,
+				4E741FD1203C0A1300BE1B80 /* THTextContentViewUnitTests.swift in Sources */,
+				4E741FD6203C694F00BE1B80 /* THContentMarkerControllerUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E741FC4203AB99600BE1B80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E2F83E81FF8E10E00511B4C /* THContentMarkerView */;
+			targetProxy = 4E741FC3203AB99600BE1B80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4E2F83F01FF8E10E00511B4C /* Main.storyboard */ = {
@@ -399,6 +510,38 @@
 			};
 			name = Release;
 		};
+		4E741FC6203AB99600BE1B80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y4TX5PVNK4;
+				INFOPLIST_FILE = THContentMarkerViewUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.grohong.THContentMarkerViewUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/THContentMarkerView.app/THContentMarkerView";
+			};
+			name = Debug;
+		};
+		4E741FC7203AB99600BE1B80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y4TX5PVNK4;
+				INFOPLIST_FILE = THContentMarkerViewUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.grohong.THContentMarkerViewUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/THContentMarkerView.app/THContentMarkerView";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -416,6 +559,15 @@
 			buildConfigurations = (
 				4E2F83FF1FF8E10E00511B4C /* Debug */,
 				4E2F84001FF8E10E00511B4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E741FC5203AB99600BE1B80 /* Build configuration list for PBXNativeTarget "THContentMarkerViewUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E741FC6203AB99600BE1B80 /* Debug */,
+				4E741FC7203AB99600BE1B80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
