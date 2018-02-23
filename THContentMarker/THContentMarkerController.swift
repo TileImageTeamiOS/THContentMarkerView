@@ -8,18 +8,18 @@
 
 import UIKit
 
-open class THContentMarkerController: THMarkerViewDelegate {
+public class THContentMarkerController: THMarkerViewDelegate {
     // MARK: - Properties [Public]
-    
+
     /// The 'MarkerViewSize' manage marker view size in UIScrollView
     /// default CGSize(width: 20, height: 20)
     open var markerViewSize: CGSize = CGSize(width: 20, height: 20)
     /// The 'MarkerViewImage' set markerview image
     open var markerViewImage: UIImage?
-    
+
     open var dataSource: THContentMarkerControllerDataSource!
     open var delegate: THContentMarkerControllerDelegate!
-    
+
     /// contentView is set and input in 'ParentView'
     var parentView: UIView!
     /// markerView is set and input in 'ScrollView'
