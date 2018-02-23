@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5),
                                      width: self.view.frame.width,
                                      height: self.view.frame.height*(1/5))
-        thTextContent.setContentView()
+        thTextContent.setContentView(upYFloat: 180)
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
     }
 
@@ -98,10 +98,10 @@ class ViewController: UIViewController {
         content2[contentSetArray[3].contentKey] = textLink
 
         contentMarkerController.markerViewImage = #imageLiteral(resourceName: "marker")
-        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000), contentInfo: content2))
-        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500), contentInfo: content1))
-        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), contentInfo: nil))
-        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), contentInfo: content1))
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000), markerID: "1", contentInfo: content2))
+        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500), markerID: "2", contentInfo: content1))
+        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), markerID: "3", contentInfo: [:]))
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), markerID: "4", contentInfo: content1))
         contentMarkerController.markerViewSize = CGSize(width: 18, height: 18)
     }
 
@@ -184,7 +184,7 @@ extension ViewController: THContentMarkerControllerDataSource {
 }
 
 extension ViewController: THContentMarkerControllerDelegate {
-    func markerTap(_ contentMarkerController: THContentMarkerController, markerIndex: Int) {
+    func markerTap(_ contentMarkerController: THContentMarkerController, markerView: THMarkerView) {
         contentMarkerController.markerHidden(bool: true)
     }
 }
