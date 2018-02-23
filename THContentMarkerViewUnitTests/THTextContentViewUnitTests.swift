@@ -19,7 +19,7 @@ class THTextContentViewUnitTests: XCTestCase {
         thTextContent.frame = CGRect(x: 0, y: 300,
                                      width: 100,
                                      height: 50)
-        thTextContent.setContentView()
+        thTextContent.setContentView(upYFloat: 40)
 
         // test set content
         textLink["title"] = "test"
