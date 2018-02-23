@@ -23,7 +23,7 @@ class THContentMarkerControllerUnitTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        // view set
+        // ViewController set
         imageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 4000, height: 5000))
         scrollView.addSubview(imageView)
         view.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 400, height: 500))
