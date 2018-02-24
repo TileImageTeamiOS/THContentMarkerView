@@ -30,11 +30,15 @@ public class THVideoContentView: THContentView {
     var fullscreenButton = UIButton()
     var videoButton = UIButton()
     var topVC = UIApplication.shared.keyWindow?.rootViewController
+    var initialFrame = CGRect()
+    var youtubeView = UIWebView()
+    var isYoutube = false
 
     func playVideo() {
         playStatus = .play
         videoButton.setImage(UIImage(named: "pauseBtn.png"), for: .normal)
-        player.play()
+        player.automaticallyWaitsToMinimizeStalling = false
+        player.playImmediately(atRate: 1.0)
         hideStatus()
     }
 
@@ -73,15 +77,17 @@ public class THVideoContentView: THContentView {
         }
     }
 
-    public func setContentView() {
+    public func setContentView(frame: CGRect) {
         delegate = self
+        initialFrame = frame
+        self.frame = frame
+        self.backgroundColor = UIColor.black
         videoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTap(_:)))
         videoPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(videoViewPan(_:)))
         videoPanGestureRecognizer.delegate = self
 
         self.addGestureRecognizer(videoTapGestureRecognizer)
         self.addGestureRecognizer(videoPanGestureRecognizer)
-        self.backgroundColor = UIColor.black
 
         // 전체화면 버튼 세팅
         fullscreenButton.frame = CGRect(x: self.frame.width - 30, y: self.frame.height - 30, width: 20, height: 20)
@@ -104,21 +110,56 @@ public class THVideoContentView: THContentView {
 extension THVideoContentView: THContentViewDelegate {
     public func setContent(info: Any?) {
         if let url = info as? URL {
-            player = AVPlayer(url: url)
+            var path = url.absoluteString
+            if path.contains("https://www.youtube.com/watch?v=") {
+                path = path.replacingOccurrences(of: "https://www.youtube.com/watch?v=", with: "https://www.youtube.com/embed/")
+                if path.contains("&") {
+                    let index = path.index(of: "&")!
+                    path = path[..<index].description
+                }
+                let youtubeURL = URL(string: path)
+                youtubeView.frame = self.bounds
+                youtubeView.isOpaque = false
+                youtubeView.backgroundColor = UIColor.black
+                self.youtubeView.loadRequest(URLRequest(url: youtubeURL!))
+                self.addSubview(youtubeView)
+                isYoutube = true
+            } else if path.contains("https://www.youtube.com/embed/") {
+                youtubeView.frame = self.bounds
+                youtubeView.isOpaque = false
+                youtubeView.backgroundColor = UIColor.black
+                youtubeView.loadRequest(URLRequest(url: url))
+                self.addSubview(youtubeView)
+                isYoutube = true
+            } else {
+                player = AVPlayer(url: url)
+                player.allowsExternalPlayback = false
+                playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = self.bounds
+                playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+                self.layer.addSublayer(playerLayer)
+                self.addSubview(fullscreenButton)
+                self.addSubview(videoButton)
+                isYoutube = false
+            }
         }
-        player.allowsExternalPlayback = false
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = self.bounds
-        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-        self.layer.addSublayer(playerLayer)
-        self.addSubview(fullscreenButton)
-        self.addSubview(videoButton)
     }
 
     public func dismiss() {
-        pauseVideo()
-        showStatus()
-        self.playerLayer.removeFromSuperlayer()
+        self.frame = initialFrame
+        if youtubeView.isLoading {
+            youtubeView.stopLoading()
+        }
+        if isYoutube {
+            youtubeView = UIWebView()
+        } else {
+            pauseVideo()
+            showStatus()
+            self.playerLayer.removeFromSuperlayer()
+        }
+        for sub in self.subviews {
+            sub.removeFromSuperview()
+        }
     }
 }
 

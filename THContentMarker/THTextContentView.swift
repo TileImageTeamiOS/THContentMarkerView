@@ -102,27 +102,34 @@ extension THTextContentView: UIGestureRecognizerDelegate {
 
     public func labelSet(title: String?, link: String?, text: String?) {
         titleLable.frame.size = CGSize(width: self.frame.width, height: 10)
-        titleLable.frame.origin = CGPoint(x: 10, y: 10)
+        titleLable.frame.origin = CGPoint(x: 10, y: 40)
         titleLable.text = title
         titleLable.numberOfLines = 2
         titleLable.textAlignment = .left
-        titleLable.font = UIFont.boldSystemFont(ofSize: 15)
+        titleLable.font = UIFont.boldSystemFont(ofSize: 23)
         titleLable.sizeToFit()
 
         linkLable.frame.size = CGSize(width: self.frame.width, height: 10)
         linkLable.frame.origin = CGPoint(x: 10, y: titleLable.frame.origin.y + titleLable.frame.height + 10)
-        linkLable.text = link
+        let underlineAttribute = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+        linkLable.attributedText = NSAttributedString(string: link!, attributes: underlineAttribute)
         linkLable.numberOfLines = 2
         linkLable.textAlignment = .left
-        linkLable.textColor = UIColor.blue
         linkLable.sizeToFit()
         linkLable.isUserInteractionEnabled = true
 
         textLabel.frame.size = CGSize(width: (self.frame.width - 20), height: 10)
-        textLabel.frame.origin = CGPoint(x: 10, y: linkLable.frame.origin.y + linkLable.frame.height + 10)
-        textLabel.text = text
-        textLabel.numberOfLines = 100
-        textLabel.textAlignment = .left
+        textLabel.frame.origin = CGPoint(x: 10, y: linkLable.frame.origin.y + linkLable.frame.height + 25)
+        let attString = NSMutableAttributedString(string: text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.firstLineHeadIndent = 40
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        paragraphStyle.lineSpacing = 2
+        paragraphStyle.lineHeightMultiple = 1.3
+        attString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attString.length))
+        attString.addAttribute(NSAttributedStringKey.font, value: textLabel.font, range: NSMakeRange(0, attString.length))
+        textLabel.numberOfLines = 0
+        textLabel.attributedText = attString
         textLabel.sizeToFit()
 
         contentScrollView.addSubview(titleLable)
@@ -133,7 +140,7 @@ extension THTextContentView: UIGestureRecognizerDelegate {
         contentScrollView.contentSize = CGSize(width: self.frame.width,
                                                height: titleLable.frame.height +
                                                 linkLable.frame.height +
-                                                textLabel.frame.height + 10 + 10 + 10)
+                                                textLabel.frame.height + 100)
     }
 }
 
@@ -162,5 +169,13 @@ extension THTextContentView: THContentViewDelegate {
     public func dismiss() {
         labelSet(title: "", link: "", text: "")
         textContentResizeView = UIView(frame: CGRect(x: self.frame.width - 30, y: 10, width: 25, height: 25))
+        if contentStatus == .show {
+            contentStatus = .hide
+            self.frame = CGRect(x: 0, y: self.frame.origin.y + self.upYFloat,
+                                width: (self.superview?.frame.width)!,
+                                height: self.frame.height-self.upYFloat)
+            self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+            self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
+        }
     }
 }

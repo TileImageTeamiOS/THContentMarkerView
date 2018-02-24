@@ -51,7 +51,7 @@ open class THContentMarkerController: THMarkerViewDelegate {
             markerView.removeFromSuperview()
         }
         markerViewArray.removeAll()
-        
+
         /// set markerView, by dataSource
         for index in 0..<self.dataSource.numberOfMarker(self) {
 
@@ -71,6 +71,7 @@ open class THContentMarkerController: THMarkerViewDelegate {
             self.scrollView?.addSubview(thMarkerView)
         }
 
+        self.contentSetArray.removeAll()
         /// set contentView, by dataSource
         for index in 0..<self.dataSource.numberOfContent(self) {
             self.parentView.addSubview(dataSource.setContentView(self, contentSetIndex: index).contentView)

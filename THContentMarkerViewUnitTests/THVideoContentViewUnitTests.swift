@@ -14,7 +14,7 @@ class THVideoContentViewUnitTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        thVideoContent.setContentView()
+        thVideoContent.setContentView(frame: CGRect(x: 30, y: 30, width: 50, height: 50) )
     }
 
     override func tearDown() {

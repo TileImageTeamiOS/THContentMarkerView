@@ -14,7 +14,7 @@ class THTitleContentViewUnitTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        thTitleContent.setView()
+        thTitleContent.setView(fontSize: 40)
     }
 
     override func tearDown() {

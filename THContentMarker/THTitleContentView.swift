@@ -10,14 +10,19 @@ import UIKit
 
 public class THTitleContentView: THContentView {
     var titleLabel = UILabel()
-
-    func setView() {
+    var strokeTextAttributes = [NSAttributedStringKey: Any]()
+    public func setView(fontSize: CGFloat) {
         delegate = self
+        strokeTextAttributes = [
+            NSAttributedStringKey.strokeColor: UIColor.black,
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.strokeWidth: -2.0,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: fontSize)
+        ]
     }
 
     func set(title: String) {
-        titleLabel.text = title
-        titleLabel.textColor = UIColor.white
+        titleLabel.attributedText = NSMutableAttributedString(string: title, attributes: strokeTextAttributes)
         titleLabel.sizeToFit()
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
