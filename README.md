@@ -1,4 +1,4 @@
-# THContentMarkerVIew
+# THContentMarkerView
 
 ## Feature
 - [x] 📄'UIScrollView' 위에 컨텐츠가 담긴 마커를 찍을수 있습니다.
@@ -28,6 +28,10 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
 1. 'THContentMarkerView'는 기본적으로 'THMarker', 'THContentSet' 2가지 데이터 모델을 이용해서 컨트롤을 할수 있습니다.
 
   - THMarker : 'THMarker'는 마커의 origin과 zoomScale, contentInfo를 가지고 있습니다.
+    - ```zoomScale``` : 마커를 탭했을때 'UIScrollView'에 세팅될 zoomScale
+    - ```origin``` : 마커가 그려질 위치
+    - ```markerID``` : 마커를 구별알 identifier
+    - ```contnetInfo``` : 컨텐츠 뷰에 들어갈 key값과 info Dictionary
 
   ```Swift
   // 콘텐츠가 없는 'THMarker'를 만들때
@@ -82,9 +86,31 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
     contentSetArray.append(THContentSet(contentKey: textContentKey, contentView: textContent))
   }
   ```
-<br>
-2. 'THContentMarkerController'를 호출하고 dataSource, delegate를 구현해 줍니다.
+  <br>
+2. 만약 필요한 콘텐츠를 보여주고 싶다면, 'THContentView'를 상속받아 구현해 주시면 됩니다.
+  <br>
+  ```Swift
+  // 컨텐츠뷰 만들기 예제
+  public class THExampleContentView: THContentView {
+    public setExampleContent {
+      // 콘텐츠뷰의 delegate를 설정해 줍니다.
+      delegate = self
+    }
+  }
 
+  extension THExampleContentView: THContentViewDelegate {
+    public func setContent(info: Any?) {
+
+    }
+
+    public func dismiss() {
+
+    }
+  }
+  ```
+<br>
+3. 'THContentMarkerController'를 호출하고 dataSource, delegate를 구현해 줍니다.
+<br>
   ```swift
   // 'THContentMarkerController'를 호출하면서 마커의 줌 속도를 지정해 줍니다.
   class ViewController: UIViewController {
@@ -132,24 +158,12 @@ extension  ViewController: THContentMarkerControllerDelegate {
 }
 ```
 
-3. 만약 필요한 콘텐츠를 보여주고 싶다면, 'THContentView'를 상속받아 구현해 주시면 됩니다.
+### THContentMarkerView
 
-```Swift
-// 컨텐츠뷰 만들기 예제
-public class THExampleContentView: THContentView {
-  public setExampleContent {
-    // 콘텐츠뷰의 delegate를 설정해 줍니다.
-    delegate = self
-  }
-}
-
-extension THExampleContentView: THContentViewDelegate {
-  public func setContent(info: Any?) {
-
-  }
-
-  public func dismiss() {
-
-  }
-}
-```
+- ```set(parentView: UIView, scrollView: UIScrollView)``` : 마커가 그려질 UIScrollView와 콘텐츠를 보여줄 UIView를 설정합니다.
+- ```reloadData()``` : 만약 'THMarker'가 추가되거나 삭제될 경우 reloadData()를 이용하여 'THContentMarkerController'에 데이터를 reload해줍니다.
+- ```setMarkerFrame()``` : 마커가 'UIScrollView'위에 있을때 zoom여부와 scroll 여부에 따라 마커의 frame을 바꿔줍니다.
+- ```markerHidden(bool: Bool)``` : 마커의 Hidden 여부를 정합니다.
+- ```contentDismiss()``` : 마커의 콘텐츠를 Dismiss 합니다.
+- ```markerViewSize``` : 마커의 크기를 지정할수 있습니다.
+- ```markerViewImage``` : 마커의 이미지를 지정할수 있습니다.

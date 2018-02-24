@@ -118,12 +118,14 @@ open class THContentMarkerController: THMarkerViewDelegate {
             self.scrollView?.addSubview(thMarkerView)
         }
     }
+
     public func removeMarker() {
         for marker in markerViewArray {
             marker.removeFromSuperview()
         }
         markerViewArray.removeAll()
     }
+
     /// if you want 'THMarker' hidden controller, you use 'MarkerHidden'
     public func markerHidden(bool: Bool) {
         markerViewArray.forEach { markerView in
