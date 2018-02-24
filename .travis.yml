@@ -12,7 +12,7 @@ env:
   - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
 
 script:
-  - xcodebuild -project THContentMarkerView.xcodeproj -target THContentMarkerView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xcodebuild test -project THContentMarkerView.xcodeproj -scheme THContentMarkerView -configuration Debug -destination "OS=11.2,name=iPhone 8" -sdk iphonesimulator -enableCodeCoverage YES ONLY_ACTIVE_ARCH=NO test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -J 'THContentMarkerView' -X xcodeplist
