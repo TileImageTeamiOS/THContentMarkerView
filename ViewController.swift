@@ -50,8 +50,8 @@ class ViewController: UIViewController {
         // contentView set
         let videoKey = "videoContent"
         let thVideoContent = THVideoContentView()
-        thVideoContent.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        thVideoContent.setContentView()
+        let videoFrame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        thVideoContent.setContentView(frame: videoFrame)
         contentSetArray.append(THContentSet(contentKey: videoKey, contentView: thVideoContent))
 
         let audioKey = "audioContent"
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         let thTitleContent = THTitleContentView()
         thTitleContent.frame.size = CGSize(width: 100, height: 50)
         thTitleContent.center = self.view.center
-        thTitleContent.setView()
+        thTitleContent.setView(fontSize: 25)
         contentSetArray.append(THContentSet(contentKey: titleKey, contentView: thTitleContent))
 
         let textKey = "textContent"
