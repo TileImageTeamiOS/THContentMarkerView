@@ -7,7 +7,7 @@
 - [x] 👍이 외에 원하시는 콘텐츠 뷰를 만들고 싶다면, 'THContentView'를 상속받아 만들수 있습니다.
 
 ## Demo
-![THContentMarkerView](image/THContentMarkerView.gif)
+![THContentMarkerView](Image/THContentMarkerView.gif)
 
 ## Installation
 
