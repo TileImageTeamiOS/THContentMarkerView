@@ -1,5 +1,7 @@
 # THContentMarkerView
 
+[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-%23FB613C.svg)](https://developer.apple.com/swift/)
+
 ## Feature
 - [x] 📄'You can take a marker containing content above the ``` UIScrollView ```.
 - [x] 🛫'```THMarkerView``` has origin and zoomScale in ```UIScrollView``` so it functions as a camera autopilot to that position.
