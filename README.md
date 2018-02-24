@@ -39,7 +39,8 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
   }
   ```
 
-  - THContentSet: 'THContentSet'은 해당 프로젝트에서 사용할 'THContentView'와 해당 뷰의 Key를 가지고 있습니다. (해당 라이브러리에선 기본적으로  'THVideoContentView', 'THAudioContentView', 'THTextContentView', 'THTitleContentView'를 제공합니다.)
+  - THContentSet: 'THContentSet'은 해당 프로젝트에서 사용할 'THContentView'와 해당 뷰의 Key를 가지고 있습니다. <br>
+  (해당 라이브러리에선 기본적으로  'THVideoContentView', 'THAudioContentView', 'THTextContentView', 'THTitleContentView'를 제공합니다.)
 
   ```Swift
   // 기본 'THContentView' 세팅
@@ -47,37 +48,105 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
 
   func setContentView() {
       // 해당 'THContentView'의 key  세팅
-      let videoContnetKey = "videoContent"
+      let videoContentKey = "videoContent"
       let audioContentKey = "audioContent"
       let titleContentKey = "titleContent"
       let textContentKey = "textContent"
 
-      // 'THContentView' 호출을 하고 세팅
-      let videoContentView = THVideoContentView()
-      let audioContent = THAudioContentView()
-      let titleContent = THTitleContentView()
-      let textContent = THTextContentView()
+    // THVideoView Set 예제
+    let videoContent = THVideoContentView()
+    let videoFrame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+    videoContnetKey.setContentView(frame: videoFrame)
+  contentSetArray.append(THContentSet(contentKey: videoContentKey, contentView: videoContent))
 
-      videoContentView.setContentView()
-      audioContent.setContentView()
-      titleContent.setView()
-      textContent.setContentView(upYFloat: 180)
+    // THAdioContentView Set 예제
+    let audioContent = THAudioContentView()
+    audioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+    audioContent.setContentView()
+    contentSetArray.append(THContentSet(contentKey: audioContentKey, contentView: audioContent))
 
-      // contentSetArray에 어펜드
-      contentSetArray.append(THContentSet(contentKey: videoContnetKey, contentView: videoContentView))
-      contentSetArray.append(THContentSet(contentKey: audioContentKey, contentView: audioContent))
-      contentSetArray.append(THContentSet(contentKey: titleContentKey, contentView: titleContent))
-      contentSetArray.append(THContentSet(contentKey: textContentKey, contentView: textContent))
+    // THTitleContentView Set 예제
+    let titleContent = THTitleContentView()
+    titleContent.frame.size = CGSize(width: 100, height: 50)
+    titleContent.center = self.view.center
+    titleContent.setView(fontSize: 25)
+    contentSetArray.append(THContentSet(contentKey: titleContentKey, contentView: titleContent))
 
-      // ViewController의 view의 frame 세팅
-      videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-      audioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
-      titleContent.frame.size = CGSize(width: 100, height: 50)
-      titleContent.center = self.view.center
-      textContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5),
-                                   width: self.view.frame.width,
-                                   height: self.view.frame.height*(1/5))
+    // THTextContentView Set 예제
+    let textContent = THTextContentView()
+    textContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5),  width: self.view.frame.width, height: self.view.frame.height*(1/5))
+    textContent.setContentView(upYFloat: 180)
+    contentSetArray.append(THContentSet(contentKey: textContentKey, contentView: textContent))
   }
   ```
+<br>
+2. 'THContentMarkerController'를 호출하고 dataSource, delegate를 구현해 줍니다.
 
-  
+  ```swift
+  // 'THContentMarkerController'를 호출하면서 마커의 줌 속도를 지정해 줍니다.
+  class ViewController: UIViewController {
+
+    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var markerArray = [THMarker]()
+    var contentSetArray = [THContentSet]()
+
+    override func viewDidLoad() {
+       super.viewDidLoad()
+
+       contentMarkerController.dataSource = self
+       contentMarkerController.delegate = self
+
+       contentMarkerController.set(parentView: self.view, scrollView: self.scrollView)
+
+       setMarker()
+       setContentView()
+    }
+ }
+ // 'THContentMarkerControllerDataSource'에서는 'THMarker'와 'THContentSet'을 반환해 줍니다.
+ extension ViewController: THContentMarkerControllerDataSource {
+    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
+      return markerArray.count
+    }
+
+    func setMarker(_ contentMarkerController: THContentMarkerController, markerIndex: Int) -> THMarker {
+      return markerArray[markerIndex]
+    }
+
+    func numberOfContent(_ contentMarkerController: THContentMarkerController) -> Int {
+      return contentSetArray.count
+    }
+
+    func setContentView(_ contentMarkerController: THContentMarkerController, contentSetIndex: Int) -> THContentSet {
+      return contentSetArray[contentSetIndex]
+    }
+}
+//'THContentMarkerControllerDelegate'에서는 마커를 클릭했을때 이벤트를 구현할수 있습니다.
+extension  ViewController: THContentMarkerControllerDelegate {
+  func markerTap(_ contentMarkerController: THContentMarkerController, markerView: THMarkerView) {
+        // 만약 마커를 선택했을때 마커를 사라지게 하고 싶으면 추가해 줍니다.
+        contentMarkerController.markerHidden(bool: true)
+    }
+}
+```
+
+3. 만약 필요한 콘텐츠를 보여주고 싶다면, 'THContentView'를 상속받아 구현해 주시면 됩니다.
+
+```Swift
+// 컨텐츠뷰 만들기 예제
+public class THExampleContentView: THContentView {
+  public setExampleContent {
+    // 콘텐츠뷰의 delegate를 설정해 줍니다.
+    delegate = self
+  }
+}
+
+extension THExampleContentView: THContentViewDelegate {
+  public func setContent(info: Any?) {
+
+  }
+
+  public func dismiss() {
+
+  }
+}
+```
