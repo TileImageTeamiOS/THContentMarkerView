@@ -14,9 +14,9 @@ public struct THContentSet {
     public var contentKey: String
     // The 'THContentView' by contentKey
     public var contentView: THContentView
-    public init(contentKey: String, contentView: THContentView){
+
+    public init(contentKey: String, contentView: THContentView) {
         self.contentKey = contentKey
         self.contentView = contentView
     }
 }
-

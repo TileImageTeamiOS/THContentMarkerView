@@ -10,17 +10,17 @@ import UIKit
 
 public class THTitleContentView: THContentView {
     var titleLabel = UILabel()
-    var strokeTextAttributes = [NSAttributedStringKey : Any]()
+    var strokeTextAttributes = [NSAttributedStringKey: Any]()
     public func setView(fontSize: CGFloat) {
         delegate = self
         strokeTextAttributes = [
-            NSAttributedStringKey.strokeColor : UIColor.black,
-            NSAttributedStringKey.foregroundColor : UIColor.white,
-            NSAttributedStringKey.strokeWidth : -2.0,
-            NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: fontSize)
+            NSAttributedStringKey.strokeColor: UIColor.black,
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.strokeWidth: -2.0,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: fontSize)
         ]
     }
-    
+
     func set(title: String) {
         titleLabel.attributedText = NSMutableAttributedString(string: title, attributes: strokeTextAttributes)
         titleLabel.sizeToFit()
@@ -35,9 +35,8 @@ extension THTitleContentView: THContentViewDelegate {
         let titleInfo = info as? String
         set(title: titleInfo!)
     }
-    
+
     public func dismiss() {
-        titleLabel.text = ""
+        set(title: "")
     }
 }
-

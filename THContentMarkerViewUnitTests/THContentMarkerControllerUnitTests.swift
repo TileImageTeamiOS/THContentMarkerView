@@ -36,6 +36,7 @@ class THContentMarkerControllerUnitTests: XCTestCase {
 
         // content data source, view set
         contentMarkerController.dataSource = self
+        contentMarkerController.delegate = self
         contentMarkerController.set(parentView: self.view, scrollView: self.scrollView)
     }
 
@@ -53,7 +54,7 @@ class THContentMarkerControllerUnitTests: XCTestCase {
 
     func testReloadData() {
         // append 'THMarker' data
-        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 3000, y: 5000), contentInfo: nil))
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 3000, y: 5000), markerID: "5", contentInfo: [:]))
         contentMarkerController.reloadData()
 
         // if reload data, 'THMarkerView' reload.
@@ -76,7 +77,7 @@ class THContentMarkerControllerUnitTests: XCTestCase {
 
     func testMarkerEvent() {
         // if tap marker, 'THMarkerView's content show
-        contentMarkerController.tapEvent(marker: contentMarkerController.markerViewArray[0])
+        contentMarkerController.tapEvent(markerView: contentMarkerController.markerViewArray[0])
         XCTAssertFalse(contentMarkerController.contentSetArray[2].contentView.isHidden)
 
         // if dismiss the content, all 'THContentView' is Hidden
@@ -85,7 +86,11 @@ class THContentMarkerControllerUnitTests: XCTestCase {
     }
 }
 
-extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSource {
+extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSource, THContentMarkerControllerDelegate {
+    func markerTap(_ contentMarkerController: THContentMarkerController, markerView: THMarkerView) {
+
+    }
+
     func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
         return markerArray.count
     }
@@ -118,8 +123,8 @@ extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSourc
         // contentView set
         let videoKey = "videoContent"
         let thVideoContent = THVideoContentView()
-        thVideoContent.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        thVideoContent.setContentView()
+        let videoFrame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        thVideoContent.setContentView(frame: videoFrame)
         contentSetArray.append(THContentSet(contentKey: videoKey, contentView: thVideoContent))
 
         let audioKey = "audioContent"
@@ -132,7 +137,7 @@ extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSourc
         let thTitleContent = THTitleContentView()
         thTitleContent.frame.size = CGSize(width: 100, height: 50)
         thTitleContent.center = self.view.center
-        thTitleContent.setView()
+        thTitleContent.setView(fontSize: 25)
         contentSetArray.append(THContentSet(contentKey: titleKey, contentView: thTitleContent))
 
         let textKey = "textContent"
@@ -140,7 +145,7 @@ extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSourc
         thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5),
                                      width: self.view.frame.width,
                                      height: self.view.frame.height*(1/5))
-        thTextContent.setContentView()
+        thTextContent.setContentView(upYFloat: 180)
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
     }
 
@@ -167,10 +172,10 @@ extension THContentMarkerControllerUnitTests: THContentMarkerControllerDataSourc
         content2[contentSetArray[3].contentKey] = textLink
 
         contentMarkerController.markerViewImage = #imageLiteral(resourceName: "marker")
-        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000), contentInfo: content2))
-        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500), contentInfo: content1))
-        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), contentInfo: nil))
-        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), contentInfo: content1))
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 4000, y: 4000), markerID: "1", contentInfo: content2))
+        markerArray.append(THMarker(zoomScale: CGFloat(2.5), origin: CGPoint(x: 500, y: 500), markerID: "2", contentInfo: content1))
+        markerArray.append(THMarker(zoomScale: CGFloat(3), origin: CGPoint(x: 1000, y: 1000), markerID: "3", contentInfo: [:]))
+        markerArray.append(THMarker(zoomScale: CGFloat(2), origin: CGPoint(x: 2000, y: 2000), markerID: "4", contentInfo: content1))
         contentMarkerController.markerViewSize = CGSize(width: 18, height: 18)
     }
 }
