@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "THContentMarkerView"
-  s.version      = "0.2.1"
+  s.version      = "0.2.2"
   s.summary      = "THContentMarkerView is controller, 'THMarker' and 'THContentView'"
   s.description  = "'THContentMarkerView' is controller, use 'THMarker' and 'THContentSet'. 'THMarker' has marker position and marker content. 'THContentSet' is content view and content key."
 
