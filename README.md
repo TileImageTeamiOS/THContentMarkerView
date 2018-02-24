@@ -1,10 +1,10 @@
 # THContentMarkerView
 
 ## Feature
-- [x] 📄'UIScrollView' 위에 컨텐츠가 담긴 마커를 찍을수 있습니다.
-- [x] 🛫'THMarkerView'는 'UIScrollView'에 origin과  zoomScale이 담겨있어서, 해당 위치로 가는 카메라 오토파일럿 기능을 합니다.
-- [x] 🎥'THContentMarkerView'에서는 기본 콘텐츠로 'THVideoContentView', 'THAudioContentView', 'THTextContentView', 'THTitleContentView'를 제공합니다.
-- [x] 👍이 외에 원하시는 콘텐츠 뷰를 만들고 싶다면, 'THContentView'를 상속받아 만들수 있습니다.
+- [x] 📄'You can take a marker containing content above the ``` UIScrollView ```.
+- [x] 🛫'```THMarkerView``` has origin and zoomScale in ```UIScrollView``` so it functions as a camera autopilot to that position.
+- [x] 🎥```THContentMarkerView``` provides ```THVideoContentView```, ```THAudioContentView```, ```THTextContentView```, and ```THTitleContentView``` as default content.
+- [x] 👍If you want to create a content view of your choice, you can make your content view that inherit ```THContentView```.
 
 ## Demo
 ![THContentMarkerView](Image/THContentMarkerView.gif)
@@ -25,20 +25,20 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
 
 ## How to use
 
-1. 'THContentMarkerView'는 기본적으로 'THMarker', 'THContentSet' 2가지 데이터 모델을 이용해서 컨트롤을 할수 있습니다.
+1. ```THContentMarkerView``` can basically be controlled using two data models ```THMarker``` and ```THContentSet```.
 
-  - THMarker : 'THMarker'는 마커의 origin과 zoomScale, contentInfo를 가지고 있습니다.
-    - ```zoomScale``` : 마커를 탭했을때 'UIScrollView'에 세팅될 zoomScale
-    - ```origin``` : 마커가 그려질 위치
-    - ```markerID``` : 마커를 구별알 identifier
-    - ```contnetInfo``` : 컨텐츠 뷰에 들어갈 key값과 info Dictionary
+  - THMarker : ``` THMarker``` has marker origin, zoomScale, and contentInfo.
+    - ```zoomScale``` : zoomScale to be set to ```UIScrollView``` when the marker is tapped
+    - ```origin``` : Where the marker will be drawn on the ```UIScrollView```
+    - ```markerID``` : Identifier to distinguish markers
+    - ```contnetInfo``` : The key value to enter the content view and the info dictionary
 
   ```Swift
-  // 콘텐츠가 없는 'THMarker'를 만들때
+  // When creating 'THMarker' with no content
   var markerArray = [THMarker]()
 
   func setMarker() {
-      // 마커 생성
+      // set 'THMarker'
         markerArray.append(THMarker(zoomScale: CGFloat(3),
                                           origin: CGPoint(x: 1000, y: 1000),
                                           markerID: "markerIdentifier",
@@ -46,72 +46,73 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
   }
   ```
 
-  - THContentSet: 'THContentSet'은 해당 프로젝트에서 사용할 'THContentView'와 해당 뷰의 Key를 가지고 있습니다. <br>
-  (해당 라이브러리에선 기본적으로  'THVideoContentView', 'THAudioContentView', 'THTextContentView', 'THTitleContentView'를 제공합니다.)
+  - THContentSet: ```THContentSet``` has ```THContentView``` and the key of the view to use in the project. <br>
+  (The library provides ```THVideoContentView```, ```THAudioContentView```, ```THTextContentView```, and ```THTitleContentView``` by default.)
 
   ```Swift
-  // 기본 'THContentView' 세팅
+  //  'THContentView' setting
   var contentSetArray = [THContentSet]()
 
   func setContentView() {
-      // 해당 'THContentView'의 key  세팅
+      // key Generation
       let videoContentKey = "videoContent"
       let audioContentKey = "audioContent"
       let titleContentKey = "titleContent"
       let textContentKey = "textContent"
 
-    // THVideoView Set 예제
+    // THVideoView set example
     let videoContent = THVideoContentView()
     let videoFrame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
     videoContnetKey.setContentView(frame: videoFrame)
   contentSetArray.append(THContentSet(contentKey: videoContentKey, contentView: videoContent))
 
-    // THAdioContentView Set 예제
+    // THAudioContentView set example
     let audioContent = THAudioContentView()
     audioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
     audioContent.setContentView()
     contentSetArray.append(THContentSet(contentKey: audioContentKey, contentView: audioContent))
 
-    // THTitleContentView Set 예제
+    // THTitleContentView set example
     let titleContent = THTitleContentView()
     titleContent.frame.size = CGSize(width: 100, height: 50)
     titleContent.center = self.view.center
     titleContent.setView(fontSize: 25)
     contentSetArray.append(THContentSet(contentKey: titleContentKey, contentView: titleContent))
 
-    // THTextContentView Set 예제
+    // THTextContentView set example
     let textContent = THTextContentView()
     textContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5),  width: self.view.frame.width, height: self.view.frame.height*(1/5))
     textContent.setContentView(upYFloat: 180)
     contentSetArray.append(THContentSet(contentKey: textContentKey, contentView: textContent))
   }
   ```
-2. 만약 필요한 콘텐츠를 보여주고 싶다면, 'THContentView'를 상속받아 구현해 주시면 됩니다.
+2. If you want to show the required content, you can make content view that inherit 'THContentView'.
   ```Swift
-  // 컨텐츠뷰 만들기 예제
+  // 'THContentView' creation example
   public class THExampleContentView: THContentView {
     public setExampleContent {
-      // 콘텐츠뷰의 delegate를 설정해 줍니다.
+      // Sets the delegate for the content view.
       delegate = self
     }
   }
 
   extension THExampleContentView: THContentViewDelegate {
     public func setContent(info: Any?) {
-
+      // Setting up contentInfo in content view
     }
 
     public func dismiss() {
-
+      // When you dismiss the content
     }
   }
   ```
-3. 'THContentMarkerController'를 호출하고 dataSource, delegate를 구현해 줍니다.
+3. Call ```THContentMarkerController``` and implement dataSource, delegate.
   ```swift
-  // 'THContentMarkerController'를 호출하면서 마커의 줌 속도를 지정해 줍니다.
   class ViewController: UIViewController {
 
-    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var contentMarkerController = THContentMarkerController()
+
+    // Work data in 'THContentMarkerController'
     var markerArray = [THMarker]()
     var contentSetArray = [THContentSet]()
 
@@ -123,11 +124,12 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
 
        contentMarkerController.set(parentView: self.view, scrollView: self.scrollView)
 
+       // Data set implemented above
        setMarker()
        setContentView()
     }
  }
- // 'THContentMarkerControllerDataSource'에서는 'THMarker'와 'THContentSet'을 반환해 줍니다.
+// 'THContentMarkerControllerDataSource' returns 'THMarker' and 'THContentSet'
  extension ViewController: THContentMarkerControllerDataSource {
     func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
       return markerArray.count
@@ -145,10 +147,10 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
       return contentSetArray[contentSetIndex]
     }
 }
-//'THContentMarkerControllerDelegate'에서는 마커를 클릭했을때 이벤트를 구현할수 있습니다.
+// In 'THContentMarkerControllerDelegate', you can implement the event when the marker is clicked.
 extension  ViewController: THContentMarkerControllerDelegate {
   func markerTap(_ contentMarkerController: THContentMarkerController, markerView: THMarkerView) {
-        // 만약 마커를 선택했을때 마커를 사라지게 하고 싶으면 추가해 줍니다.
+        // If you want the marker to disappear when you select a marker, add below code.
         contentMarkerController.markerHidden(bool: true)
     }
 }
