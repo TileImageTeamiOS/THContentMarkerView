@@ -1,6 +1,6 @@
 # THContentMarkerView
 
-
+[![Build Status](https://travis-ci.org/TileImageTeamiOS/THContentMarkerView.svg?branch=master)](https://travis-ci.org/TileImageTeamiOS/THContentMarkerView)
 [![Version](https://cocoapod-badges.herokuapp.com/v/THContentMarkerView/badge.png)](https://github.com/TileImageTeamiOS/THContentMarkerView)
 [![platform](https://cocoapod-badges.herokuapp.com/p/THContentMarkerView/badge.png)](https://github.com/TileImageTeamiOS/THContentMarkerView)
 [![License](https://cocoapod-badges.herokuapp.com/l/THContentMarkerView/badge.png)](https://github.com/TileImageTeamiOS/THContentMarkerView)
