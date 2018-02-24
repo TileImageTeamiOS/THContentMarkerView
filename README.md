@@ -158,13 +158,14 @@ extension  ViewController: THContentMarkerControllerDelegate {
 
 ### THContentMarkerView
 
-- ```set(parentView: UIView, scrollView: UIScrollView)``` : 마커가 그려질 UIScrollView와 콘텐츠를 보여줄 UIView를 설정합니다.
-- ```reloadData()``` : 만약 'THMarker'가 추가되거나 삭제될 경우 reloadData()를 이용하여 'THContentMarkerController'에 데이터를 reload해줍니다.
-- ```setMarkerFrame()``` : 마커가 'UIScrollView'위에 있을때 zoom여부와 scroll 여부에 따라 마커의 frame을 바꿔줍니다.
-- ```markerHidden(bool: Bool)``` : 마커의 Hidden 여부를 정합니다.
-- ```contentDismiss()``` : 마커의 콘텐츠를 Dismiss 합니다.
-- ```markerViewSize``` : 마커의 크기를 지정할수 있습니다.
-- ```markerViewImage``` : 마커의 이미지를 지정할수 있습니다.
+- ```set(parentView: UIView, scrollView: UIScrollView)``` : Sets the ```UIScrollView``` on which the marker will be drawn and a ```UIView``` to show the content.
+- ```reloadData()``` : If  ```THMarker``` is added or deleted, use reloadData () to reload the data into ```THContentMarkerController```.
+- ```setMarkerFrame()``` : When the marker is on the 'UIScrollView', it changes the frame of the marker depending on whether it is zooming or not.
+- ```markerHidden(bool: Bool)``` : Determines whether the marker is Hidden.
+- ```contentDismiss()``` :
+Dismiss the content view of the marker.
+- ```markerViewSize``` : You can specify the size of the marker.
+- ```markerViewImage``` : You can specify the image of the marker.
 
 ## License
 
