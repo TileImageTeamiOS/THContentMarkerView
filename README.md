@@ -86,9 +86,7 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
     contentSetArray.append(THContentSet(contentKey: textContentKey, contentView: textContent))
   }
   ```
-  <br>
 2. 만약 필요한 콘텐츠를 보여주고 싶다면, 'THContentView'를 상속받아 구현해 주시면 됩니다.
-  <br>
   ```Swift
   // 컨텐츠뷰 만들기 예제
   public class THExampleContentView: THContentView {
@@ -108,9 +106,7 @@ THContentMarkerView is written in Swift 4, and compatible with iOS 9.0+
     }
   }
   ```
-<br>
 3. 'THContentMarkerController'를 호출하고 dataSource, delegate를 구현해 줍니다.
-<br>
   ```swift
   // 'THContentMarkerController'를 호출하면서 마커의 줌 속도를 지정해 줍니다.
   class ViewController: UIViewController {
