@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
 
-    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var contentMarkerController = THContentMarkerController()
     var imageSize = CGSize()
 
     // THContent

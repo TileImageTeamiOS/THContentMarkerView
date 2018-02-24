@@ -10,7 +10,7 @@ import XCTest
 @testable import THContentMarkerView
 
 class THContentMarkerControllerUnitTests: XCTestCase {
-    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var contentMarkerController = THContentMarkerController()
 
     var scrollView = UIScrollView()
     var imageView = UIImageView()

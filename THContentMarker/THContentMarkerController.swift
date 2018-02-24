@@ -30,11 +30,11 @@ open class THContentMarkerController: THMarkerViewDelegate {
     var contentSetArray: [THContentSet] = []
 
     /// you can controller markerZoom by duration, delay, initalSpringVelocity
-    private var duration: Double
-    private var delay: Double
-    private var initialSpringVelocity: CGFloat
+    private var duration: Double = 3.0
+    private var delay: Double = 0.0
+    private var initialSpringVelocity: CGFloat = 0.66
 
-    public init(duration: Double, delay: Double, initialSpringVelocity: CGFloat) {
+    public func setZoomAnimation(duration: Double, delay: Double, initialSpringVelocity: CGFloat) {
         self.duration = duration
         self.delay = delay
         self.initialSpringVelocity = initialSpringVelocity
