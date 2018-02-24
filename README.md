@@ -163,3 +163,7 @@ extension  ViewController: THContentMarkerControllerDelegate {
 - ```contentDismiss()``` : 마커의 콘텐츠를 Dismiss 합니다.
 - ```markerViewSize``` : 마커의 크기를 지정할수 있습니다.
 - ```markerViewImage``` : 마커의 이미지를 지정할수 있습니다.
+
+## License
+
+`THContentMarkerView` is released under the MIT license. [See LICENSE](https://github.com/TileImageTeamiOS/THContentMarkerView/blob/master/LICENSE) for details.
