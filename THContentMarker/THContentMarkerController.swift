@@ -10,7 +10,8 @@ import UIKit
 
 open class THContentMarkerController: THMarkerViewDelegate {
     // MARK: - Properties [Public]
-
+    public init() {}
+    
     /// The 'MarkerViewSize' manage marker view size in UIScrollView
     /// default CGSize(width: 20, height: 20)
     open var markerViewSize: CGSize = CGSize(width: 20, height: 20)
